@@ -1,0 +1,15 @@
+.card {
+  margin: 5% 0%;
+  width: 300px;
+}
+
+.card-body {
+  margin: 0% 0% 0% 3%;
+  padding: 6% 0%;
+}
+/* En tu archivo Card.css */
+.card-img-top {
+  max-width: 100%; /* La imagen se ajusta al ancho de la tarjeta */
+  height: auto; /* La altura se ajusta automáticamente para mantener la relación de aspecto */
+  border-radius: 10px;
+}
