@@ -1,5 +1,6 @@
 import React from "react";
 import "./Card.css";
+import { Link } from "react-router-dom";
 const Card = () => {
   const cardData = [
     {
@@ -34,9 +35,11 @@ const Card = () => {
             <div className="card-body">
               <h4 className="card-title">{card.title}</h4>
               <p className="card-text">{card.text}</p>
-              <button type="button" className="btn btn-light-blue btn-md">
-                Ver más
-              </button>
+              <Link to="/Detail">
+                <button type="button" className="btn btn-light-blue btn-md">
+                  Ver más
+                </button>
+              </Link>
             </div>
           </div>
         </div>
