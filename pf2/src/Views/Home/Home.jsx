@@ -1,12 +1,16 @@
-import React from "react";
+import React, { useEffect } from "react";
 import styles from './Home.module.css';
 import Cards from "../../Components/Cards/Cards";
 import {IconSearch} from "@tabler/icons-react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { getCars } from "../../Redux/action/actions";
 
 function Home() {
-  const property = useSelector((state)=> state.property)
-  console.log('soy el home', property)
+const dispatch = useDispatch()
+
+  useEffect(()=>{
+  dispatch(getCars())
+})
   return (
     <div>
       <div className={styles.separar}>

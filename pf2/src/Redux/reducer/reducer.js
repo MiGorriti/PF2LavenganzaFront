@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-import { GET_PROPERTY } from '../action/type-actions';
+import {GET_PROPERTY} from '../action/actions'
 
 let initialState = {
     property: [],

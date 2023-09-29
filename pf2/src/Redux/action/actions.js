@@ -1,16 +1,15 @@
 import axios from 'axios';
-import { GET_PROPERTY, POST_PROPERTY } from './type-actions'
 
-
+export const GET_PROPERTY = 'GET_PROPERTY'
 export const getCars = () => {
-  return async function (dispatch) {
+  return async (dispatch)=> {
     try {
       const response = await axios.get(
         `http://localhost:3001/property/gproduct`
       );
       const property = response.data;
 
-      dispatch({ type: GET_PROPERTY, payload: property });
+     return dispatch({ type:GET_PROPERTY, payload: property });
     } catch (error) {
       console.error("Error al obtener datos de los coches:", error);
     }
