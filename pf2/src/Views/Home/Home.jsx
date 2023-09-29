@@ -2,8 +2,11 @@ import React from "react";
 import styles from './Home.module.css';
 import Cards from "../../Components/Cards/Cards";
 import {IconSearch} from "@tabler/icons-react";
+import { useSelector } from "react-redux";
 
 function Home() {
+  const property = useSelector((state)=> state.property)
+  console.log('soy el home', property)
   return (
     <div>
       <div className={styles.separar}>
