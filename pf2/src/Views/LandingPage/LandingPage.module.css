@@ -4,7 +4,7 @@
 }
 
 @font-face {
-  font-family: 'Quahon'; /* Nombre que asignarás a la fuente */
+  font-family: ' Quahon'; /* Nombre que asignarás a la fuente */
   src: url('fuentes/Quahon.otf') format('opentype'); /* Ruta al archivo de fuente */
 }
 
@@ -49,7 +49,7 @@
   font-family: 'Zasline';
 }
 
-.h2{
+.subtitle{
   font-family:'Quahon' ;
 }
 
@@ -74,16 +74,16 @@
 }
 
 .cards {
-    display: flex;
-    justify-content: space-around;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
     margin-top: 20px;
 }
 
 .c1,
 .c2,
 .c3,
-.c4,
-.c5 {
+.c4 {
     width: 200px; /* Ajusta el ancho según tu diseño */
     height: 300px; /* Ajusta la altura según tu diseño */
     background-size: cover;
@@ -97,15 +97,66 @@
     height: 100%;
 }
 
-.chartItem{
+.chartSection {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-gap: 20px;
+  margin-right: 120px;
+  margin-left: 120px;
+}
+
+.box1,
+.box2,
+.box3,
+.box4 {
+  text-align: center;
+}
+
+.chartItem1 {
+  font-size: 18px;
+  background-color: #f8f5c8;
+  border-radius: 20px;
+  height: 120px;
   display: flex;
   justify-content: center;
   align-items: center;
-  font-size: 18px;
-  background-color: black;
-  color: white;
 }
 
+.chartItem2 {
+  font-size: 18px;
+  background-color: black;
+  color: rgb(255, 255, 255);
+  border-radius: 20px;
+  height: 120px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 
+.chartItem3 {
+  font-size: 18px;
+  background-color: #D7FAFF;
+  border-radius: 20px;
+  height: 120px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.chartItem4 {
+  display: flex;
+  font-size: 18px;
+  background-color: #fddffb;
+  border-radius: 20px;
+  height: 120px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.comments{
+  background-color: rgb(204, 204, 204);
+  border-radius: 20px; 
+}
 
   
