@@ -1,10 +1,11 @@
 import axios from 'axios';
 
-import {GET_PROPERTY} from '../action/actions'
+import { GET_PROPERTY, GET_CATEGORYS } from '../action/type-actions';
 
 let initialState = {
     property: [],
-    copyPropertys: []
+    copyPropertys: [],
+    category: [],
 }
 
 function rootReducer(state = initialState, action) {
@@ -16,7 +17,11 @@ function rootReducer(state = initialState, action) {
                 property: action.payload,
                 copyPropertys: action.payload,
             }
-
+        case GET_CATEGORYS:
+            return {
+                ...state, 
+                category: action.payload
+            }
         default:
             return {
                 ...state

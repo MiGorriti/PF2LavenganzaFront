@@ -1,6 +1,5 @@
 import axios from 'axios';
-
-export const GET_PROPERTY = 'GET_PROPERTY'
+import {GET_CATEGORYS, GET_PROPERTY, POST_PROPERTY} from './type-actions'
 export const getCars = () => {
   return async (dispatch)=> {
     try {
@@ -17,15 +16,27 @@ export const getCars = () => {
 };
 
 export const postProperty = (form) => {
-  return async function (dispactch) {
+  return async function (dispatch) {
     try {
       const send = await axios.post(`http://localhost:3001/property/post`, form)
-      dispactch({
+      dispatch({
         type: POST_PROPERTY,
         payload: send
       })
     } catch (error) {
       console.error({ message: 'error' });
+    }
+  }
+}
+
+export const getCategory = () =>{
+  return async function (dispatch){
+    try {
+      const response = await axios.get(`http://localhost:3001/allcategories/get`)
+      const data = response.data
+      dispatch({type: GET_CATEGORYS, payload: data})
+    } catch (error) {
+      console.error({message: 'error', error})
     }
   }
 }

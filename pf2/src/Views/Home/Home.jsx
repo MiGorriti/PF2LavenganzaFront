@@ -10,7 +10,7 @@ const dispatch = useDispatch()
 
   useEffect(()=>{
   dispatch(getCars())
-})
+},[dispatch])
   return (
     <div>
       <div className={styles.separar}>

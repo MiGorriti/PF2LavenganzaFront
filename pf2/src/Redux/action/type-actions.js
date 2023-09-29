@@ -1,2 +1,3 @@
 export const GET_PROPERTY = 'GET_PROPERTY'
 export const POST_PROPERTY = 'POST_PROPERTY'
+export const GET_CATEGORYS = 'GET_CATEGORYS'

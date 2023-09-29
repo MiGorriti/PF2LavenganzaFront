@@ -7,7 +7,7 @@ import { getCars } from "../../Redux/action/actions";
 const Cards = () => {
  
   const property = useSelector((state)=> state.copyPropertys)
- console.log(property)
+
   return (
     <div className="cartascontainer">
       <div className="card-deck row">
