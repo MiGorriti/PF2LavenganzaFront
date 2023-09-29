@@ -5,10 +5,12 @@ import './index.css'
 import { Provider } from 'react'
 
 ReactDOM.createRoot(document.getElementById('root')).render(
-<Provider>
+
 <React.StrictMode>
+<Provider>
     <App />
+</Provider>
   </React.StrictMode>
 
-</Provider>
+
 )
