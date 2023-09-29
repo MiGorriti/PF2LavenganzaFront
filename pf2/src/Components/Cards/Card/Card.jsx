@@ -6,7 +6,7 @@ const Card = ({id, image, title, numBeds, numBaths, avialiability, homeCapacity,
   return (
     <div className="row">
       
-        <div key={id} className="col-xs-12 col-sm-6 col-md-4">
+        <div key={id} className="col-xs-12 col-sm-6 col-md-4 ">
           <div className="card">
             <div className="view overlay">
               <img
@@ -19,7 +19,7 @@ const Card = ({id, image, title, numBeds, numBaths, avialiability, homeCapacity,
               </a>
             </div>
             <div className="card-body">
-              <h4 className="card-title">{title}</h4>
+              <h4 className="">{title}</h4>
               <p className="card-text">{category}</p>
               <Link to="/Detail">
                 <button type="button" className="btn btn-light-blue btn-md">

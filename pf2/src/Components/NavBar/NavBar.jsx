@@ -17,7 +17,7 @@ function Navbar() {
         <Link to="/my-reservations" className={styles.linkNoUnderline}>
         My Reservations
         </Link>
-        <Link to="/publish-your-space" className={styles.linkNoUnderline}>
+        <Link to="/form" className={styles.linkNoUnderline}>
         Publish Your Space 
         </Link>
         <Link to="/map" className={styles.linkNoUnderline}>

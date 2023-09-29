@@ -15,9 +15,9 @@ function App() {
           <Route exact path="/" element={<LandingPage />}></Route>
           <Route exact path="/Home" element={<Home />}></Route>
           <Route exact path="/Detail" element={<Detail />}></Route>
-          <Route exact path='/Form' element={<Form/>}></Route>
-        </Routes>
-        <Footer />
+          <Route path="/Form" element={<Form />}></Route>      
+            </Routes>
+        {/* <Footer /> */}
       </div>
     </Router>
   );

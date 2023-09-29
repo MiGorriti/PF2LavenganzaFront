@@ -22,7 +22,8 @@ const Form = () =>{
         numBaths: '',
         nightPrice: '',
         homeCapacity: '',
-        category: []
+        category: [],
+        availability: ''
     })
     const changeHandler = (e) =>{
         const {name, value} = e.target
@@ -88,7 +89,8 @@ const Form = () =>{
                 numBaths: postForm.numBaths,
                 nightPrice: postForm.nightPrice,
                 homeCapacity: postForm.homeCapacity,
-                Category: postForm.category
+                Category: postForm.category,
+                availability: postForm.availability
             };
             setFile(file);
             setProperty([...property, newProperty])
@@ -102,7 +104,8 @@ const Form = () =>{
             numBaths: '',
             nightPrice: '',
             homeCapacity: '',
-            category: []
+            category: [],
+            availability: ''
         });
         console.log('dispatch', newProperty);
         alert('Your property has been sucessfully published')
@@ -111,33 +114,39 @@ const Form = () =>{
         }
     }
     return (
-        <div>
+        <div class='bg-gray-400 p-5 rounded-md'>
             <form onSubmit={submitHandler}>
-                <div className='primer div'>
+                <div class='w-30 h-30'>
 
-                <div className='Div'>
-                    <input type="text" name="title" value={postForm.title} placeholder='Title For Your Property'onChange={changeHandler} />
+                <div class='m-4 rounded-md'>
+                    <input type="text" name="title"  value={postForm.title} placeholder='Title For Your Property'onChange={changeHandler} />
                     </div> 
 
-                    <div className='Div'>
+                    <div class='m-4 rounded-md' >
                     <input type="text" name="description" value={postForm.description} placeholder='Description of Your Property' onChange={changeHandler}/>
                     </div> 
 
-                    <div className='Div'>
-                    <input type="text" name="numBeds" value={postForm.numBeds}  onChange={changeHandler}/>
+                    <div class='m-4 rounded-md'>
+                    <input type="text" name="numBeds" value={postForm.numBeds} placeholder='Number of Beds From Your Property' onChange={changeHandler}/>
                     </div> 
 
-                    <div className='Div'>
+                    <div class='m-4 rounded-md'>
                     <input type="text" name="numBaths" value={postForm.numBaths} placeholder='Number of Baths From Your Property'onChange={changeHandler} />
                     </div> 
 
-                    <div className='Div'>
+                    <div class='m-4'>
                     <input type="text" name="nightPrice" value={postForm.nightPrice} placeholder='Mount Per Night' onChange={changeHandler}/>
                     </div> 
-
-                    <div className='Div'>
-                    <input type="file" name="image" onChange={handleImage}/>
+                    <div class='m-4'>
+                        <input type="text" name="homeCapacity" value={postForm.homeCapacity} placeholder='Home Capacity' onChange={changeHandler} />
+                    </div>
+                    <div>
+                        <input type="text" name='availability' value={postForm.availability} placeholder='Availability' onChange={changeHandler}/>
+                    </div>
+                    <div class='m-4'>
+                    <input type="file" multiple name="image" onChange={handleImage}/>
                     </div> 
+                  
                     <div>
                     <select name="category" value={postForm.category} onChange={changeHandler} >
                     <option value="">Select a Category</option>
@@ -146,13 +155,16 @@ const Form = () =>{
                     ))}
                     </select>
                     </div>
-                    <div>
-                 {image && image.map((img, index) => (
-                <img key={index} src={img} alt={`Preview ${index}`} />
-             ))}
-                </div>
+               
+                <button type='submit' class='w-25 h-11 mt-3 '> Publish</button>
                 </div>
             </form>
+            <div class='max-h-20 max-w-20 flex space-x-2'>
+                 {image && image.map((img, index) => (
+                <img class='w-18 h-16' key={index} src={img} alt={`Preview ${index}`} />
+             ))}
+                </div>
+                
         </div>
     )
 }
