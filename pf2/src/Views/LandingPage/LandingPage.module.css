@@ -1,0 +1,162 @@
+@font-face {
+  font-family: 'Zasline'; /* Nombre que asignarás a la fuente */
+  src: url('fuentes/Zasline.otf') format('opentype'); /* Ruta al archivo de fuente */
+}
+
+@font-face {
+  font-family: ' Quahon'; /* Nombre que asignarás a la fuente */
+  src: url('fuentes/Quahon.otf') format('opentype'); /* Ruta al archivo de fuente */
+}
+
+@font-face {
+  font-family: 'Replay'; /* Nombre que asignarás a la fuente */
+  src: url('fuentes/Replay.otf') format('opentype'); /* Ruta al archivo de fuente */
+}
+
+
+.container {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+.backgroundimage {
+  position: relative;
+  width: 100%;
+  height: 500px;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.topImage {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  position: absolute;
+  top: 80px;
+  left: 0;
+  border-radius: 10px;
+}
+
+.overlay {
+  position: absolute;
+  top: 65%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  color: white;
+  font-family: 'Zasline';
+}
+
+.subtitle{
+  font-family:'Quahon' ;
+}
+
+.content {
+    width: 90%;
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+}
+
+.left-column {
+    text-align: left;
+    color: black;
+    font-size: 20px;
+    margin-right: 20px;
+}
+
+.right-column {
+    text-align: left;
+    color: black;
+    font-size: 20px;
+}
+
+.cards {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    margin-top: 20px;
+}
+
+.c1,
+.c2,
+.c3,
+.c4 {
+    width: 200px; /* Ajusta el ancho según tu diseño */
+    height: 300px; /* Ajusta la altura según tu diseño */
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    margin-right: 20px; /* Espaciado entre las imágenes */
+}
+
+.image {
+    width: 100%;
+    height: 100%;
+}
+
+.chartSection {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-gap: 20px;
+  margin-right: 120px;
+  margin-left: 120px;
+}
+
+.box1,
+.box2,
+.box3,
+.box4 {
+  text-align: center;
+}
+
+.chartItem1 {
+  font-size: 18px;
+  background-color: #f8f5c8;
+  border-radius: 20px;
+  height: 120px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.chartItem2 {
+  font-size: 18px;
+  background-color: black;
+  color: rgb(255, 255, 255);
+  border-radius: 20px;
+  height: 120px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.chartItem3 {
+  font-size: 18px;
+  background-color: #D7FAFF;
+  border-radius: 20px;
+  height: 120px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.chartItem4 {
+  display: flex;
+  font-size: 18px;
+  background-color: #fddffb;
+  border-radius: 20px;
+  height: 120px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.comments{
+  background-color: rgb(204, 204, 204);
+  border-radius: 20px; 
+}
+
+  

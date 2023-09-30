@@ -7,7 +7,7 @@ function Navbar() {
   return (
     <nav>
       <div className={styles.navSup}>
-        <Link to="/">
+        <Link to="/home">
           <img className={styles.logo} src="/imagenes/Wanderluxehomes.png" alt="Logo" />
         </Link>
       <div className={styles.menu}>
@@ -17,7 +17,7 @@ function Navbar() {
         <Link to="/my-reservations" className={styles.linkNoUnderline}>
         My Reservations
         </Link>
-        <Link to="/publish-your-space" className={styles.linkNoUnderline}>
+        <Link to="/form" className={styles.linkNoUnderline}>
         Publish Your Space 
         </Link>
         <Link to="/map" className={styles.linkNoUnderline}>
