@@ -6,10 +6,12 @@ import ReactDOM from "react-dom";
 import { Provider } from 'react-redux';
 import { store } from './Redux/store/store.js';
 
-ReactDOM.createRoot(document.getElementById("root")).render(
-    <Provider store={store}>
-  <React.StrictMode>
+ReactDOM.render(
+  <Provider store={store}>
+    <React.StrictMode>
       <App />
-  </React.StrictMode>
-    </Provider>
+    </React.StrictMode>
+  </Provider>,
+  document.getElementById("root")
 );
+  
