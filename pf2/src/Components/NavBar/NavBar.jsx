@@ -7,7 +7,7 @@ function Navbar() {
   return (
     <nav>
       <div className={styles.navSup}>
-        <Link to="/home">
+        <Link to="/">
           <img className={styles.logo} src="/imagenes/Wanderluxehomes.png" alt="Logo" />
         </Link>
       <div className={styles.menu}>

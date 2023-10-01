@@ -4,7 +4,7 @@ import Cards from "../../Components/Cards/Cards";
 import {IconSearch} from "@tabler/icons-react";
 import { useDispatch, useSelector } from "react-redux";
 import { getCars } from "../../Redux/action/actions";
-
+import Filters from '../../Components/Filters/Filters'
 function Home() {
 const dispatch = useDispatch()
 
@@ -31,6 +31,7 @@ const dispatch = useDispatch()
           <IconSearch className={styles.search}/>
         </div>
       </div>
+      <Filters/>
       <Cards />
       
     </div>
