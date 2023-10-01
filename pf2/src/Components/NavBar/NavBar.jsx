@@ -1,41 +1,38 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import styles from './NavBar.module.css';
-import { IconLogout, IconUserDown } from "@tabler/icons-react";
+//import { IconLogout, IconUserDown } from "@tabler/icons-react";
 
 function Navbar() {
   return (
     <nav>
       <div className={styles.navSup}>
+<<<<<<< Updated upstream
         <Link to="/">
           <img className={styles.logo} src="/imagenes/Wanderluxehomes.png" alt="Logo" />
         </Link>
+=======
+>>>>>>> Stashed changes
       <div className={styles.menu}>
-        <Link to="/home" className={styles.linkNoUnderline}>
-          Home{" "}
+      <img className={styles.logo} src="/imagenes/Wanderluxehomes.png" alt="Logo" />
+        <Link to="/destinations" className={styles.options}>
+          Destinations
         </Link>
-        <Link to="/my-reservations" className={styles.linkNoUnderline}>
-        My Reservations
-        </Link>
-        <Link to="/form" className={styles.linkNoUnderline}>
-        Publish Your Space 
-        </Link>
-        <Link to="/map" className={styles.linkNoUnderline}>
+        <Link to="/map" className={styles.options}>
         Map
         </Link>
-        <Link to="/houses" className={styles.linkNoUnderline}>
-          Houses
+        <Link to="/recommendations" className={styles.options}>
+        Recommendations
         </Link>
-        <Link to="/apartments" className={styles.linkNoUnderline}>
-        Apartments
+        <Link to="/about-us" className={styles.options}>
+        About Us
         </Link>
-        <Link to="/my-profile" className={styles.iconUserDownLink}>
-          <IconUserDown className={styles.iconUserDown} />
+        <Link to="/login" className={styles.options}>
+        Log In
         </Link>
-{/*         <Link onClick={logout} to="#">
-          <IconLogout className={styles.iconLogout} />
-        </Link> */}
-        <IconLogout className={styles.iconLogout} />
+        <Link to="/sign up" className={styles.options}>
+        Sign Up
+        </Link>
       </div>
       </div>
     </nav>

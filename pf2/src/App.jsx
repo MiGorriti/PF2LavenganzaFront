@@ -10,7 +10,7 @@ import { FormUser } from "./Views/FormRegister/Form";
 function App() {
   return (
     <Router>
-      <div className="App">
+      <div className="App w-full">
         <Navbar />
         <Routes>
           <Route exact path="/" element={<LandingPage />}></Route>
@@ -19,7 +19,7 @@ function App() {
           <Route path="/Form" element={<Form />}></Route>   
           <Route exact path="/Register" element={<FormUser/>}></Route>   
             </Routes>
-        {/* <Footer /> */}
+        <Footer />
       </div>
     </Router>
   );
