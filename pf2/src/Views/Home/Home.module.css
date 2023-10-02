@@ -52,9 +52,11 @@ cursor: pointer;
 }
 
 .filters {
-  position: relative;
-  top: -350px;
-  right: 0px;
+  border-radius: 20px;
+  background-color: white;
+  width:200px;
+  display: flex;
+  flex-wrap: nowrap;
 }
 
 .filter {
@@ -92,5 +94,3 @@ cursor: pointer;
 .button:hover {
   background-color: #ccc;
 }
-
-

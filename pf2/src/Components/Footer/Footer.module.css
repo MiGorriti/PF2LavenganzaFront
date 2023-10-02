@@ -1,8 +1,12 @@
+<<<<<<< Updated upstream
 .group p {
   font-size: 14px;
   margin: 5px 0 10px 0; /* Añade un margen inferior de 10px */
   color: white;
 }
+=======
+
+>>>>>>> Stashed changes
 
 .group {
   display: flex;

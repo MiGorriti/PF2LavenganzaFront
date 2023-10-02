@@ -3,6 +3,37 @@ import { Link } from "react-router-dom";
 import "./Detail.css";
 
 const Detail = () => {
+<<<<<<< Updated upstream
+=======
+  const { idHouse } = useParams();
+  console.log(idHouse)
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(getDetail(idHouse));
+  }, []);
+
+  const houseDetail = useSelector((state) => state.houseDetail);
+
+  if (!houseDetail) {
+    return <div>...Loading</div>;
+  }
+
+  const {
+    title,
+    image,  
+    description,
+    nightPrice,
+    location,
+    category,
+    homeCapacity,
+    numBaths,
+    numBeds,
+    availability
+  } = houseDetail;
+
+  
+  
+>>>>>>> Stashed changes
   return (
     <div className="container bootdey">
       <div className="col-md-12">
