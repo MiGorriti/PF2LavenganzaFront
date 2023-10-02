@@ -1,3 +1,4 @@
+import React from "react";
 import styles from "./LandingPage.module.css";
 import { IconHeart } from "@tabler/icons-react";
 

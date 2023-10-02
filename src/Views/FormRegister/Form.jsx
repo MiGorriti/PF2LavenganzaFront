@@ -1,34 +1,84 @@
-import React from "react";
+import React, {useState}from "react";
+import { useDispatch } from "react-redux";
+import { createUser } from "../../Redux/action/actions";
 
 export const FormUser = () => {
+const dispatch = useDispatch();
+
+const [postForm, setPostForm] = useState({
+  email : '',
+  password : '',
+  fullName : '',
+  lastName : '',
+})
+
+
+
+const handleChange = (e) =>{
+  const {name, value}  = e.target
+  setPostForm({
+    ...postForm,
+    [name]: value
+  })
+
+}
+const submitHandler = async (e) =>{
+  e.preventDefault();
+
+
+    const newUser = {
+      email: postForm.email,
+      password: postForm.password,
+      fullName: postForm.fullName,
+      lastName: postForm.lastName
+    }
+    console.log(newUser);
+    dispatch(createUser(newUser))
+
+    setPostForm({
+      email : '',
+  password : '',
+  fullName : '',
+  lastName : '',
+    })
+    alert('testing')
+
+}
+
+
+
+
+
+
+
+
+
   return (
     <div className="min-h-screen py-40" style={{ backgroundImage: 'linear-gradient(115deg, #020923, #FEE2FE)' }}>
     <div className="container mx-auto">
       <div className="flex flex-col lg:flex-row w-10/12 lg:w-8/12 bg-white rounded-xl mx-auto shadow-lg overflow-hidden">
         <div className="w-full lg:w-1/2 flex flex-col items-center justify-center p-12 bg-no-repeat bg-cover bg-center" style={{ backgroundImage: 'url(/imagenes/Fondolanding.png)' }}>
-          <h1 className="text-white text-3xl mb-3">Welcome</h1>
+          <h1 className="">Welcome</h1>
           <div>
             <p className="text-white">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean suspendisse aliquam varius rutrum purus maecenas ac <a href="#" className="text-purple-500 font-semibold">Learn more</a></p>
           </div>
         </div>
         <div className="w-full lg:w-1/2 py-16 px-12 text-black">
+          <img src="/imagenes/Fondolanding.png" alt="" className=" h-14 items-center"/>
           <h2 className="text-3xl mb-4">Register</h2>
           <p className="mb-4">
             Create your account. It’s free and only take a minute
           </p>
-          <form action="#">
+          <form onSubmit={submitHandler} action="#">
             <div className="grid grid-cols-2 gap-5">
-              <input type="text" placeholder="Firstname" className="border border-gray-400 py-1 px-2" />
-              <input type="text" placeholder="Surname" className="border border-gray-400 py-1 px-2" />
+              <input type="text" name="fullName" value={postForm.fullName} onChange={handleChange} placeholder="Firstname" className="border border-gray-400 py-1 px-2" />
+              <input type="text" name="lastName" value={postForm.lastName} onChange={handleChange} placeholder="LastName" className="border border-gray-400 py-1 px-2" />
             </div>
             <div className="mt-5">
-              <input type="text" placeholder="Email" className="border border-gray-400 py-1 px-2 w-full" />
+              <input type="text" placeholder="Email" name='email' value={postForm.email} onChange={handleChange} className="border border-gray-400 py-1 px-2 w-full" />
             </div>
             <div className="mt-5">
-              <input type="password" placeholder="Password" className="border border-gray-400 py-1 px-2 w-full" />
-            </div>
-            <div className="mt-5">
-              <input type="password" placeholder="Confirm Password" className="border border-gray-400 py-1 px-2 w-full" />
+              <input type="password" placeholder="Password" name='password' value={postForm.password} onChange={handleChange} className="border border-gray-400 py-1 px-2 w-full" />
             </div>
             <div className="mt-5">
               <input type="checkbox" className="border border-gray-400" />

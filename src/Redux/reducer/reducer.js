@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-import { GET_PROPERTY, GET_CATEGORYS, FILTER_LOCATION, FILTER_CATEGORY, GET_LOCATIONS } from '../action/type-actions';
+import { GET_PROPERTY, GET_CATEGORYS, FILTER_LOCATION, FILTER_CATEGORY, GET_LOCATIONS, GET_DETAIL} from '../action/type-actions';
 
 let initialState = {
     property: [],
@@ -8,7 +8,8 @@ let initialState = {
     category: [],
     location: [],
     filterCategory: [],
-    filterLocation: []
+    filterLocation: [],
+    propertyDetail: {},
 }
 
 function rootReducer(state = initialState, action) {
@@ -42,6 +43,11 @@ function rootReducer(state = initialState, action) {
                 ...state,
                 location: action.payload
             }
+            case GET_DETAIL:
+                return{
+                    ...state,
+                    propertyDetail: action.payload
+                }
         default:
             return {
                 ...state

@@ -1,5 +1,6 @@
 import axios from 'axios';
-import {FILTER_CATEGORY, FILTER_LOCATION, GET_CATEGORYS, GET_LOCATIONS, GET_PROPERTY, POST_PROPERTY, GET_DETAIL} from './type-actions'
+import {FILTER_CATEGORY, FILTER_LOCATION, GET_CATEGORYS, GET_LOCATIONS, GET_PROPERTY, POST_PROPERTY, GET_DETAIL, CREATE_USER} from './type-actions'
+
 export const getCars = () => {
   return async (dispatch)=> {
     try {
@@ -62,6 +63,7 @@ export const filterCat = (category) =>{
    }}
    
 }
+
 export const filterLocation = (location) =>{
   return async function (dispatch){
     if(location === "default"){
@@ -101,14 +103,25 @@ export const getDetail = (idHouse) => {
   return async function (dispatch) {
     try {
       const response = await axios.get(
-        `http://localhost:3001/product/${idHouse}`
+        `http://localhost:3001/property/${idHouse}`
       );
 
       const detail = response.data;
-      console.log("555", detail);
       dispatch({ type: GET_DETAIL, payload: detail });
     } catch (error) {
       console.error("Error");
     }
   };
 };
+
+export const createUser = (postForm) =>{
+  return async function (req, res){
+try {
+  const response = axios.post(`http://localhost:3001/user/create`, postForm)
+  dispatch({type: CREATE_USER, payload: response})
+  
+} catch (error) {
+  console.error(error);  
+}
+  }
+}
