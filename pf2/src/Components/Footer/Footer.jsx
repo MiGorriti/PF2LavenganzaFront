@@ -4,7 +4,6 @@ import styles from './Footer.module.css';
 function Footer() {
   return (
     <footer className={styles.footer}>
-      <div className={styles.column}>
         <div className={styles.group}>
           <p>Attendance :</p>
           <p>Help Center</p>
@@ -22,7 +21,7 @@ function Footer() {
           <p>Contact us :</p>
           <p>wanderluxehomes@gmail.com</p>
         </div>
-      </div>
+      
     </footer>
   );
 }
