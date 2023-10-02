@@ -1,18 +1,12 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import styles from './NavBar.module.css';
+import styles from './NavBarGuest.module.css';
 //import { IconLogout, IconUserDown } from "@tabler/icons-react";
 
-function Navbar() {
+function NavBarGuest() {
   return (
     <nav>
       <div className={styles.navSup}>
-<<<<<<< Updated upstream
-        <Link to="/">
-          <img className={styles.logo} src="/imagenes/Wanderluxehomes.png" alt="Logo" />
-        </Link>
-=======
->>>>>>> Stashed changes
       <div className={styles.menu}>
       <img className={styles.logo} src="/imagenes/Wanderluxehomes.png" alt="Logo" />
         <Link to="/destinations" className={styles.options}>
@@ -39,4 +33,4 @@ function Navbar() {
   );
 }
 
-export default Navbar;
+export default NavBarGuest;

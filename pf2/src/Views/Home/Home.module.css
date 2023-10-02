@@ -1,34 +1,54 @@
-body {
-  margin: 0;
-  padding: 0;
-  font-family: sans-serif;
+@font-face {
+  font-family: 'Zasline';
+  src: url('fuentes/Zasline.otf') format('opentype');
+}
+
+@font-face {
+  font-family: 'Replay'; 
+  src: url('fuentes/Replay.otf') format('opentype');
 }
 
 .container {
   width: 100%;
-  max-width: 1200px;
-  margin: 0 auto;
+  height: 100%;
+  overflow: hidden;
 }
 
-.h1{
+.backgroundimage {
   position: relative;
-  top: 130px;
-  left: 0;
-  margin-top: 20px;
-  color:white;
-  font-size: 40px;
-  font-weight: bold;
-}
-
-.img {
   width: 100%;
   height: 500px;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.topImage {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  position: absolute;
+  top: 80px;
+  left: 0;
   border-radius: 10px;
+}
+
+.overlay {
+  position: absolute;
+  top: 40%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  color: white;
+  font-family: Zasline;
 }
 
 .search{
   position: relative;
-top: 14px;
+top: -45px;
+left: 322px;
+width: 45px;
+height: 45px;
 color: rgb(0, 0, 0);
 background-color: #fff;
 border: 1px solid #ccc;
@@ -39,8 +59,8 @@ cursor: pointer;
 
 .rent {
   position: relative;
-  top: 31px;
-  right: -262px;
+  top: 1px;
+  right: -1px;
   color: black;
   background-color: #fff;
   border: 1px solid #ccc;
@@ -53,44 +73,13 @@ cursor: pointer;
 
 .filters {
   position: relative;
-  top: -350px;
-  right: 0px;
+  top: -200px;
+  left: 250px;
 }
 
-.filter {
-  background-color: #fff;
-  border: 1px solid #ccc;
-  padding: 10px;
-  cursor: pointer;
-}
 
-.filter:hover {
-  background-color: #ccc;
-}
 
-.content {
-  padding: 0px;
-}
 
-.title {
-  font-size: 24px;
-  font-weight: bold;
-}
 
-.paragraph {
-  font-size: 16px;
-}
-
-.button {
-  background-color: #000;
-  color: #fff;
-  border: none;
-  padding: 10px;
-  cursor: pointer;
-}
-
-.button:hover {
-  background-color: #ccc;
-}
 
 
