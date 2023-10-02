@@ -1,4 +1,3 @@
-import React from "react";
 import "./Card.css";
 import { NavLink } from "react-router-dom";
 
@@ -23,6 +22,7 @@ const Card = ({
               <div className="mask rgba-white-slight"></div>
             </a>
           </div>
+<<<<<<< Updated upstream
           <div className="card-body">
             <h4 className="text-blue">{title}</h4>
             <h4 className="text-black">{Category}</h4> {/* Muestra la categoría aquí */}
@@ -30,6 +30,15 @@ const Card = ({
             <p className="card-text">Baths: {numBaths}</p>
             <NavLink to={`/Detail/${id}`}>
               <button type="button" className="btn btn-light-blue btn-md">
+=======
+          <div className="card-body font-ModernAntiqua-book">
+            <h4 className="text-white ">{title}</h4>
+            <h4 className="text-white">{Category}</h4> {/* Muestra la categoría aquí */}
+            <p className="text-white">Beds: {numBeds}</p>
+            <p className="text-white">Baths: {numBaths}</p>
+            <Link to="/Detail">
+              <button type="button" className="btn bg-white text-black mt-5 btn-md">
+>>>>>>> Stashed changes
                 Ver más
               </button>
             </NavLink>

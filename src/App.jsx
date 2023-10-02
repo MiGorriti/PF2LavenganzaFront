@@ -44,7 +44,7 @@ function App() {
           <Route path="/Form" element={<Form />}></Route>   
           <Route exact path="/Register" element={<FormUser/>}></Route>   
             </Routes>
-        {/* <Footer /> */}
+        <Footer />
       </div>
     </Router>
   );

@@ -1,10 +1,13 @@
-
 module.exports = {
   purge: [],
   content: ["./index.html","./src/**/**.{js, jsx} "],
   darkMode: false, // or 'media' or 'class'
   theme: {
-    extend: {},
+    extend: {
+      fontFamily: {
+        'ModernAntiqua-book': ['ModernAntiqua book', 'sans'],
+      },
+    },
     colors: {
       primary: '#1E90FF',
       secondary: '#FFD700',
