@@ -1,6 +1,6 @@
 import React from "react";
 import "./Card.css";
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 
 const Card = ({
   id,
@@ -12,6 +12,7 @@ const Card = ({
   homeCapacity,
   Category,
 }) => {
+
   return (
     <div className="row">
       <div key={id} className="col-xs-12 col-sm-6 col-md-4 ">
@@ -27,11 +28,11 @@ const Card = ({
             <h4 className="text-black">{Category}</h4> {/* Muestra la categoría aquí */}
             <p className="card-text">Beds: {numBeds}</p>
             <p className="card-text">Baths: {numBaths}</p>
-            <Link to="/Detail">
+            <NavLink to={`/Detail/${id}`}>
               <button type="button" className="btn btn-light-blue btn-md">
                 Ver más
               </button>
-            </Link>
+            </NavLink>
           </div>
         </div>
       </div>

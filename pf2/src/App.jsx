@@ -37,7 +37,8 @@ function App() {
         {/* {user ? <NavbarAuthenticated /> : <NavbarGuest />} */}
         <NavBarGuest/>
         <Routes>
-          <Route exact path="/" element={<LandingPage />}></Route>
+        <Route exact path="/" element={<LandingPage />}></Route>
+        <Route exact path="/Detail/:idHouse" element={<Detail />}></Route>
           <Route exact path="/Home" element={<Home />}></Route>
           <Route exact path="/Detail" element={<Detail />}></Route>
           <Route path="/Form" element={<Form />}></Route>   

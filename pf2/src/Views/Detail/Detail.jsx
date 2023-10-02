@@ -7,12 +7,14 @@ import { useDispatch, useSelector } from "react-redux";
 
 const Detail = () => {
   const { idHouse } = useParams();
+  console.log(idHouse)
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(getDetail(idHouse));
   }, []);
 
   const houseDetail = useSelector((state) => state.houseDetail);
+
   if (!houseDetail) {
     return <div>...Loading</div>;
   }
@@ -30,7 +32,7 @@ const Detail = () => {
     availability
   } = houseDetail;
 
-  console.log("algo",houseDetail);
+  
   
   return (
     <div className="container bootdey">

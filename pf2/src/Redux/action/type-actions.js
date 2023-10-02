@@ -5,3 +5,4 @@ export const FILTER_CATEGORY = 'FILTER_CATEGORY'
 export const FILTER_LOCATION = 'FILTER_LOCATION'
 export const GET_LOCATIONS = 'GET_LOCATIONS'
 export const GET_DETAIL = "GET_DETAIL";
+export const CREATE_USER = "CREATE_USER"
