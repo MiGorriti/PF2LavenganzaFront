@@ -4,6 +4,7 @@ import { IconHeart } from "@tabler/icons-react";
 
 function LandingPage() {
   return (
+<<<<<<< HEAD
 
         <div className={styles.container}>
             <section className={styles.backgroundimage}>
@@ -90,6 +91,21 @@ function LandingPage() {
                     </div>
                 </div>
             </div>
+=======
+    <div className={styles.container}>
+      <section className={styles.backgroundimage}>
+        <img
+          src="/imagenes/Fondolanding.png"
+          alt="Fondo"
+          className={styles.topImage}
+        />
+        <div className={styles.overlay}>
+          <h1>JOURNEY TO YOUR PERFECT HOME</h1>
+          <h2 className={styles.subtitle}>
+            Let our expert team guide you through the magic of real estate and
+            help you find the perfect home where your dreams take flight
+          </h2>
+>>>>>>> 0a4fa2b492278cf80d25e0943ae4c6e57f0f036a
         </div>
   );
 }

@@ -7,11 +7,16 @@ function NavBarGuest() {
   return (
     <nav>
       <div className={styles.navSup}>
-      <div className={styles.menu}>
-      <img className={styles.logo} src="/imagenes/Wanderluxehomes.png" alt="Logo" />
-        <Link to="/destinations" className={styles.options}>
-          Destinations
+<<<<<<< HEAD:pf2/src/Components/NavBarGuest/NavBarGuest.jsx
+=======
+
+        <Link to="/">
+          <img className={styles.logo} src="/imagenes/Wanderluxehomes.png" alt="Logo" />
         </Link>
+
+>>>>>>> 0a4fa2b492278cf80d25e0943ae4c6e57f0f036a:pf2/src/Components/NavBar/NavBar.jsx
+      <div className={styles.menu}>
+      
         <Link to="/map" className={styles.options}>
         Map
         </Link>

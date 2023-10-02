@@ -2,8 +2,12 @@ import React, { useEffect, useState } from "react";
 import "./App.css";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Home from "./Views/Home/Home";
+<<<<<<< HEAD
 import NavBarGuest from "./Components/NavBarGuest/NavBarGuest";
 //import NavBarAuthenticated from "./Components/NavBarAuthenticated/NavBarAuthenticated";
+=======
+import Navbar from "./Components/NavBar/NavBar";
+>>>>>>> 0a4fa2b492278cf80d25e0943ae4c6e57f0f036a
 import Footer from "./Components/Footer/Footer";
 import Detail from "./Views/Detail/Detail";
 import LandingPage from "./Views/LandingPage/LandingPage";
