@@ -2,14 +2,17 @@ import React, {useState, useEffect} from 'react'
 import {useDispatch, useSelector} from 'react-redux'
 import {
    
-    getCategory, postProperty,
+    getCategory, getLocations, postProperty,
 }from '../../Redux/action/actions.js'
 
 const Form = () =>{
     const dispatch = useDispatch();
     const category = useSelector((state)=> state.category)
+    const location = useSelector((state)=> state.location)
+   
     useEffect(()=>{
         dispatch(getCategory())
+        dispatch(getLocations())
     },[])
     const [file, setFile] = useState([]);
     const [image, setImage] = useState([]);
@@ -23,13 +26,15 @@ const Form = () =>{
         nightPrice: '',
         homeCapacity: '',
         category: [],
-        availability: ''
+        availability: '',
+        location: [],
     })
     const changeHandler = (e) =>{
-        const {name, value} = e.target
+        const {name, value, direction} = e.target
         setPostForm({
             ...postForm,
-            [name]: value
+            [name]: value,
+            [direction]:value
         })
     }
 
@@ -69,6 +74,7 @@ const Form = () =>{
         }
     }
 
+      
     const selectCategory = (e) => {
         const categoryValue = e.target.value;
         setPostForm({
@@ -90,11 +96,14 @@ const Form = () =>{
                 nightPrice: postForm.nightPrice,
                 homeCapacity: postForm.homeCapacity,
                 Category: postForm.category,
-                availability: postForm.availability
+                availability: postForm.availability,
+                Location: postForm.location
             };
             setFile(file);
             setProperty([...property, newProperty])
+          
             dispatch(postProperty(newProperty))
+
 
         setPostForm({
             title: '',
@@ -105,9 +114,9 @@ const Form = () =>{
             nightPrice: '',
             homeCapacity: '',
             category: [],
-            availability: ''
+            availability: '',
+            location: [],
         });
-        console.log('dispatch', newProperty);
         alert('Your property has been sucessfully published')
         }else{
             alert(`There's a Error`)
@@ -153,6 +162,12 @@ const Form = () =>{
                     {category && category?.map((cat)=> (
                         <option key={cat.id} value={cat.name}>{cat.name}</option>
                     ))}
+                    </select>
+                    <select name="location" value={postForm.location} onChange={changeHandler}>
+                   <option value="">Select a Location</option>
+                {location && location?.map((loc) => (
+                    <option key={loc.id} value={loc.direction}>{loc.direction}</option>
+              ))}
                     </select>
                     </div>
                

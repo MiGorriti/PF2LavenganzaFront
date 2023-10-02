@@ -1,22 +1,22 @@
 import React from "react";
-import styles from './LandingPage.module.css';
-import {IconHeart} from "@tabler/icons-react";
+import styles from "./LandingPage.module.css";
+import { IconHeart } from "@tabler/icons-react";
 
 function LandingPage() {
-    return (
+  return (
+
         <div className={styles.container}>
-        
             <section className={styles.backgroundimage}>
                 <img src="/imagenes/Fondolanding.png" alt="Fondo" className={styles.topImage} />
                 <div className={styles.overlay}>
-                    <h1>JOURNEY TO YOUR PERFECT HOME</h1>
+                    <h1 className={styles.title}>JOURNEY TO YOUR PERFECT HOME</h1>
                     <h2 className={styles.subtitle}>Let our expert team guide you through the magic of real estate and help you find the perfect home where your dreams take flight</h2>
                 </div>
             </section>
 
             <div className={styles.content}>
-                <div className={styles.leftColumn} style={{ marginTop: '100px' }}>
-                    <section className={styles.info1}>
+                <div className={styles.leftColumn} >
+                    <section className={styles.infotitle}>
                         <h2>Your Trusted Real Estate Advisors</h2>
                     </section>
 
@@ -34,17 +34,17 @@ function LandingPage() {
                         <p className={styles.chartItem4}>+ 100 Destinations to Stay</p>
                         </div>
                     </section>
-                    <section className={styles.info2}>
+                    <section className={styles.infotitle}>
                         <h2>Discover the most</h2>
                         <h2>viewed properties</h2>
                     </section>
                 </div>
 
-                <div className={styles.rightColumn} style={{ marginTop: '100px' }}>
-                    <section>
+                <div className={styles.rightColumn}>
+                    <section className={styles.infotitle}>
                         <h2>Comments</h2>
                     </section>
-
+                    <div className={styles.boxcomments}>
                     <section className={styles.comments}>
                         <p>This app is all I need.</p>
                         <p>This app has the best houses I have ever seen.</p>
@@ -54,8 +54,9 @@ function LandingPage() {
                         <p>Amazing customer service! They were quick to respond to my queries and very helpful.</p>
                         <p>I found my new home within days of using this app. Thank you for the great service!</p>
                     </section>
+                    </div>
 
-                    <section className={styles.info3}>
+                    <section className={styles.infotitle}>
                         <p>Embark on a journey of discovery through exclusive </p>
                         <p>collections of homes, luxury properties to fulfill</p>
                         <p>your aspirations and inspire your imagination.</p>
@@ -66,31 +67,31 @@ function LandingPage() {
             <div className={styles.cards}>
                 <div className={styles.c1}>
                     <div className={styles.image}>
-                        <IconHeart/>
+                        <IconHeart className={styles.icon}/>
                         <img src="/imagenes/c1.jpg" alt="card1" />
                     </div>
                 </div>
                 <div className={styles.c2}>
                     <div className={styles.image}>
-                    <IconHeart/>
+                    <IconHeart className={styles.icon}/>
                     <img src="/imagenes/c2.jpg" alt="card2" />
                     </div>
                 </div>
                 <div className={styles.c3}>
                     <div className={styles.image}>
-                    <IconHeart/>
+                    <IconHeart className={styles.icon}/>
                     <img src="/imagenes/c3.jpg" alt="card3" />
                     </div>
                 </div>
                 <div className={styles.c4}>
                     <div className={styles.image}>
-                    <IconHeart/>
+                    <IconHeart className={styles.icon}/>
                     <img src="/imagenes/c4.jpg" alt="card4" />
                     </div>
                 </div>
             </div>
         </div>
-    )
+  );
 }
 
 export default LandingPage;

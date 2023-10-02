@@ -2,8 +2,9 @@ import React, { useEffect } from "react";
 import styles from './Home.module.css';
 import Cards from "../../Components/Cards/Cards";
 import {IconSearch} from "@tabler/icons-react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { getCars } from "../../Redux/action/actions";
+import Filters from '../../Components/Filters/Filters';
 
 function Home() {
 const dispatch = useDispatch()
@@ -13,15 +14,13 @@ const dispatch = useDispatch()
 },[dispatch])
   return (
     <div>
-      <div className={styles.separar}>
-      </div>
       <div className={styles.container}>
-        <div className={styles.slider}>
-          <div className={styles.slide}>
-            <h1 className={styles.h1}>Explore The Best Places For Your Stay !</h1>
-            <img className={styles.img} src="/imagenes/FondoHomeCasa.jpg" alt="Imagen de fondo" />
-          </div>
-        </div>
+      <section className={styles.backgroundimage}>
+                <img src="/imagenes/FondoHomeCasa.jpg" alt="Fondo" className={styles.topImage} />
+                <div className={styles.overlay}>
+                    <h1 className={styles.title}>Explore the best places for your stay !</h1>
+                </div>
+            </section>
 
         <div className={styles.filters}>
         <p type="button" className={styles.rent}>Rent / Reserve</p>
@@ -31,6 +30,7 @@ const dispatch = useDispatch()
           <IconSearch className={styles.search}/>
         </div>
       </div>
+      <Filters/>
       <Cards />
       
     </div>
