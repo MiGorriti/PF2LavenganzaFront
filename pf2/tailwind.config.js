@@ -1,3 +1,4 @@
+
 module.exports = {
   purge: [],
   content: ["./index.html","./src/**/**.{js, jsx} "],

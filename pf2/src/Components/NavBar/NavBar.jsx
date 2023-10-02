@@ -29,7 +29,7 @@ function Navbar() {
         <Link to="/apartments" className={styles.linkNoUnderline}>
         Apartments
         </Link>
-        <Link to="/my-profile" className={styles.iconUserDownLink}>
+        <Link to="/register" className={styles.iconUserDownLink}>
           <IconUserDown className={styles.iconUserDown} />
         </Link>
 {/*         <Link onClick={logout} to="#">
