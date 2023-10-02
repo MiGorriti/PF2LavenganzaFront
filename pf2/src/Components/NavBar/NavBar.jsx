@@ -7,7 +7,7 @@ function Navbar() {
   return (
     <nav>
       <div className={styles.navSup}>
-        <Link to="/home">
+        <Link to="/">
           <img className={styles.logo} src="/imagenes/Wanderluxehomes.png" alt="Logo" />
         </Link>
       <div className={styles.menu}>
@@ -29,7 +29,7 @@ function Navbar() {
         <Link to="/apartments" className={styles.linkNoUnderline}>
         Apartments
         </Link>
-        <Link to="/my-profile" className={styles.iconUserDownLink}>
+        <Link to="/register" className={styles.iconUserDownLink}>
           <IconUserDown className={styles.iconUserDown} />
         </Link>
 {/*         <Link onClick={logout} to="#">
