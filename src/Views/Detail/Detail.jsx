@@ -1,19 +1,29 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React,  { useEffect } from "react";
+import { Link,  useParams } from "react-router-dom";
 import "./Detail.css";
+import { getDetail } from "../../Redux/action/actions";
+import { useDispatch, useSelector } from "react-redux";
+
 
 const Detail = () => {
+<<<<<<< HEAD:pf2/src/Views/Detail/Detail.jsx
 <<<<<<< Updated upstream
 =======
   const { idHouse } = useParams();
   console.log(idHouse)
+=======
+  const { idHouse } = useParams();
+>>>>>>> 3d372cbac81204d4e450c53cbd6c20cba41fceb6:src/Views/Detail/Detail.jsx
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(getDetail(idHouse));
   }, []);
 
   const houseDetail = useSelector((state) => state.houseDetail);
+<<<<<<< HEAD:pf2/src/Views/Detail/Detail.jsx
 
+=======
+>>>>>>> 3d372cbac81204d4e450c53cbd6c20cba41fceb6:src/Views/Detail/Detail.jsx
   if (!houseDetail) {
     return <div>...Loading</div>;
   }
@@ -31,9 +41,14 @@ const Detail = () => {
     availability
   } = houseDetail;
 
+<<<<<<< HEAD:pf2/src/Views/Detail/Detail.jsx
   
   
 >>>>>>> Stashed changes
+=======
+  console.log("algo",houseDetail);
+  
+>>>>>>> 3d372cbac81204d4e450c53cbd6c20cba41fceb6:src/Views/Detail/Detail.jsx
   return (
     <div className="container bootdey">
       <div className="col-md-12">
@@ -42,63 +57,64 @@ const Detail = () => {
             <div className="col-md-6">
               <div className="pro-img-details">
                 <img
-                  src="https://www.bootdey.com/image/550x380/FFB6C1/000000"
+                  src={image}
                   alt=""
                 />
               </div>
               <div className="pro-img-list">
-                <Link to="#">
+                <Link to={image}>
                   <img
-                    src="https://www.bootdey.com/image/115x100/87CEFA/000000"
+                    src={image}
                     alt=""
                   />
                 </Link>
-                <Link to="#">
+                <Link to={image}>
                   <img
-                    src="https://www.bootdey.com/image/115x100/FF7F50/000000"
+                    src={image}
                     alt=""
                   />
                 </Link>
-                <Link to="#">
+                <Link to={image}>
                   <img
-                    src="https://www.bootdey.com/image/115x100/20B2AA/000000"
+                    src={image}
                     alt=""
                   />
                 </Link>
-                <Link to="#">
+                <Link to={image}>
                   <img
-                    src="https://www.bootdey.com/image/120x100/20B2AA/000000"
+                    src={image}
                     alt=""
                   />
                 </Link>
               </div>
             </div>
             <div className="col-md-6">
-              <h4 className="pro-d-title">
+              <h2 className="pro-d-title">
                 {" "}
-                Monoambiente de mala muerte a sobreprecio
-              </h4>
+                {title}
+              </h2>
+              <h3>{availability}</h3>
               <p className="descripcion">
-                No puede vivir ni un caracol, pero ta barato (mentira)
+                 {description}
               </p>
               <div className="product_meta">
                 <span className="posted_in">
                   {" "}
-                  <strong>Categories:</strong> <Link to="#">Monoambiente</Link>,{" "}
-                  <Link to="#">Claustrofobia</Link>,{" "}
-                  <Link to="#">Sin cocina</Link>,{" "}
-                  <Link to="#">Con humedad en las paredes</Link>.
+                  <strong>Categories:</strong> <Link to="#">{category}</Link>,{" "}
+                  <Link to="#">{category}</Link>,{" "}
+                  <Link to="#">{category}</Link>,{" "}
+                  <Link to="#">{category}</Link>.
                 </span>
                 <span className="tagged_as">
-                  <strong>Tags:</strong> <Link to="#">Estudiantes</Link>,{" "}
-                  <Link to="#">Solteros/as</Link>.
+                  <strong>Specs:</strong> <Link to="#">{numBaths}</Link>,{" "}
+                  <Link to="#">{numBeds}</Link><Link to="#">{homeCapacity}</Link>.
                 </span>
               </div>
               <div className="m-bot15">
                 {" "}
                 <strong>Price : </strong>{" "}
-                <span className="amount-old">$54400</span>{" "}
-                <span className="pro-price"> $300000</span>
+                
+                <span className="pro-price">{nightPrice}</span>
               </div>
               <div className="form-group"></div>
               <p>

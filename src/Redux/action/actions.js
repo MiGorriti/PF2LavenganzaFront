@@ -1,10 +1,14 @@
 import axios from 'axios';
+<<<<<<< HEAD:pf2/src/Redux/action/actions.js
 <<<<<<< Updated upstream
 import {FILTER_CATEGORY, FILTER_LOCATION, GET_CATEGORYS, GET_LOCATIONS, GET_PROPERTY, POST_PROPERTY} from './type-actions'
 =======
 import {FILTER_CATEGORY, FILTER_LOCATION, GET_CATEGORYS, GET_LOCATIONS, GET_PROPERTY, POST_PROPERTY, GET_DETAIL, CREATE_USER} from './type-actions'
 
 >>>>>>> Stashed changes
+=======
+import {FILTER_CATEGORY, FILTER_LOCATION, GET_CATEGORYS, GET_LOCATIONS, GET_PROPERTY, POST_PROPERTY, GET_DETAIL} from './type-actions'
+>>>>>>> 3d372cbac81204d4e450c53cbd6c20cba41fceb6:src/Redux/action/actions.js
 export const getCars = () => {
   return async (dispatch)=> {
     try {
@@ -101,16 +105,25 @@ export const getLocations = () =>{
       console.error({message: 'error'});
     }
   }
+<<<<<<< HEAD:pf2/src/Redux/action/actions.js
 <<<<<<< Updated upstream
 =======
+=======
+>>>>>>> 3d372cbac81204d4e450c53cbd6c20cba41fceb6:src/Redux/action/actions.js
 }
 
 export const getDetail = (idHouse) => {
   return async function (dispatch) {
+<<<<<<< HEAD:pf2/src/Redux/action/actions.js
     console.log(idHouse)
     try {
       const response = await axios.get(
         `http://localhost:3001/property/${idHouse}`
+=======
+    try {
+      const response = await axios.get(
+        `http://localhost:3001/product/${idHouse}`
+>>>>>>> 3d372cbac81204d4e450c53cbd6c20cba41fceb6:src/Redux/action/actions.js
       );
 
       const detail = response.data;
@@ -120,6 +133,7 @@ export const getDetail = (idHouse) => {
       console.error("Error");
     }
   };
+<<<<<<< HEAD:pf2/src/Redux/action/actions.js
 };
 
 export const createUser = (postForm) =>{
@@ -134,3 +148,6 @@ try {
   }
 >>>>>>> Stashed changes
 }
+=======
+};
+>>>>>>> 3d372cbac81204d4e450c53cbd6c20cba41fceb6:src/Redux/action/actions.js
