@@ -101,14 +101,12 @@ export const getLocations = () =>{
 
 export const getDetail = (idHouse) => {
   return async function (dispatch) {
-    console.log(idHouse)
     try {
       const response = await axios.get(
         `http://localhost:3001/property/${idHouse}`
       );
 
       const detail = response.data;
-      console.log("555", detail);
       dispatch({ type: GET_DETAIL, payload: detail });
     } catch (error) {
       console.error("Error");
