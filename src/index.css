@@ -37,6 +37,14 @@ a:hover {
   color: #535bf2;
 }
 
+<<<<<<< HEAD
+=======
+body {
+  margin: 0;
+  display: flex;
+  place-items: center;
+}
+>>>>>>> f001fde9878a6bddd2edf5f5aecfa860fb3ff5dd
 
 h1 {
   font-size: 3.2em;
@@ -46,9 +54,15 @@ h1 {
 button,
 input[type="text"],
 input[type="date"],
+<<<<<<< HEAD
 input[type="password"],
 input[type="checkbox"],
 label {
+=======
+input[type="number"],
+select,
+textarea{
+>>>>>>> f001fde9878a6bddd2edf5f5aecfa860fb3ff5dd
   border-radius: 8px;
   border: 1px solid transparent;
   padding: 0.6em 1.2em;
@@ -59,13 +73,28 @@ label {
   cursor: pointer;
   transition: border-color 0.25s;
 }
+<<<<<<< HEAD
 button:hover,
 input[type="text"]:hover,
 input[type="password"]:hover,
 input[type="checkbox"]:hover,
 input[type="date"]:hover{
+=======
+
+
+button:hover,
+input[type="text"]:hover,
+input[type="date"]:hover,
+input[type="number"]:hover,
+select:hover,
+textarea:hover{
+>>>>>>> f001fde9878a6bddd2edf5f5aecfa860fb3ff5dd
   border-color: #646cff;
 }
+
+
+
+
 button:focus,
 button:focus-visible {
   outline: 4px auto -webkit-focus-ring-color;

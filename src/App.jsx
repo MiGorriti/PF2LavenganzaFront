@@ -33,9 +33,14 @@ function App() {
 
   return (
     <Router>
+<<<<<<< HEAD:pf2/src/App.jsx
+      <div className="App">
+        <NavBarGuest />
+=======
       <div className="App w-full">
         {/* {user ? <NavbarAuthenticated /> : <NavbarGuest />} */}
         <NavBarGuest/>
+>>>>>>> 3d372cbac81204d4e450c53cbd6c20cba41fceb6:src/App.jsx
         <Routes>
         <Route exact path="/" element={<LandingPage />}></Route>
         <Route exact path="/Detail/:idHouse" element={<Detail />}></Route>

@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 import React, { useEffect } from "react";
+=======
+import { useEffect } from "react";
+>>>>>>> f001fde9878a6bddd2edf5f5aecfa860fb3ff5dd
 import { useDispatch, useSelector } from "react-redux";
 import { filterCat, filterLocation, getCategory, getLocations } from "../../Redux/action/actions";
 
@@ -53,3 +57,4 @@ const Filters = () => {
 };
 
 export default Filters;
+

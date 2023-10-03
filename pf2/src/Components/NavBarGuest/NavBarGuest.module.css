@@ -32,3 +32,4 @@
 .menu{
     @apply flex space-x-20 flex-col sm:flex-row absolute right-0 sm:relative   /* hover:bg-red */
 }
+

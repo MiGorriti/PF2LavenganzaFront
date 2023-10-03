@@ -46,9 +46,11 @@ cursor: pointer;
 }
 
 .filters {
-  position: relative;
-  top: -350px;
-  right: 0px;
+  border-radius: 20px;
+  background-color: white;
+  width:200px;
+  display: flex;
+  flex-wrap: nowrap;
 }
 
 .filter {
@@ -85,6 +87,7 @@ cursor: pointer;
 
 .button:hover {
   background-color: #ccc;
+<<<<<<< HEAD
 }
 
 /* .strokeText {
@@ -93,3 +96,10 @@ cursor: pointer;
 
 } */
 
+=======
+<<<<<<< HEAD:pf2/src/Views/Home/Home.module.css
+}
+=======
+}
+>>>>>>> 3d372cbac81204d4e450c53cbd6c20cba41fceb6:src/Views/Home/Home.module.css
+>>>>>>> f001fde9878a6bddd2edf5f5aecfa860fb3ff5dd

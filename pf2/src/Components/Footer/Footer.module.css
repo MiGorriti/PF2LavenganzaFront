@@ -1,0 +1,36 @@
+<<<<<<< Updated upstream
+.group p {
+  font-size: 14px;
+  margin: 5px 0 10px 0; /* Añade un margen inferior de 10px */
+  color: white;
+}
+=======
+
+>>>>>>> Stashed changes
+
+.group {
+  display: flex;
+  flex-wrap: nowrap;
+  flex-direction: column;
+  align-items: flex-start; /* Alinea el texto a la izquierda */
+  margin-right: 20px;
+}
+
+.group {
+  display: flex;
+  flex-wrap: nowrap;
+  flex-direction: column;
+  align-items: flex-start;
+  margin-right: 20px; /* Añade margen derecho para separar los grupos */
+}
+
+.column {
+  background-color: black;
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: space-evenly;
+  align-items: center; /* Alinea verticalmente el texto en el centro */
+  flex-direction: row;
+  position: relative;
+}
+
