@@ -1,13 +1,10 @@
+
 module.exports = {
   purge: [],
   content: ["./index.html","./src/**/**.{js, jsx} "],
   darkMode: false, // or 'media' or 'class'
   theme: {
-    extend: {
-      fontFamily: {
-        'ModernAntiqua-book': ['ModernAntiqua book', 'sans'],
-      },
-    },
+    extend: {},
     colors: {
       primary: '#1E90FF',
       secondary: '#FFD700',
@@ -36,6 +33,7 @@ module.exports = {
       olive: '#808000',
       darkolive: '#556B2F',
       cyan: '#00FFFF',
+      aqua: '#646cff',
       lightcyan: '#E0FFFF',
       cadetblue: '#5F9EA0',
       steelblue: '#4682B4',

@@ -7,14 +7,14 @@ import { useDispatch, useSelector } from "react-redux";
 
 const Detail = () => {
   const { idHouse } = useParams();
-  console.log(idHouse)
+
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(getDetail(idHouse));
   }, []);
 
-  const houseDetail = useSelector((state) => state.houseDetail);
-
+  const houseDetail = useSelector((state) => state.propertyDetail);
+  console.log(houseDetail)
   if (!houseDetail) {
     return <div>...Loading</div>;
   }
@@ -49,19 +49,19 @@ const Detail = () => {
               <div className="pro-img-list">
                 <Link to={image}>
                   <img
-                    src={image}
+                    src={image[0]}
                     alt=""
                   />
                 </Link>
                 <Link to={image}>
                   <img
-                    src={image}
+                    src={image[1]}
                     alt=""
                   />
                 </Link>
                 <Link to={image}>
                   <img
-                    src={image}
+                    src={image[2]}
                     alt=""
                   />
                 </Link>
@@ -82,13 +82,11 @@ const Detail = () => {
               <p className="descripcion">
                  {description}
               </p>
-              <div className="product_meta">
+              <div className="product_meta text-white">
                 <span className="posted_in">
                   {" "}
-                  <strong>Categories:</strong> <Link to="#">{category}</Link>,{" "}
-                  <Link to="#">{category}</Link>,{" "}
-                  <Link to="#">{category}</Link>,{" "}
-                  <Link to="#">{category}</Link>.
+                  <strong className="text-white">Categories:</strong> <Link to="#">{category}</Link>,{" "}
+                  <Link to="#">{category.name}</Link>,{" "}  
                 </span>
                 <span className="tagged_as">
                   <strong>Specs:</strong> <Link to="#">{numBaths}</Link>,{" "}

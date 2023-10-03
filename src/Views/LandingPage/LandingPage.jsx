@@ -1,3 +1,4 @@
+import React from "react";
 import styles from "./LandingPage.module.css";
 import { IconHeart } from "@tabler/icons-react";
 
@@ -19,9 +20,9 @@ function LandingPage() {
                         <h2>Your Trusted Real Estate Advisors</h2>
                     </section>
 
-                    <section className={styles.chartSection}>
+                    <section className={`${styles.chartSection} place-content-center`}>
                         <div className={styles.box1}>
-                        <p className={styles.chartItem1}>+ 17K Satisfied Customers</p>
+                        <p className={styles.chartItem1}> + 17K Satisfied Customers</p>
                         </div>
                         <div className={styles.box2}>
                         <p className={styles.chartItem2}>+ 25 Years of Experience</p>
