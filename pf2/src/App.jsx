@@ -9,11 +9,11 @@ import Detail from "./Views/Detail/Detail";
 import LandingPage from "./Views/LandingPage/LandingPage";
 import Form from "./Views/FormRent/Form";
 import { FormUser } from "./Views/FormRegister/Form";
+import TerminosYCondiciones from "./Views/Terms/Terms";
 /* import { auth } from "./firebase"; */
 
-
 function App() {
-/*   const [user, setUser] = useState(null);
+  /*   const [user, setUser] = useState(null);
 
   useEffect(() => {
 
@@ -35,15 +35,16 @@ function App() {
     <Router>
       <div className="App w-full">
         {/* {user ? <NavbarAuthenticated /> : <NavbarGuest />} */}
-        <NavBarGuest/>
+        <NavBarGuest />
         <Routes>
-        <Route exact path="/" element={<LandingPage />}></Route>
-        <Route exact path="/Detail/:idHouse" element={<Detail />}></Route>
+          <Route exact path="/" element={<LandingPage />}></Route>
+          <Route exact path="/Detail/:idHouse" element={<Detail />}></Route>
           <Route exact path="/Home" element={<Home />}></Route>
           <Route exact path="/Detail" element={<Detail />}></Route>
-          <Route path="/Form" element={<Form />}></Route>   
-          <Route exact path="/Register" element={<FormUser/>}></Route>   
-            </Routes>
+          <Route path="/Form" element={<Form />}></Route>
+          <Route exact path="/Register" element={<FormUser />}></Route>
+          <Route exact path="/Terms" element={<TerminosYCondiciones />}></Route>
+        </Routes>
         {/* <Footer /> */}
       </div>
     </Router>
