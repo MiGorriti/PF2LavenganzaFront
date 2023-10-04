@@ -77,16 +77,15 @@
 }
 
 .infotitle{
-  margin-top: 120px;
-  margin-bottom: 20px;
+  margin-top: 40px;
+  margin-bottom: 40px;
   font-size: x-large;
   font-family: Zasline;
 }
 
 .boxcomments{
   border-radius: 20px;
-  height:340px;
-  width: 580px;
+  height:260px;
   background-color: rgb(211, 210, 210);
   padding: 50px;
 }

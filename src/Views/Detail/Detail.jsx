@@ -6,33 +6,15 @@ import { useDispatch, useSelector } from "react-redux";
 
 
 const Detail = () => {
-<<<<<<< HEAD:pf2/src/Views/Detail/Detail.jsx
-<<<<<<< Updated upstream
-=======
   const { idHouse } = useParams();
-<<<<<<< HEAD
 
-=======
-  console.log(idHouse)
-=======
-  const { idHouse } = useParams();
->>>>>>> 3d372cbac81204d4e450c53cbd6c20cba41fceb6:src/Views/Detail/Detail.jsx
->>>>>>> f001fde9878a6bddd2edf5f5aecfa860fb3ff5dd
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(getDetail(idHouse));
   }, []);
 
-<<<<<<< HEAD
   const houseDetail = useSelector((state) => state.propertyDetail);
   console.log(houseDetail)
-=======
-  const houseDetail = useSelector((state) => state.houseDetail);
-<<<<<<< HEAD:pf2/src/Views/Detail/Detail.jsx
-
-=======
->>>>>>> 3d372cbac81204d4e450c53cbd6c20cba41fceb6:src/Views/Detail/Detail.jsx
->>>>>>> f001fde9878a6bddd2edf5f5aecfa860fb3ff5dd
   if (!houseDetail) {
     return <div>...Loading</div>;
   }
@@ -50,18 +32,8 @@ const Detail = () => {
     availability
   } = houseDetail;
 
-<<<<<<< HEAD
-  
-=======
-<<<<<<< HEAD:pf2/src/Views/Detail/Detail.jsx
   
   
->>>>>>> Stashed changes
-=======
-  console.log("algo",houseDetail);
->>>>>>> f001fde9878a6bddd2edf5f5aecfa860fb3ff5dd
-  
->>>>>>> 3d372cbac81204d4e450c53cbd6c20cba41fceb6:src/Views/Detail/Detail.jsx
   return (
     <div className="container bootdey">
       <div className="col-md-12">

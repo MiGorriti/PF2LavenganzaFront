@@ -1,5 +1,3 @@
-/* eslint-disable no-unused-vars */
-/* eslint-disable react/prop-types */
 import React from "react";
 import "./Card.css";
 import { NavLink } from "react-router-dom";
@@ -26,21 +24,12 @@ const Card = ({
             </a>
           </div>
           <div className="card-body">
-<<<<<<< HEAD
             <h4 className="text-blue">{title}</h4>
             <h4 className="text-black">{Category}</h4> {/* Muestra la categoría aquí */}
             <p className="card-text">Beds: {numBeds}</p>
             <p className="card-text">Baths: {numBaths}</p>
             <NavLink to={`/Detail/${id}`}>
               <button type="button" className="btn btn-light-blue btn-md">
-=======
-            <h4 className="text-white">{title}</h4>
-            <h4 className="text-white">{Category}</h4> {/* Muestra la categoría aquí */}
-            <p className="text-white">Beds: {numBeds}</p>
-            <p className="text-white">Baths: {numBaths}</p>
-            <NavLink to={`/Detail/${id}`}>
-              <button type="button" className="btn bg-white text-black btn-md">
->>>>>>> f001fde9878a6bddd2edf5f5aecfa860fb3ff5dd
                 Ver más
               </button>
             </NavLink>

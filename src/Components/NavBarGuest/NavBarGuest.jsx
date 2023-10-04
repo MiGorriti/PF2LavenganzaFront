@@ -23,10 +23,10 @@ function NavBarGuest() {
         <Link to="/about-us" className={styles.options}>
         About Us
         </Link>
-        <Link to="/Login" className={styles.options}>
+        <Link to="/login" className={styles.options}>
         Log In
         </Link>
-        <Link to="/Register" className={styles.options}>
+        <Link to="/register" className={styles.options}>
         Sign Up
         </Link>
       </div>

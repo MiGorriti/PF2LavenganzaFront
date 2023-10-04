@@ -1,3 +1,4 @@
+import React, { useEffect, useState } from "react";
 import "./App.css";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Home from "./Views/Home/Home";
@@ -8,7 +9,6 @@ import Detail from "./Views/Detail/Detail";
 import LandingPage from "./Views/LandingPage/LandingPage";
 import Form from "./Views/FormRent/Form";
 import { FormUser } from "./Views/FormRegister/Form";
-import Login from "./Views/Login/Login";
 /* import { auth } from "./firebase"; */
 
 
@@ -33,24 +33,18 @@ function App() {
 
   return (
     <Router>
-<<<<<<< HEAD:pf2/src/App.jsx
-      <div className="App">
-        <NavBarGuest />
-=======
       <div className="App w-full">
         {/* {user ? <NavbarAuthenticated /> : <NavbarGuest />} */}
         <NavBarGuest/>
->>>>>>> 3d372cbac81204d4e450c53cbd6c20cba41fceb6:src/App.jsx
         <Routes>
         <Route exact path="/" element={<LandingPage />}></Route>
         <Route exact path="/Detail/:idHouse" element={<Detail />}></Route>
           <Route exact path="/Home" element={<Home />}></Route>
           <Route exact path="/Detail" element={<Detail />}></Route>
           <Route path="/Form" element={<Form />}></Route>   
-          <Route exact path="/Register" element={<FormUser/>}></Route> 
-          <Route exact path="/Login" element={<Login/>}></Route>  
+          <Route exact path="/Register" element={<FormUser/>}></Route>   
             </Routes>
-        <Footer />
+        {/* <Footer /> */}
       </div>
     </Router>
   );

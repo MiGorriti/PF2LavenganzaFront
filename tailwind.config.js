@@ -33,7 +33,6 @@ module.exports = {
       olive: '#808000',
       darkolive: '#556B2F',
       cyan: '#00FFFF',
-      aqua: '#646cff',
       lightcyan: '#E0FFFF',
       cadetblue: '#5F9EA0',
       steelblue: '#4682B4',
