@@ -10,6 +10,7 @@ import LandingPage from "./Views/LandingPage/LandingPage";
 import Form from "./Views/FormRent/Form";
 import { FormUser } from "./Views/FormRegister/Form";
 import TerminosYCondiciones from "./Views/Terms/Terms";
+import Privacidad from "./Views/Terms/Privacy";
 /* import { auth } from "./firebase"; */
 
 function App() {
@@ -44,6 +45,7 @@ function App() {
           <Route path="/Form" element={<Form />}></Route>
           <Route exact path="/Register" element={<FormUser />}></Route>
           <Route exact path="/Terms" element={<TerminosYCondiciones />}></Route>
+          <Route exact path="/Privacy" element={<Privacidad />}></Route>
         </Routes>
         {/* <Footer /> */}
       </div>

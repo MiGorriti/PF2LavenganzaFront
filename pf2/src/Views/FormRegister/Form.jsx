@@ -141,9 +141,13 @@ export const FormUser = () => {
                     Terms of Use
                   </Link>{" "}
                   &{" "}
-                  <a href="#" className="text-purple-500 font-semibold">
+                  <Link
+                    to="/Privacy"
+                    target="_blank"
+                    className="text-purple-500 font-semibold"
+                  >
                     Privacy Policy
-                  </a>
+                  </Link>
                 </span>
               </div>
               <div className="mt-5">
