@@ -9,6 +9,8 @@ import Detail from "./Views/Detail/Detail";
 import LandingPage from "./Views/LandingPage/LandingPage";
 import Form from "./Views/FormRent/Form";
 import { FormUser } from "./Views/FormRegister/Form";
+import Login from "./Views/Login/Login";
+
 /* import { auth } from "./firebase"; */
 
 
@@ -42,9 +44,10 @@ function App() {
           <Route exact path="/Home" element={<Home />}></Route>
           <Route exact path="/Detail" element={<Detail />}></Route>
           <Route path="/Form" element={<Form />}></Route>   
-          <Route exact path="/Register" element={<FormUser/>}></Route>   
+          <Route exact path="/Register" element={<FormUser/>}></Route>
+          <Route exact path="/Login" element={<Login/>}></Route>  
             </Routes>
-        {/* <Footer /> */}
+        <Footer />
       </div>
     </Router>
   );

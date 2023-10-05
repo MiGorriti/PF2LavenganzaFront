@@ -1,5 +1,37 @@
 import axios from 'axios';
-import {FILTER_CATEGORY, FILTER_LOCATION, GET_CATEGORYS, GET_LOCATIONS, GET_PROPERTY, POST_PROPERTY, GET_DETAIL, CREATE_USER} from './type-actions'
+import { LOGIN_REQUEST, LOGIN_SUCCESS, LOGIN_FAILURE, LOGOUT, GET_PROPERTY, POST_PROPERTY, GET_CATEGORYS, FILTER_CATEGORY, FILTER_LOCATION, GET_LOCATIONS, GET_DETAIL, CREATE_USER } from './type-actions';
+
+export const loginUser = (email, password) => {
+  return async function (dispatch) {
+    dispatch({ type: LOGIN_REQUEST });
+    try {
+      const response = await axios.post('URL_DE_TU_API_LOGIN', { email, password });
+      dispatch({ type: LOGIN_SUCCESS, payload: response.data });
+    } catch (error) {
+      dispatch({ type: LOGIN_FAILURE, payload: error.message || 'Error al iniciar sesión' });
+    }
+  };
+};
+
+export const getUser = (userId, accessToken) => {
+  return async function (dispatch) {
+    dispatch({ type: GET_USER_REQUEST });
+    try {
+      const response = await axios.get(`URL_DE_TU_API_USUARIO/${userId}`, {
+        headers: {
+          Authorization: `Bearer ${accessToken}`
+        }
+      });
+      dispatch({ type: GET_USER_SUCCESS, payload: response.data });
+    } catch (error) {
+      dispatch({ type: GET_USER_FAILURE, payload: error.message || 'Error al obtener datos del usuario' });
+    }
+  };
+};
+
+export const logout = () => ({
+  type: LOGOUT
+});
 
 export const getCars = () => {
   return async (dispatch)=> {
