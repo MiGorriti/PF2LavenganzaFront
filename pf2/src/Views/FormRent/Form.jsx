@@ -182,7 +182,7 @@ const Form = () => {
 
     // </div>
     <div>
-      <form class="form-horizontal">
+      <form class="form-horizontal" onSubmit={submitHandler}>
         <fieldset>
           <legend>Rent your House/Flat</legend>
 
@@ -418,6 +418,7 @@ const Form = () => {
               key={index}
               src={img}
               alt={`Preview ${index}`}
+              onChange={handleImage}
             />
           ))}
       </div>
