@@ -1,9 +1,10 @@
 import axios from 'axios';
 
-import { GET_PROPERTY, GET_CATEGORYS, FILTER_LOCATION, FILTER_CATEGORY, GET_LOCATIONS, GET_DETAIL,LOGIN_REQUEST, LOGIN_SUCCESS, LOGIN_FAILURE, LOGOUT, ADMIN_LOGIN_REQUEST, ADMIN_LOGIN_SUCCESS, ADMIN_LOGIN_FAILURE, GET_ADMIN_USER_REQUEST, GET_ADMIN_USER_SUCCESS, GET_ADMIN_USER_FAILURE, ADMIN_LOGOUT} from '../action/type-actions';
+import { GET_PROPERTY, GET_CATEGORYS, FILTER_LOCATION, FILTER_CATEGORY, GET_LOCATIONS, GET_DETAIL,LOGIN_REQUEST, LOGIN_SUCCESS, LOGIN_FAILURE, LOGOUT, ADMIN_LOGIN_REQUEST, ADMIN_LOGIN_SUCCESS, ADMIN_LOGIN_FAILURE, GET_ADMIN_USER_REQUEST, GET_ADMIN_USER_SUCCESS, GET_ADMIN_USER_FAILURE, ADMIN_LOGOUT,   GET_USERS_REQUEST, GET_USERS_SUCCESS, GET_USERS_FAILURE} from '../action/type-actions';
 
 let initialState = {
     user: null,
+    users: [],
     accessToken: null,
     isAuthenticated: false,
     loading: false,
@@ -71,6 +72,25 @@ function rootReducer(state = initialState, action) {
                             user: null,
                             adminUser: null
                           };
+                          case GET_USERS_REQUEST:
+                            return {
+                              ...state,
+                              loading: true,
+                              error: null
+                            };
+                          case GET_USERS_SUCCESS:
+                            return {
+                              ...state,
+                              loading: false,
+                              users: action.payload,
+                              error: null
+                            };
+                          case GET_USERS_FAILURE:
+                            return {
+                              ...state,
+                              loading: false,
+                              error: action.payload
+                            };
         case GET_PROPERTY:
             return {
                 ...state,

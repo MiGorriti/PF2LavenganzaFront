@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { LOGIN_REQUEST, LOGIN_SUCCESS, LOGIN_FAILURE, LOGOUT, GET_PROPERTY, POST_PROPERTY, GET_CATEGORYS, FILTER_CATEGORY, FILTER_LOCATION, GET_LOCATIONS, GET_DETAIL, CREATE_USER , ADMIN_LOGIN_REQUEST, ADMIN_LOGIN_SUCCESS, ADMIN_LOGIN_FAILURE, GET_ADMIN_USER_REQUEST, GET_ADMIN_USER_SUCCESS, GET_ADMIN_USER_FAILURE, ADMIN_LOGOUT  } from './type-actions';
+import { LOGIN_REQUEST, LOGIN_SUCCESS, LOGIN_FAILURE, LOGOUT, GET_PROPERTY, POST_PROPERTY, GET_CATEGORYS, FILTER_CATEGORY, FILTER_LOCATION, GET_LOCATIONS, GET_DETAIL, CREATE_USER , ADMIN_LOGIN_REQUEST, ADMIN_LOGIN_SUCCESS, ADMIN_LOGIN_FAILURE, GET_ADMIN_USER_REQUEST, GET_ADMIN_USER_SUCCESS, GET_ADMIN_USER_FAILURE, ADMIN_LOGOUT, GET_USERS_REQUEST, GET_USERS_SUCCESS, GET_USERS_FAILURE } from './type-actions';
 
 
 export const loginUser = (email, password) => {
@@ -33,7 +33,6 @@ export const getUser = (userId, accessToken) => {
 export const logout = () => ({
   type: LOGOUT
 });
-
 
 
 export const adminLogin = (credentials) => {
@@ -85,6 +84,35 @@ export const createUser = (postForm) => {
     }
   };
 };
+
+
+export const getUsersRequest = () => ({
+  type: GET_USERS_REQUEST
+});
+
+export const getUsersSuccess = (users) => ({
+  type: GET_USERS_SUCCESS,
+  payload: users
+});
+
+export const getUsersFailure = (error) => ({
+  type: GET_USERS_FAILURE,
+  payload: error
+});
+
+export const getUsers = () => {
+  return async (dispatch) => {
+    dispatch(getUsersRequest());
+    try {
+      // Realiza una solicitud para obtener la lista de usuarios
+      const response = await axios.get('http://localhost:3001/users-list');
+      dispatch(getUsersSuccess(response.data));
+    } catch (error) {
+      dispatch(getUsersFailure(error.message || "Error al obtener usuarios"));
+    }
+  };
+};
+
 
 export const getCars = () => {
   return async (dispatch)=> {
