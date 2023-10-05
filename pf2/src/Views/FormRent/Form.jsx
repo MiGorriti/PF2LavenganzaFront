@@ -123,64 +123,6 @@ const Form = () => {
     }
   };
   return (
-    // <div class='bg-gray-400 p-5 rounded-md'>
-    //     <form onSubmit={submitHandler}>
-    //         <div class='w-30 h-30'>
-
-    //         <div class='m-4 rounded-md'>
-    //             <input type="text" name="title"  value={postForm.title} placeholder='Title For Your Property'onChange={changeHandler} />
-    //             </div>
-
-    //             <div class='m-4 rounded-md' >
-    //             <input type="text" name="description" value={postForm.description} placeholder='Description of Your Property' onChange={changeHandler}/>
-    //             </div>
-
-    //             <div class='m-4 rounded-md'>
-    //             <input type="text" name="numBeds" value={postForm.numBeds} placeholder='Number of Beds From Your Property' onChange={changeHandler}/>
-    //             </div>
-
-    //             <div class='m-4 rounded-md'>
-    //             <input type="text" name="numBaths" value={postForm.numBaths} placeholder='Number of Baths From Your Property'onChange={changeHandler} />
-    //             </div>
-
-    //             <div class='m-4'>
-    //             <input type="text" name="nightPrice" value={postForm.nightPrice} placeholder='Mount Per Night' onChange={changeHandler}/>
-    //             </div>
-    //             <div class='m-4'>
-    //                 <input type="text" name="homeCapacity" value={postForm.homeCapacity} placeholder='Home Capacity' onChange={changeHandler} />
-    //             </div>
-    //             <div>
-    //                 <input type="text" name='availability' value={postForm.availability} placeholder='Availability' onChange={changeHandler}/>
-    //             </div>
-    //             <div class='m-4'>
-    //             <input type="file" multiple name="image" onChange={handleImage}/>
-    //             </div>
-
-    //             <div>
-    //             <select name="category" value={postForm.category} onChange={changeHandler} >
-    //             <option value="">Select a Category</option>
-    //             {category && category?.map((cat)=> (
-    //                 <option key={cat.id} value={cat.name}>{cat.name}</option>
-    //             ))}
-    //             </select>
-    //             <select name="location" value={postForm.location} onChange={changeHandler}>
-    //            <option value="">Select a Location</option>
-    //         {location && location?.map((loc) => (
-    //             <option key={loc.id} value={loc.direction}>{loc.direction}</option>
-    //       ))}
-    //             </select>
-    //             </div>
-
-    //         <button type='submit' class='w-25 h-11 mt-3 '> Publish</button>
-    //         </div>
-    //     </form>
-    //     <div class='max-h-20 max-w-20 flex space-x-2'>
-    //          {image && image.map((img, index) => (
-    //         <img class='w-18 h-16' key={index} src={img} alt={`Preview ${index}`} />
-    //      ))}
-    //         </div>
-
-    // </div>
     <div>
       <form class="form-horizontal" onSubmit={submitHandler}>
         <fieldset>
@@ -395,6 +337,32 @@ const Form = () => {
               </select>
             </div>
           </div>
+          <div class="form-group">
+            <label class="col-md-4 control-label" for="filebutton">
+              Upload Images
+            </label>
+            <div class="col-md-4">
+              <input
+                id="filebutton"
+                name="filebutton"
+                class="input-file"
+                type="file"
+                multiple // Permite seleccionar múltiples imágenes
+                onChange={handleImage}
+              />
+              <div className="botonimag">
+                {file.length > 0 &&
+                  file.map((imageData, index) => (
+                    <img
+                      class="w-18 h-16"
+                      key={index}
+                      src={imageData}
+                      alt={`Preview ${index}`}
+                    />
+                  ))}
+              </div>
+            </div>
+          </div>
 
           <div class="form-group">
             <label class="col-md-4 control-label" for="singlebutton"></label>
@@ -410,20 +378,67 @@ const Form = () => {
           </div>
         </fieldset>
       </form>
-      <div class="max-h-20 max-w-20 flex space-x-2">
-        {image &&
-          image.map((img, index) => (
-            <img
-              class="w-18 h-16"
-              key={index}
-              src={img}
-              alt={`Preview ${index}`}
-              onChange={handleImage}
-            />
-          ))}
-      </div>
     </div>
   );
 };
 
 export default Form;
+
+// <div class='bg-gray-400 p-5 rounded-md'>
+//     <form onSubmit={submitHandler}>
+//         <div class='w-30 h-30'>
+
+//         <div class='m-4 rounded-md'>
+//             <input type="text" name="title"  value={postForm.title} placeholder='Title For Your Property'onChange={changeHandler} />
+//             </div>
+
+//             <div class='m-4 rounded-md' >
+//             <input type="text" name="description" value={postForm.description} placeholder='Description of Your Property' onChange={changeHandler}/>
+//             </div>
+
+//             <div class='m-4 rounded-md'>
+//             <input type="text" name="numBeds" value={postForm.numBeds} placeholder='Number of Beds From Your Property' onChange={changeHandler}/>
+//             </div>
+
+//             <div class='m-4 rounded-md'>
+//             <input type="text" name="numBaths" value={postForm.numBaths} placeholder='Number of Baths From Your Property'onChange={changeHandler} />
+//             </div>
+
+//             <div class='m-4'>
+//             <input type="text" name="nightPrice" value={postForm.nightPrice} placeholder='Mount Per Night' onChange={changeHandler}/>
+//             </div>
+//             <div class='m-4'>
+//                 <input type="text" name="homeCapacity" value={postForm.homeCapacity} placeholder='Home Capacity' onChange={changeHandler} />
+//             </div>
+//             <div>
+//                 <input type="text" name='availability' value={postForm.availability} placeholder='Availability' onChange={changeHandler}/>
+//             </div>
+//             <div class='m-4'>
+//             <input type="file" multiple name="image" onChange={handleImage}/>
+//             </div>
+
+//             <div>
+//             <select name="category" value={postForm.category} onChange={changeHandler} >
+//             <option value="">Select a Category</option>
+//             {category && category?.map((cat)=> (
+//                 <option key={cat.id} value={cat.name}>{cat.name}</option>
+//             ))}
+//             </select>
+//             <select name="location" value={postForm.location} onChange={changeHandler}>
+//            <option value="">Select a Location</option>
+//         {location && location?.map((loc) => (
+//             <option key={loc.id} value={loc.direction}>{loc.direction}</option>
+//       ))}
+//             </select>
+//             </div>
+
+//         <button type='submit' class='w-25 h-11 mt-3 '> Publish</button>
+//         </div>
+//     </form>
+//     <div class='max-h-20 max-w-20 flex space-x-2'>
+//          {image && image.map((img, index) => (
+//         <img class='w-18 h-16' key={index} src={img} alt={`Preview ${index}`} />
+//      ))}
+//         </div>
+
+// </div>
