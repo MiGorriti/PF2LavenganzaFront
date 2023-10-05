@@ -8,11 +8,7 @@ import axios from "axios";
 
 const Detail = () => {
   const { idHouse } = useParams();
-<<<<<<< HEAD:src/Views/Detail/Detail.jsx
-
-=======
   const [scrollTop, setScrollTop] = useState(0);
->>>>>>> e08fc3c1fa511fa4acdb3095d853acf0e8473ec7:pf2/src/Views/Detail/Detail.jsx
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(getDetail(idHouse));
@@ -28,11 +24,7 @@ const Detail = () => {
   }, []);
 
   const houseDetail = useSelector((state) => state.propertyDetail);
-<<<<<<< HEAD:src/Views/Detail/Detail.jsx
-  console.log(houseDetail)
-=======
   console.log(houseDetail);
->>>>>>> e08fc3c1fa511fa4acdb3095d853acf0e8473ec7:pf2/src/Views/Detail/Detail.jsx
   if (!houseDetail) {
     return <div>...Loading</div>;
   }
@@ -62,78 +54,6 @@ const Detail = () => {
   };
 
   return (
-<<<<<<< HEAD:src/Views/Detail/Detail.jsx
-    <div className="container bootdey">
-      <div className="col-md-12">
-        <section className="panel">
-          <div className="panel-body">
-            <div className="col-md-6">
-              <div className="pro-img-details">
-                <img
-                  src={image}
-                  alt=""
-                />
-              </div>
-              <div className="pro-img-list">
-                <Link to={image}>
-                  <img
-                    src={image[0]}
-                    alt=""
-                  />
-                </Link>
-                <Link to={image}>
-                  <img
-                    src={image[1]}
-                    alt=""
-                  />
-                </Link>
-                <Link to={image}>
-                  <img
-                    src={image[2]}
-                    alt=""
-                  />
-                </Link>
-                <Link to={image}>
-                  <img
-                    src={image}
-                    alt=""
-                  />
-                </Link>
-              </div>
-            </div>
-            <div className="col-md-6">
-              <h2 className="pro-d-title">
-                {" "}
-                {title}
-              </h2>
-              <h3>{availability}</h3>
-              <p className="descripcion">
-                 {description}
-              </p>
-              <div className="product_meta text-white">
-                <span className="posted_in">
-                  {" "}
-                  <strong className="text-white">Categories:</strong> <Link to="#">{category}</Link>,{" "}
-                  <Link to="#">{category.name}</Link>,{" "}  
-                </span>
-                <span className="tagged_as">
-                  <strong>Specs:</strong> <Link to="#">{numBaths}</Link>,{" "}
-                  <Link to="#">{numBeds}</Link><Link to="#">{homeCapacity}</Link>.
-                </span>
-              </div>
-              <div className="m-bot15">
-                {" "}
-                <strong>Price : </strong>{" "}
-                
-                <span className="pro-price">{nightPrice}</span>
-              </div>
-              <div className="form-group"></div>
-              <p>
-                <button className="btn btn-round btn-danger" type="button">
-                  <i className="fa fa-shopping-cart"></i> Alquilar
-                </button>
-              </p>
-=======
     <div className="flex start bg-black bg-opacity-75 rounded-2xl  overflow-hidden w-full h-full" >
       <div className="">
         <div>
@@ -159,7 +79,6 @@ const Detail = () => {
             <div className="mr-32">
                 Icono del usuario
             </div>
->>>>>>> e08fc3c1fa511fa4acdb3095d853acf0e8473ec7:pf2/src/Views/Detail/Detail.jsx
             </div>
           </div>
           <div>

@@ -10,6 +10,11 @@ import LandingPage from "./Views/LandingPage/LandingPage";
 import Form from "./Views/FormRent/Form";
 import { FormUser } from "./Views/FormRegister/Form";
 import Login from "./Views/Login/Login";
+import FormAdmin  from "./Views/FormAdmin/FormAdmin";
+import AdminDashboard from "./Views/DashBoard/AdminDashboard";
+import { Navigate } from "react-router-dom";
+
+
 
 
 function App() {
@@ -27,7 +32,7 @@ function App() {
           <Route exact path="/Login" element={<Login/>}></Route>  
 
             {/* Rutas para el administrador */}
-          <Route path="/admin/login" element={<AdminLoginForm />} />
+          <Route path="/admin/login" element={<FormAdmin />} />
           <Route path="/admin/dashboard" element={<AdminDashboard />} />
           
           {/* Redirecciona cualquier otra ruta a la página de inicio */}
