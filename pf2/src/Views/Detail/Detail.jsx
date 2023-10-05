@@ -3,6 +3,8 @@ import { Link, useParams } from "react-router-dom";
 import style from "./Detail.module.css";
 import { getDetail } from "../../Redux/action/actions";
 import { useDispatch, useSelector } from "react-redux";
+import { initMercadoPago } from "@mercadopago/sdk-react";
+import axios from "axios";
 
 const Detail = () => {
   const { idHouse } = useParams();
@@ -26,8 +28,30 @@ const Detail = () => {
   if (!houseDetail) {
     return <div>...Loading</div>;
   }
+  var [preferenceId, setPreferenceId] = useState(null);
 
- 
+  initMercadoPago("TEST-95bc6e5e-63b5-47cd-9d31-2eff19c633fe");
+
+  const createPreference = async () => {
+    try {
+      const response = await axios.post("localhost3001/mp/createpreference", {
+        title: title,
+        price: nightPriceprice,
+      });
+      console.log(response);
+      const init_point = response.data.response.body.init_point;
+      console.log("init point mp", init_point);
+      return init_point;
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const handleBuy = async () => {
+    const init_point = await createPreference();
+
+    window.location.href = init_point;
+  };
 
   return (
     <div className="flex start bg-black bg-opacity-75 rounded-2xl  overflow-hidden w-full h-full" >
@@ -102,7 +126,7 @@ const Detail = () => {
          
       </div>
       <div class="w-64 mx-auto bg-black bg-opacity-75 rounded-2xl pb-4 fixed" style={{top: `${scrollTop}px`}}>
-  <div class="w-64 mx-auto bg-black rounded-xl pb-4 border-bottom-2 border-radius-2xl">
+  <div class="w-64 mx-auto bg-black rounded-xl pb-4 border-bottom-2 border-radius-2xl ">
     <div class="flex justify-between">
       <div class="flex">
         <span class="ml-3 mt-2">
