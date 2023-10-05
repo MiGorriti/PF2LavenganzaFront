@@ -3,47 +3,57 @@ import "./App.css";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Home from "./Views/Home/Home";
 import NavBarGuest from "./Components/NavBarGuest/NavBarGuest";
-//import NavBarAuthenticated from "./Components/NavBarAuthenticated/NavBarAuthenticated";
+import NavBarAuthenticated from "./Components/NavBarAuthenticated/NavBarAuthenticated";
 import Footer from "./Components/Footer/Footer";
 import Detail from "./Views/Detail/Detail";
 import LandingPage from "./Views/LandingPage/LandingPage";
 import Form from "./Views/FormRent/Form";
 import { FormUser } from "./Views/FormRegister/Form";
-/* import { auth } from "./firebase"; */
+import{FormLogin} from "./Views/FormLogin/FormLogin"
+
+
+
 
 
 function App() {
-/*   const [user, setUser] = useState(null);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  
 
   useEffect(() => {
+    const user = localStorage.getItem("user");
+    if (user) {
+      setIsLoggedIn(true);
+    }
+  }, []);
 
-    const unsubscribe = auth.onAuthStateChanged((user) => {
+  const handleLogin = () => {
+    setIsLoggedIn(true);
+    localStorage.setItem("user", "loggedIn");
+  };
 
-      if (user) {
-        setUser(user);
-      } else {
-        setUser(null);
-      }
-    });
-
-    return () => {
-      unsubscribe();
-    };
-  }, []); */
+  const handleLogout = () => {
+    setIsLoggedIn(false);
+    localStorage.removeItem("user");
+    
+  };
 
   return (
     <Router>
-      <div className="App w-full">
-        {/* {user ? <NavbarAuthenticated /> : <NavbarGuest />} */}
-        <NavBarGuest/>
+    <div className="App w-full">
+      {isLoggedIn ? (
+        <NavBarAuthenticated handleLogout={handleLogout} />
+      ) : (
+        <NavBarGuest />
+      )}
         <Routes>
-        <Route exact path="/" element={<LandingPage />}></Route>
-        <Route exact path="/Detail/:idHouse" element={<Detail />}></Route>
-          <Route exact path="/Home" element={<Home />}></Route>
-          <Route exact path="/Detail" element={<Detail />}></Route>
-          <Route path="/Form" element={<Form />}></Route>   
-          <Route exact path="/Register" element={<FormUser/>}></Route>   
-            </Routes>
+  <Route exact path="/" element={<LandingPage />}></Route>
+  <Route exact path="/Detail/:idHouse" element={<Detail />}></Route>
+  <Route exact path="/Home" element={<Home />}></Route>
+  <Route exact path="/Detail" element={<Detail />}></Route>
+  <Route path="/Form" element={<Form />}></Route>   
+  <Route exact path="/Register" element={<FormUser/>}></Route>   
+  <Route exact path="/login" element={<FormLogin handleLogin={handleLogin}/>}></Route>   
+</Routes>
         {/* <Footer /> */}
       </div>
     </Router>

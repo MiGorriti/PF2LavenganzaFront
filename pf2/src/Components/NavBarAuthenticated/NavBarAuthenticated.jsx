@@ -2,18 +2,16 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import styles from './NavBarAuthenticated.module.css';
 import { IconLogout, IconUserDown } from "@tabler/icons-react";
-/* import { auth } from './firebase'; */
+import { useNavigate } from 'react-router-dom';
 
-function NavBarAuthenticated() {
-/*     const handleLogout = () => {
-        auth.signOut()
-          .then(() => {
-            console.log('User logged out.');
-          })
-          .catch((error) => {
-            console.error('Logout error', error);
-          });
-      }; */
+
+function NavBarAuthenticated({ handleLogout }) {
+  const navigate = useNavigate();
+
+  const handleLogoutClick = () => {
+    handleLogout(); // Ejecuta la función de logout
+    navigate('/'); // Navega a la ruta raíz después de cerrar sesión
+  };
   return (
     <nav>
       <div className={styles.navSup}>
@@ -45,9 +43,9 @@ function NavBarAuthenticated() {
         <Link to="/my-profile">
         <IconUserDown/>
         </Link>
-        <Link to="/log-out" /* onClick={handleLogout} */>
-        <IconLogout/>
-        </Link>
+        <Link to="/" onClick={handleLogoutClick}>
+        <IconLogout />
+      </Link>
       </div>
       </div>
     </nav>
