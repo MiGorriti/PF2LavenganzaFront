@@ -20,7 +20,7 @@ function LandingPage() {
                         <h2>Your Trusted Real Estate Advisors</h2>
                     </section>
 
-                    <section className={styles.chartSection}>
+                    <section className={styles.chartSection} >
                         <div className={styles.box1}>
                         <p className={styles.chartItem1}>+ 17K Satisfied Customers</p>
                         </div>
