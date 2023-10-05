@@ -4,6 +4,7 @@ import { createUser } from "../../Redux/action/actions";
 import { GoogleLogin } from "react-google-login";
 import { gapi } from "gapi-script";
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
 
 
 export const FormUser = () => {
@@ -49,12 +50,33 @@ export const FormUser = () => {
     alert('testing');
   };
 
+
+
   const onSuccess = (response) => {
     setUser(response.profileObj);
-    setTimeout(() => {
-      navigate("/home");
-    }, 3000);
+    console.log(response);
+
+    // Utilizamos los datos del perfil para crear el usuario
+    const userData = {
+      email: response.profileObj.email,
+      givenName: response.profileObj.givenName,
+      familyName: response.profileObj.familyName,
+      googleId: response.profileObj.googleId,
+      imageUrl: response.profileObj.imageUrl,
+      name: response.profileObj.name,
+    };
+
+    axios.post('http://localhost:3001/user/googleLogin', userData)
+      .then((response) => {
+        console.log('Usuario creado en la base de datos:', response.data);
+        // Redirige al usuario a la página de inicio después de la autenticación
+        navigate("/home");
+      })
+      .catch((error) => {
+        console.error('Error al crear el usuario:', error);
+      });
   };
+
 
   const onFailure = () => {
     console.log("something went wrong");

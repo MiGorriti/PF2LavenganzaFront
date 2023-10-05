@@ -7,10 +7,9 @@ import { store } from './Redux/store/store.js';
 //import{Auth0Provider} from '@auth0/auth0-react'
 
 ReactDOM.createRoot(document.getElementById("root")).render(
-    <Provider store={store}>
-  <React.StrictMode>
-    
+  <Provider store={store}>
+    <React.StrictMode>
       <App />
-  </React.StrictMode>
-    </Provider>
+    </React.StrictMode>
+  </Provider>
 );
