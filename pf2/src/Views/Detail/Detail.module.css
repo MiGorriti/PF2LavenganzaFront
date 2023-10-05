@@ -1,0 +1,32 @@
+.img{
+  display: grid;
+  grid-template-columns:1.5fr 1fr 1fr ;
+  
+  background-color: rgba(0, 0, 0, 0.1);
+  width: auto;
+  border-radius: 15px;
+}
+.imgChild{
+ border-radius: 15px;
+}
+.imgChild:first-child{
+ width: 1fr;
+ height: 1fr;
+
+  /* border-bottom: 1px solid #fff; */
+}
+.imgChild:nth-child(2){
+width: 1fr;
+height: 1fr;
+}
+.imgChild:nth-child(3){
+  height: 1fr;
+  width: 1fr;
+}
+.fixed-div {
+  position: sticky;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 500; /* Para asegurarte de que el div esté por encima de otros elementos */
+}

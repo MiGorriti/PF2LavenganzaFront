@@ -84,10 +84,16 @@
 }
 
 .boxcomments{
+  margin-left: 30px;
   border-radius: 20px;
   height:260px;
   background-color: rgb(211, 210, 210);
-  padding: 50px;
+  width: auto;
+  color:black;
+  display: flex;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
 }
 
 .comments{
@@ -109,13 +115,16 @@
   border-radius: 20px;
   font-family: Zasline;
 }
-
+.chartSection{
+ color: black;
+}
 .chartItem1 {
   font-size: 18px;
   background-color: #f8f5c8;
   border-radius: 20px;
   height: 120px;
-  display: flex;
+  width: 200px;
+    display: flex;
   justify-content: center;
   align-items: center;
 }
@@ -126,6 +135,7 @@
   color: rgb(255, 255, 255);
   border-radius: 20px;
   height: 120px;
+  width: 200px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -136,6 +146,7 @@
   background-color: #D7FAFF;
   border-radius: 20px;
   height: 120px;
+  width: 200px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -147,6 +158,7 @@
   background-color: #fddffb;
   border-radius: 20px;
   height: 120px;
+  width: 200px;
   display: flex;
   justify-content: center;
   align-items: center;
