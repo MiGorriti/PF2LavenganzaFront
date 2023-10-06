@@ -50,16 +50,18 @@ export const FormUser = () => {
     try {
       const { tokenId } = response;
       const loginResponse = await dispatch(loginUser(null, null, null, { tokenId }));
-      if (loginResponse.data.pass) {
+  
+      if (loginResponse && loginResponse.data && loginResponse.data.pass) {
         dispatch(getUser(loginResponse.data.user.id, loginResponse.data.accessToken));
         navigate("/home");
       } else {
         console.error("Google login failed");
       }
     } catch (error) {
-      console.error("Internal server error:", error);
+      console.error("Error during Google login:", error);
     }
   };
+  
 
   const togglePasswordVisibility = () => {
     setShowPassword(!showPassword);
@@ -115,7 +117,7 @@ export const FormUser = () => {
             </button>
             <GoogleLogin
               className="w-full bg-red-500 py-3 text-center text-blue rounded hover:bg-red-700 focus:outline-none"
-              clientId="TU_CLIENT_ID_DE_GOOGLE"
+              clientId="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"
               buttonText="Sign Up with Google"
               onSuccess={responseGoogle}
               onFailure={responseGoogle}

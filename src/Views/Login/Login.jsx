@@ -106,7 +106,7 @@
               Log in
             </button>
             <GoogleLogin className="w-full text-blue py-3 rounded hover:bg-purple-800 focus:outline-none mb-4"
-            clientId="TU_CLIENT_ID_DE_GOOGLE"
+            clientId="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"
             buttonText="Log in with Google"
             onSuccess={responseGoogle}
             onFailure={responseGoogle}
