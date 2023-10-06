@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import "./App.css";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Home from "./Views/Home/Home";
@@ -9,32 +9,18 @@ import Detail from "./Views/Detail/Detail";
 import LandingPage from "./Views/LandingPage/LandingPage";
 import Form from "./Views/FormRent/Form";
 import { FormUser } from "./Views/FormRegister/Form";
-/* import { auth } from "./firebase"; */
+import Login from "./Views/Login/Login";
+import FormAdmin  from "./Views/FormAdmin/FormAdmin";
+import AdminDashboard from "./Views/DashBoard/AdminDashboard";
+import { Navigate } from "react-router-dom";
+
+
 
 
 function App() {
-/*   const [user, setUser] = useState(null);
-
-  useEffect(() => {
-
-    const unsubscribe = auth.onAuthStateChanged((user) => {
-
-      if (user) {
-        setUser(user);
-      } else {
-        setUser(null);
-      }
-    });
-
-    return () => {
-      unsubscribe();
-    };
-  }, []); */
-
   return (
     <Router>
       <div className="App w-full">
-        {/* {user ? <NavbarAuthenticated /> : <NavbarGuest />} */}
         <NavBarGuest/>
         <Routes>
         <Route exact path="/" element={<LandingPage />}></Route>
@@ -42,9 +28,17 @@ function App() {
           <Route exact path="/Home" element={<Home />}></Route>
           <Route exact path="/Detail" element={<Detail />}></Route>
           <Route path="/Form" element={<Form />}></Route>   
-          <Route exact path="/Register" element={<FormUser/>}></Route>   
-            </Routes>
-        {/* <Footer /> */}
+          <Route exact path="/Register" element={<FormUser/>}></Route>
+          <Route exact path="/Login" element={<Login/>}></Route>  
+
+            {/* Rutas para el administrador */}
+          <Route path="/admin/login" element={<FormAdmin />} />
+          <Route path="/admin/dashboard" element={<AdminDashboard />} />
+          
+          {/* Redirecciona cualquier otra ruta a la página de inicio */}
+          <Route path="*" element={<Navigate to="/" />} />
+        </Routes>
+        <Footer />
       </div>
     </Router>
   );

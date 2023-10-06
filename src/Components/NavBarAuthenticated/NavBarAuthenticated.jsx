@@ -1,54 +1,63 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 import styles from './NavBarAuthenticated.module.css';
-import { IconLogout, IconUserDown } from "@tabler/icons-react";
-/* import { auth } from './firebase'; */
+import { IconLogout, IconUser } from "@tabler/icons-react";
+import UserProfileMenu from '../UserProfileMenu/UserProfileMenu';
 
 function NavBarAuthenticated() {
-/*     const handleLogout = () => {
-        auth.signOut()
-          .then(() => {
-            console.log('User logged out.');
-          })
-          .catch((error) => {
-            console.error('Logout error', error);
-          });
-      }; */
+  const [isProfileMenuOpen, setIsProfileMenuOpen] = useState(false)
+  const history = useHistory();
+
+  const handleProfileClick = () => {
+    setIsProfileMenuOpen(!isProfileMenuOpen);
+  };
+
+  const closeProfileMenu = () => {
+    setIsProfileMenuOpen(false);
+  };
+
+  const handleLogout = () => {
+    // Redirige al usuario a la página de inicio de sesión al hacer clic en el IconLogout
+    history.push('/login');
+  };
+
   return (
-    <nav>
-      <div className={styles.navSup}>
-      <div className={styles.menu}>
+    <nav className={styles.navbar}>
+      <div className={styles.navbarContainer}>
         <Link to="/home">
-      <img className={styles.logo} src="/imagenes/Wanderluxehomes.png" alt="Logo" />
-      </Link>
-        <Link to="/home" className={styles.options}>
-          Home
+          <img className={styles.logo} src="/imagenes/Wanderluxehomes.png" alt="Logo" />
         </Link>
-        <Link to="/my-reservations" className={styles.options}>
-        My reservations
-        </Link>
-        <Link to="/recommendations" className={styles.options}>
-        Recommendations
-        </Link>
-        <Link to="/publish-your-space" className={styles.options}>
-        Publish your space
-        </Link>
-        <Link to="/map" className={styles.options}>
-        Map
-        </Link>
-        <Link to="/houses" className={styles.options}>
-        Houses
-        </Link>
-        <Link to="/apartments">
-        Apartments 
-        </Link>
-        <Link to="/my-profile">
-        <IconUserDown/>
-        </Link>
-        <Link to="/log-out" /* onClick={handleLogout} */>
-        <IconLogout/>
-        </Link>
-      </div>
+        <div className={styles.menu}>
+          <Link to="/home" className={styles.option}>
+            Home
+          </Link>
+          <Link to="/my-reservations" className={styles.option}>
+            My Reservations
+          </Link>
+          <Link to="/recommendations" className={styles.option}>
+            Recommendations
+          </Link>
+          <Link to="/publish-your-space" className={styles.option}>
+            Publish Your Space
+          </Link>
+          <Link to="/map" className={styles.option}>
+            Map
+          </Link>
+          <Link to="/houses" className={styles.option}>
+            Houses
+          </Link>
+          <Link to="/apartments" className={styles.option}>
+            Apartments
+          </Link>
+          <div className={styles.profileOption} onClick={handleProfileClick}>
+            <IconUser size={20} />
+          </div>
+          {isProfileMenuOpen && <UserProfileMenu onClose={closeProfileMenu} />}
+          <div className={styles.logoutOption} onClick={handleLogout}>
+            <IconLogout size={20} />
+          </div>
+        </div>
       </div>
     </nav>
   );

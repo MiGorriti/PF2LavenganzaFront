@@ -1,5 +1,118 @@
 import axios from 'axios';
-import {FILTER_CATEGORY, FILTER_LOCATION, GET_CATEGORYS, GET_LOCATIONS, GET_PROPERTY, POST_PROPERTY, GET_DETAIL, CREATE_USER} from './type-actions'
+import { LOGIN_REQUEST, LOGIN_SUCCESS, LOGIN_FAILURE, LOGOUT, GET_PROPERTY, POST_PROPERTY, GET_CATEGORYS, FILTER_CATEGORY, FILTER_LOCATION, GET_LOCATIONS, GET_DETAIL, CREATE_USER , GET_USER_REQUEST, GET_USER_SUCCESS, GET_USER_FAILURE, ADMIN_LOGIN_REQUEST, ADMIN_LOGIN_SUCCESS, ADMIN_LOGIN_FAILURE, GET_ADMIN_USER_REQUEST, GET_ADMIN_USER_SUCCESS, GET_ADMIN_USER_FAILURE, ADMIN_LOGOUT, GET_USERS_REQUEST, GET_USERS_SUCCESS, GET_USERS_FAILURE } from './type-actions';
+
+
+export const loginUser = (email, password) => {
+  return async function (dispatch) {
+    dispatch({ type: LOGIN_REQUEST });
+    try {
+      const response = await axios.post('http://localhost:3001/user/login', { email, password });
+      dispatch({ type: LOGIN_SUCCESS, payload: response.data });
+    } catch (error) {
+      dispatch({ type: LOGIN_FAILURE, payload: error.message || 'Failed to login' });
+    }
+  };
+};
+
+export const getUser = (userId, accessToken) => {
+  return async function (dispatch) {
+    dispatch({ type: GET_USER_REQUEST });
+    try {
+      const response = await axios.get(`http://localhost:3001/user/${userId}`, {
+        headers: {
+          Authorization: `Bearer ${accessToken}`
+        }
+      });
+      dispatch({ type: GET_USER_SUCCESS, payload: response.data });
+    } catch (error) {
+      dispatch({ type: GET_USER_FAILURE, payload: error.message || 'Error getting user data' });
+    }
+  };
+};
+
+export const logout = () => ({
+  type: LOGOUT
+});
+
+
+export const adminLogin = (credentials) => {
+  return async function (dispatch) {
+    dispatch({ type: ADMIN_LOGIN_REQUEST });
+    try {
+      // Hacer la solicitud al servidor para iniciar sesión del administrador
+      const response = await axios.post('http://localhost:3001/admin/login', credentials);
+      dispatch({ type: ADMIN_LOGIN_SUCCESS, payload: response.data });
+      // Obtener datos del administrador después del inicio de sesión (opcional)
+      dispatch(getAdminUser(response.data.userId, response.data.accessToken));
+    } catch (error) {
+      dispatch({ type: ADMIN_LOGIN_FAILURE, payload: error.message || 'Administrator login error' });
+    }
+  };
+};
+
+
+export const getAdminUser = (userId, accessToken) => {
+  return async function (dispatch) {
+    dispatch({ type: GET_ADMIN_USER_REQUEST });
+    try {
+      // Hacer la solicitud al servidor para obtener datos del administrador
+      const response = await axios.get(`'http://localhost:3001/admin:'${userId}`, {
+        headers: {
+          Authorization: `Bearer ${accessToken}`
+        }
+      });
+      dispatch({ type: GET_ADMIN_USER_SUCCESS, payload: response.data });
+    } catch (error) {
+      dispatch({ type: GET_ADMIN_USER_FAILURE, payload: error.message || 'Error al obtener datos del administrador' });
+    }
+  };
+};
+
+
+export const adminLogout = () => ({
+  type: ADMIN_LOGOUT
+});
+
+
+export const createUser = (postForm) => {
+  return async function (dispatch) {
+    try {
+      const response = await axios.post('http://localhost:3001/user/create', postForm);
+      dispatch({ type: CREATE_USER, payload: response.data });
+    } catch (error) {
+      console.error(error);
+    }
+  };
+};
+
+
+export const getUsersRequest = () => ({
+  type: GET_USERS_REQUEST
+});
+
+export const getUsersSuccess = (users) => ({
+  type: GET_USERS_SUCCESS,
+  payload: users
+});
+
+export const getUsersFailure = (error) => ({
+  type: GET_USERS_FAILURE,
+  payload: error
+});
+
+export const getUsers = () => {
+  return async (dispatch) => {
+    dispatch(getUsersRequest());
+    try {
+      // Realiza una solicitud para obtener la lista de usuarios
+      const response = await axios.get('http://localhost:3001/users-list');
+      dispatch(getUsersSuccess(response.data));
+    } catch (error) {
+      dispatch(getUsersFailure(error.message || "Error al obtener usuarios"));
+    }
+  };
+};
+
 
 export const getCars = () => {
   return async (dispatch)=> {
@@ -114,14 +227,3 @@ export const getDetail = (idHouse) => {
   };
 };
 
-export const createUser = (postForm) =>{
-  return async function (req, res){
-try {
-  const response = axios.post(`http://localhost:3001/user/create`, postForm)
-  dispatch({type: CREATE_USER, payload: response})
-  
-} catch (error) {
-  console.error(error);  
-}
-  }
-}
