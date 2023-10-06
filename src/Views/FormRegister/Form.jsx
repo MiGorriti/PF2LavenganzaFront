@@ -1,6 +1,7 @@
 import React, { useState } from "react";
+import axios from "axios"; // Importa la biblioteca axios
 import { useDispatch } from "react-redux";
-import { createUser, loginUser, getUser } from "../../Redux/action/actions";
+import { createUser } from "../../Redux/action/actions"; // No necesitas importar loginUser aquí
 import { GoogleLogin } from "react-google-login";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../../Authenticator/AuthPro";
@@ -12,16 +13,12 @@ export const FormUser = () => {
   const navigate = useNavigate();
   const [showPassword, setShowPassword] = useState(false);
   const auth = useAuth();
-  
-
-  const initialFormState = {
+  const [postForm, setPostForm] = useState({
     email: "",
     password: "",
     fullName: "",
     lastName: "",
-  };
-
-  const [postForm, setPostForm] = useState(initialFormState);
+  });
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -33,35 +30,25 @@ export const FormUser = () => {
 
   const submitHandler = async (e) => {
     e.preventDefault();
-
-    const newUser = {
-      email: postForm.email,
-      password: postForm.password,
-      fullName: postForm.fullName,
-      lastName: postForm.lastName,
-    };
-
-    dispatch(createUser(newUser));
-
-    setPostForm(initialFormState);
+    try {
+      const response = await axios.post("http://localhost:3001/user/register", postForm); // Realiza la solicitud POST al backend para el registro
+      dispatch(createUser(response.data)); // Asume que el backend devuelve el usuario creado y lo almacena en el estado global
+      navigate("/home"); // Redirige al usuario a la página de inicio después del registro exitoso
+    } catch (error) {
+      console.error("Error during registration:", error);
+    }
   };
 
   const responseGoogle = async (response) => {
     try {
       const { tokenId } = response;
-      const loginResponse = await dispatch(loginUser(null, null, null, { tokenId }));
-  
-      if (loginResponse && loginResponse.data && loginResponse.data.pass) {
-        dispatch(getUser(loginResponse.data.user.id, loginResponse.data.accessToken));
-        navigate("/home");
-      } else {
-        console.error("Google login failed");
-      }
+      const googleResponse = await axios.post("http://localhost:3001/user/google-login", { tokenId }); // Realiza la solicitud POST al backend para el inicio de sesión con Google
+      dispatch(createUser(googleResponse.data)); // Asumo que el backend devuelve el usuario autenticado y lo almacena en el estado global
+      navigate("/home"); // Redirige al usuario a la página de inicio después del inicio de sesión exitoso con Google
     } catch (error) {
       console.error("Error during Google login:", error);
     }
   };
-  
 
   const togglePasswordVisibility = () => {
     setShowPassword(!showPassword);
