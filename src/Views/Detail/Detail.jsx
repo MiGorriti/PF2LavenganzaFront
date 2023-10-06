@@ -125,7 +125,7 @@ const Detail = () => {
           </div>
          
       </div>
-      <div class="w-64 mx-auto bg-black bg-opacity-75 rounded-2xl pb-4 fixed" style={{top: `${scrollTop}px`}}>
+      <div class="w-64 mx-auto bg-black bg-opacity-75 rounded-2xl pb-4  " style={{top: `${scrollTop}px`}}>
   <div class="w-64 mx-auto bg-black rounded-xl pb-4 border-bottom-2 border-radius-2xl ">
     <div class="flex justify-between">
       <div class="flex">
