@@ -1,18 +1,26 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { createUser } from "../../Redux/action/actions";
+import { gapi } from "gapi-script";
+import { useNavigate } from "react-router-dom";
+import axios from "axios";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
 
 export const FormUser = () => {
+  const navigate = useNavigate();
   const dispatch = useDispatch();
-  const [showPassword, setShowPassword] = useState(false);
+
+  const [user, setUser] = useState({})
   const [postForm, setPostForm] = useState({
     email: '',
     password: '',
     fullName: '',
     lastName: '',
   });
+
+
+  const clientID = "450156946690-8b53lo2n8n1ibojsg7b9sdg1ro2gvo1u.apps.googleusercontent.com";
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -31,7 +39,7 @@ export const FormUser = () => {
       fullName: postForm.fullName,
       lastName: postForm.lastName,
     };
-
+    console.log(newUser);
     dispatch(createUser(newUser));
 
     setPostForm({
@@ -42,6 +50,44 @@ export const FormUser = () => {
     });
     alert('testing');
   };
+
+  const onSuccess = (response) => {
+    setUser(response.profileObj);
+    console.log(response);
+
+    // Utilizamos los datos del perfil para crear el usuario
+    const userData = {
+      email: response.profileObj.email,
+      givenName: response.profileObj.givenName,
+      familyName: response.profileObj.familyName,
+      googleId: response.profileObj.googleId,
+      imageUrl: response.profileObj.imageUrl,
+      name: response.profileObj.name,
+    };
+
+    axios.post('http://localhost:3001/user/googleLogin', userData)
+    .then((response) => {
+      console.log('Usuario creado en la base de datos:', response.data);
+      // Redirige al usuario a la página de inicio después de la autenticación
+      navigate("/home");
+    })
+    .catch((error) => {
+      console.error('Error al crear el usuario:', error);
+    });
+};
+
+const onFailure = () => {
+  console.log("something went wrong");
+};
+
+useEffect(() => {
+  const start = () => {
+    gapi.auth2.init({
+      clientId: clientID,
+    });
+  };
+  gapi.load("client:auth2", start);
+}, [clientID]);
 
   const togglePasswordVisibility = () => {
     setShowPassword(!showPassword);
@@ -56,22 +102,48 @@ export const FormUser = () => {
           </h1>
         </div>
         <div className="w-full lg:w-1/2 py-8 px-12 text-white">
-          <h2 className="text-3xl mb-4 text-center">Register</h2>
+          <h2 className="text-3xl mb-4 text-center">
+            Register
+          </h2>
           <p className="mb-4 text-center">
             Create your account. It's free and only takes a minute.
           </p>
-          <form onSubmit={submitHandler} className="flex flex-col text-black">
-            <input type="text" name="fullName" value={postForm.fullName} onChange={handleChange} placeholder="Firstname" className="form-input mb-4" />
-            <input type="text" name="lastName" value={postForm.lastName} onChange={handleChange} placeholder="Lastname" className="form-input mb-4" />
-            <input type="text" placeholder="Email" name='email' value={postForm.email} onChange={handleChange} className="form-input mb-4" />
+          <form onSubmit={handleSubmit} className="flex flex-col mb-6 text-black">
+            <input
+              type="text"
+              name="fullName"
+              value={formData.fullName}
+              onChange={handleChange}
+              placeholder="Full Name"
+              className="form-input mb-4"
+              required
+            />
+            <input
+              type="text"
+              name="lastName"
+              value={formData.lastName}
+              onChange={handleChange}
+              placeholder="Last Name"
+              className="form-input mb-4"
+              required
+            />
+            <input
+              type="email"
+              name="email"
+              value={formData.email}
+              onChange={handleChange}
+              placeholder="Email"
+              className="form-input mb-4"
+              required
+            />
             <div className="relative mb-6 text-black flex bg-white rounded-xl items-stretch">
               <input
                 type={showPassword ? "text" : "password"}
                 name="password"
-                value={postForm.password}
+                value={formData.password}
                 onChange={handleChange}
                 placeholder="Password"
-                className="form-input pr-10"
+                className="form-input pr-10 "
                 required
               />
               <button
@@ -79,22 +151,22 @@ export const FormUser = () => {
                 className="absolute left-72 transform -translate-y-1/2 text-black top-6 h-8 -bottom-1 flex items-center justify-center"
                 onClick={togglePasswordVisibility}
               >
-                <FontAwesomeIcon icon={showPassword ? faEye : faEyeSlash} className="w-4" />
+                <FontAwesomeIcon icon={showPassword ? faEye : faEyeSlash} className="w-4"/>
               </button>
             </div>
-            <div className="flex items-center mb-4">
-              <input type="checkbox" className="form-checkbox border-gray-400 mr-2" />
+            <div className="flex items-center mb-6">
+              <input type="checkbox" className="form-checkbox border-purple-500 mr-2" required />
               <span className="text-white">
-                I accept the <a href="#" className="text-purple-500 font-semibold">Terms of Use</a> & <a href="#" className="text-purple-500 font-semibold">Privacy Policy</a>
+                I accept the <a href="#" className="text-purple-700 font-semibold">Terms of Use</a> & <a href="#" className="text-purple-700 font-semibold">Privacy Policy</a>
               </span>
             </div>
-            <button className="w-full bg-purple-500 py-3 text-center text-blue rounded hover:bg-purple-700 focus:outline-none mb-4">
+            <button type="submit" className="w-full bg-purple-700 text-blue py-3 rounded hover:bg-purple-800 focus:outline-none mb-4">
               Sign Up
             </button>
           </form>
           <div className="text-center">
-            <p className="text-white mt-6">
-              Have an account? <a href="#" className="text-blue font-semibold">Log in here</a>.
+            <p className="text-white">
+              Already have an account? <a href="#" className="text-blue font-semibold">Log in here</a>.
             </p>
           </div>
         </div>
@@ -102,6 +174,8 @@ export const FormUser = () => {
     </div>
   );
 };
+
+export default FormUser;
 
 
 
