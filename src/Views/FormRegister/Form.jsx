@@ -1,23 +1,17 @@
 import React, { useState } from "react";
-import axios from "axios"; // Importa la biblioteca axios
 import { useDispatch } from "react-redux";
-import { createUser } from "../../Redux/action/actions"; // No necesitas importar loginUser aquí
-import { GoogleLogin } from "react-google-login";
-import { useNavigate } from "react-router-dom";
-import { useAuth } from "../../Authenticator/AuthPro";
+import { createUser } from "../../Redux/action/actions";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
 
 export const FormUser = () => {
   const dispatch = useDispatch();
-  const navigate = useNavigate();
   const [showPassword, setShowPassword] = useState(false);
-  const auth = useAuth();
   const [postForm, setPostForm] = useState({
-    email: "",
-    password: "",
-    fullName: "",
-    lastName: "",
+    email: '',
+    password: '',
+    fullName: '',
+    lastName: '',
   });
 
   const handleChange = (e) => {
@@ -30,33 +24,28 @@ export const FormUser = () => {
 
   const submitHandler = async (e) => {
     e.preventDefault();
-    try {
-      const response = await axios.post("http://localhost:3001/user/register", postForm); // Realiza la solicitud POST al backend para el registro
-      dispatch(createUser(response.data)); // Asume que el backend devuelve el usuario creado y lo almacena en el estado global
-      navigate("/home"); // Redirige al usuario a la página de inicio después del registro exitoso
-    } catch (error) {
-      console.error("Error during registration:", error);
-    }
-  };
 
-  const responseGoogle = async (response) => {
-    try {
-      const { tokenId } = response;
-      const googleResponse = await axios.post("http://localhost:3001/user/google-login", { tokenId }); // Realiza la solicitud POST al backend para el inicio de sesión con Google
-      dispatch(createUser(googleResponse.data)); // Asumo que el backend devuelve el usuario autenticado y lo almacena en el estado global
-      navigate("/home"); // Redirige al usuario a la página de inicio después del inicio de sesión exitoso con Google
-    } catch (error) {
-      console.error("Error during Google login:", error);
-    }
+    const newUser = {
+      email: postForm.email,
+      password: postForm.password,
+      fullName: postForm.fullName,
+      lastName: postForm.lastName,
+    };
+
+    dispatch(createUser(newUser));
+
+    setPostForm({
+      email: '',
+      password: '',
+      fullName: '',
+      lastName: '',
+    });
+    alert('testing');
   };
 
   const togglePasswordVisibility = () => {
     setShowPassword(!showPassword);
   };
-
-  if (auth.isAuthenticated) {
-    navigate("/home");
-  }
 
   return (
     <div className="min-h-screen flex flex-col items-center justify-center bg-white py-8">
@@ -76,23 +65,23 @@ export const FormUser = () => {
             <input type="text" name="lastName" value={postForm.lastName} onChange={handleChange} placeholder="Lastname" className="form-input mb-4" />
             <input type="text" placeholder="Email" name='email' value={postForm.email} onChange={handleChange} className="form-input mb-4" />
             <div className="relative mb-6 text-black flex bg-white rounded-xl items-stretch">
-          <input
-            type={showPassword ? "text" : "password"}
-            name="password"
-            value={postForm.password}
-            onChange={handleChange}
-            placeholder="Password"
-            className="form-input pr-10"
-            required
-          />
-          <button
-            type="button"
-            className="absolute left-72 transform -translate-y-1/2 text-black top-6 h-8 -bottom-1 flex items-center justify-center"
-            onClick={togglePasswordVisibility}
-          >
-            <FontAwesomeIcon icon={showPassword ? faEye : faEyeSlash} className="w-4" />
-          </button>
-        </div>
+              <input
+                type={showPassword ? "text" : "password"}
+                name="password"
+                value={postForm.password}
+                onChange={handleChange}
+                placeholder="Password"
+                className="form-input pr-10"
+                required
+              />
+              <button
+                type="button"
+                className="absolute left-72 transform -translate-y-1/2 text-black top-6 h-8 -bottom-1 flex items-center justify-center"
+                onClick={togglePasswordVisibility}
+              >
+                <FontAwesomeIcon icon={showPassword ? faEye : faEyeSlash} className="w-4" />
+              </button>
+            </div>
             <div className="flex items-center mb-4">
               <input type="checkbox" className="form-checkbox border-gray-400 mr-2" />
               <span className="text-white">
@@ -102,14 +91,6 @@ export const FormUser = () => {
             <button className="w-full bg-purple-500 py-3 text-center text-blue rounded hover:bg-purple-700 focus:outline-none mb-4">
               Sign Up
             </button>
-            <GoogleLogin
-              className="w-full bg-red-500 py-3 text-center text-blue rounded hover:bg-red-700 focus:outline-none"
-              clientId="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"
-              buttonText="Sign Up with Google"
-              onSuccess={responseGoogle}
-              onFailure={responseGoogle}
-              cookiePolicy={'single_host_origin'}
-            />
           </form>
           <div className="text-center">
             <p className="text-white mt-6">
@@ -121,6 +102,7 @@ export const FormUser = () => {
     </div>
   );
 };
+
 
 
 

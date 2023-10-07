@@ -1,44 +1,42 @@
-import React, { useState } from "react";
-import axios from "axios";
+import React, { useState, useEffect } from "react";
+import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from "react-router-dom";
-import { GoogleLogin } from 'react-google-login';
+import { getLogin } from "../../Redux/action/actions";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
 
-function Login() {
-  const navigate = useNavigate();
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+const FormLogin = ({ handleLogin }) => {
+  const [formData, setFormData] = useState({
+    email: '',
+    password: '',
+  });
+
   const [showPassword, setShowPassword] = useState(false);
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const loginUser = useSelector(state => state.loginUser);
+
+  const handleChange = (e) => {
+    setFormData({
+      ...formData,
+      [e.target.name]: e.target.value,
+    });
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    try {
-      const response = await axios.post("http://localhost:3001/user/login", {
-        email: email,
-        password: password,
-      });
-      // Manejar la respuesta del backend si es necesario
-      console.log(response.data);
-      // Redirigir a la página de inicio después del inicio de sesión exitoso
-      navigate("/home");
-    } catch (error) {
-      console.error("Error durante el inicio de sesión:", error);
-    }
+    await dispatch(getLogin(formData));
   };
 
-  const responseGoogle = async (response) => {
-    try {
-      const tokenId = response.tokenId;
-      const googleResponse = await axios.post("http://localhost:3001/user/google-login", { tokenId });
-      // Manejar la respuesta del backend si es necesario
-      console.log(googleResponse.data);
-      // Redirigir a la página de inicio después del inicio de sesión exitoso con Google
-      navigate("/home");
-    } catch (error) {
-      console.error("Error durante el inicio de sesión con Google:", error);
+  useEffect(() => {
+    if (loginUser && loginUser.status === 200) {
+      alert('Inicio de sesión exitoso');
+      handleLogin();
+      navigate('/home');
+    } else if (loginUser && loginUser.status === 401) {
+      alert('Credenciales inválidas');
     }
-  };
+  }, [loginUser, handleLogin, navigate]);
 
   const togglePasswordVisibility = () => {
     setShowPassword(!showPassword);
@@ -63,8 +61,8 @@ function Login() {
             <input
               type="email"
               name="email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
+              value={formData.email}
+              onChange={handleChange}
               placeholder="Email"
               className="form-input mb-4"
               required
@@ -73,8 +71,8 @@ function Login() {
               <input
                 type={showPassword ? "text" : "password"}
                 name="password"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
+                value={formData.password}
+                onChange={handleChange}
                 placeholder="Password"
                 className="form-input pr-10 "
                 required
@@ -96,13 +94,6 @@ function Login() {
             <button type="submit" className="w-full bg-purple-700 text-blue py-3 rounded hover:bg-purple-800 focus:outline-none mb-4">
               Log in
             </button>
-            <GoogleLogin className="w-full text-blue py-3 rounded hover:bg-purple-800 focus:outline-none mb-4"
-              clientId="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"
-              buttonText="Log in with Google"
-              onSuccess={responseGoogle}
-              onFailure={responseGoogle}
-              cookiePolicy={'single_host_origin'}
-            />
           </form>
           <div className="text-center">
             <p className="text-white">
@@ -115,7 +106,8 @@ function Login() {
   );
 }
 
-export default Login;
+export default FormLogin;
+
 
 
 
