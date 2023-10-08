@@ -34,13 +34,13 @@ export const FormLogin = ({ handleLogin }) => {
     useEffect(() => {
         if (showAlert) {
             if (loginUser && loginUser.status === 200) {
-                alert('Inicio de sesión exitoso');
+                alert('Successful login');
                 handleLogin()
                 navigate('/home')
             } else if (loginUser && loginUser.status === 401) {
-                alert('Credenciales inválidas');
+                alert('Invalid credentials');
             }
-            setShowAlert(false); // Oculta la alerta después de mostrarla
+            setShowAlert(false); 
         }
     }, [showAlert, loginUser,handleLogin]);
 
@@ -69,7 +69,7 @@ export const FormLogin = ({ handleLogin }) => {
                         required
                     />
                 </div>
-                <button type="submit">Enviar</button>
+                <button type="submit">submit</button>
             </form>
         </div>
     );

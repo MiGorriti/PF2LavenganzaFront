@@ -106,7 +106,7 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
 
-export const FormUser = () => {
+export const FormUser = ({ handleLoginGoogle }) => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
@@ -146,7 +146,7 @@ export const FormUser = () => {
       fullName: '',
       lastName: '',
     });
-    alert('testing');
+    alert('welcome to WanderLuxe');
   };
 
 
@@ -155,7 +155,7 @@ export const FormUser = () => {
     setUser(response.profileObj);
     console.log(response);
 
-    // Utilizamos los datos del perfil para crear el usuario
+    
     const userData = {
       email: response.profileObj.email,
       givenName: response.profileObj.givenName,
@@ -165,11 +165,18 @@ export const FormUser = () => {
       name: response.profileObj.name,
     };
 
+  
+
     axios.post('http://localhost:3001/user/googleLogin', userData)
       .then((response) => {
         console.log('Usuario creado en la base de datos:', response.data);
-        // Redirige al usuario a la página de inicio después de la autenticación
-        navigate("/home");
+
+        localStorage.setItem("userName", response.data.name);
+      
+        alert(`welcome, ${response.data.name}`)
+        
+        navigate('/home')
+        handleLoginGoogle()
       })
       .catch((error) => {
         console.error('Error al crear el usuario:', error);
