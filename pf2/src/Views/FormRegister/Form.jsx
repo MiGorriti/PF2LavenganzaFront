@@ -7,7 +7,7 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
 
-export const FormUser = () => {
+export const FormUser = ({ handleLoginGoogle }) => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
@@ -66,12 +66,18 @@ export const FormUser = () => {
       name: response.profileObj.name,
     };
 
+  
+
     axios.post('http://localhost:3001/user/googleLogin', userData)
       .then((response) => {
         console.log('Usuario creado en la base de datos:', response.data);
+
+        localStorage.setItem("userName", response.data.name);
       
         alert(`welcome, ${response.data.name}`)
-        navigate("/home");
+        
+        navigate('/home')
+        handleLoginGoogle()
       })
       .catch((error) => {
         console.error('Error al crear el usuario:', error);

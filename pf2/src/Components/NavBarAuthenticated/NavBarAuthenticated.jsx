@@ -10,11 +10,13 @@ function NavBarAuthenticated({ handleLogout }) {
   const navigate = useNavigate();
   const userName = useSelector(state => state.userName);
   console.log('userName:', userName);  
-
+ 
+  const userNameGoogle = localStorage.getItem("userName");
   
 
   const handleLogoutClick = () => {
     handleLogout(); 
+    handleLogoutGoogle(); 
     navigate('/');
 
     
@@ -50,7 +52,7 @@ function NavBarAuthenticated({ handleLogout }) {
         Apartments 
         </Link>
         <Link to="/my-profile">
-        {"Welcome " + ( localStorage.getItem("userName") || <IconUserDown />)}
+        {"Welcome " + ( localStorage.getItem("userName") ||userNameGoogle || <IconUserDown />)}
           </Link>
         <Link to="/" onClick={handleLogoutClick}>
         <IconLogout />
