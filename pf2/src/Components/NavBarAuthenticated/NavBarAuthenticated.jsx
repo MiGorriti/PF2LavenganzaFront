@@ -3,15 +3,24 @@ import { Link } from 'react-router-dom';
 import styles from './NavBarAuthenticated.module.css';
 import { IconLogout, IconUserDown } from "@tabler/icons-react";
 import { useNavigate } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 
 
 function NavBarAuthenticated({ handleLogout }) {
   const navigate = useNavigate();
+  const userName = useSelector(state => state.userName);
+  console.log('userName:', userName);  
+
+  
 
   const handleLogoutClick = () => {
-    handleLogout(); // Ejecuta la función de logout
-    navigate('/'); // Navega a la ruta raíz después de cerrar sesión
+    handleLogout(); 
+    navigate('/');
+
+    
   };
+  
+
   return (
     <nav>
       <div className={styles.navSup}>
@@ -41,8 +50,8 @@ function NavBarAuthenticated({ handleLogout }) {
         Apartments 
         </Link>
         <Link to="/my-profile">
-        <IconUserDown/>
-        </Link>
+        {"Welcome " + ( localStorage.getItem("userName") || <IconUserDown />)}
+          </Link>
         <Link to="/" onClick={handleLogoutClick}>
         <IconLogout />
       </Link>

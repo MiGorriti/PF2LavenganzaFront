@@ -47,7 +47,7 @@ export const FormUser = () => {
       fullName: '',
       lastName: '',
     });
-    alert('testing');
+    alert('welcome to WanderLuxe');
   };
 
 
@@ -56,7 +56,7 @@ export const FormUser = () => {
     setUser(response.profileObj);
     console.log(response);
 
-    // Utilizamos los datos del perfil para crear el usuario
+    
     const userData = {
       email: response.profileObj.email,
       givenName: response.profileObj.givenName,
@@ -69,7 +69,8 @@ export const FormUser = () => {
     axios.post('http://localhost:3001/user/googleLogin', userData)
       .then((response) => {
         console.log('Usuario creado en la base de datos:', response.data);
-        // Redirige al usuario a la página de inicio después de la autenticación
+      
+        alert(`welcome, ${response.data.name}`)
         navigate("/home");
       })
       .catch((error) => {

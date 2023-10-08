@@ -10,6 +10,7 @@ import LandingPage from "./Views/LandingPage/LandingPage";
 import Form from "./Views/FormRent/Form";
 import { FormUser } from "./Views/FormRegister/Form";
 import{FormLogin} from "./Views/FormLogin/FormLogin"
+import { useSelector } from 'react-redux';
 
 
 
@@ -17,6 +18,7 @@ import{FormLogin} from "./Views/FormLogin/FormLogin"
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const userName = useSelector(state => state.userName);
   
 
   useEffect(() => {
@@ -29,11 +31,14 @@ function App() {
   const handleLogin = () => {
     setIsLoggedIn(true);
     localStorage.setItem("user", "loggedIn");
+    localStorage.setItem("userName", userName);
+    
   };
 
   const handleLogout = () => {
     setIsLoggedIn(false);
     localStorage.removeItem("user");
+    localStorage.setItem("userName", userName);
     
   };
 
