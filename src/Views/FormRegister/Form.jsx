@@ -1,27 +1,24 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
-import { createUser, loginUser, getUser } from "../../Redux/action/actions";
+import { createUser, googleRegister } from "../../Redux/action/actions";
 import { GoogleLogin } from "react-google-login";
+import { gapi } from "gapi-script";
 import { useNavigate } from "react-router-dom";
-import { useAuth } from "../../Authenticator/AuthPro";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
 
-export const FormUser = () => {
-  const dispatch = useDispatch();
+
+export const FormUser = ({ handleLoginGoogle }) => {
   const navigate = useNavigate();
-  const [showPassword, setShowPassword] = useState(false);
-  const auth = useAuth();
-  
+  const dispatch = useDispatch();
 
-  const initialFormState = {
-    email: "",
-    password: "",
-    fullName: "",
-    lastName: "",
-  };
+  const [user, setUser] = useState({})
+  const [postForm, setPostForm] = useState({
+    email: '',
+    password: '',
+    fullName: '',
+    lastName: '',
+  });
 
-  const [postForm, setPostForm] = useState(initialFormState);
+  const clientID = "450156946690-8b53lo2n8n1ibojsg7b9sdg1ro2gvo1u.apps.googleusercontent.com";
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -40,37 +37,59 @@ export const FormUser = () => {
       fullName: postForm.fullName,
       lastName: postForm.lastName,
     };
-
+    console.log(newUser);
     dispatch(createUser(newUser));
 
-    setPostForm(initialFormState);
+    setPostForm({
+      email: '',
+      password: '',
+      fullName: '',
+      lastName: '',
+    });
+    alert('welcome to WanderLuxe');
   };
 
-  const responseGoogle = async (response) => {
-    try {
-      const { tokenId } = response;
-      const loginResponse = await dispatch(loginUser(null, null, null, { tokenId }));
-      if (loginResponse.data.pass) {
-        dispatch(getUser(loginResponse.data.user.id, loginResponse.data.accessToken));
-        navigate("/home");
-      } else {
-        console.error("Google login failed");
-      }
-    } catch (error) {
-      console.error("Internal server error:", error);
-    }
+
+
+  const onSuccess = (response) => {
+    setUser(response.profileObj);
+    console.log(response);
+
+    
+    const userData = {
+      email: response.profileObj.email,
+      givenName: response.profileObj.givenName,
+      familyName: response.profileObj.familyName,
+      googleId: response.profileObj.googleId,
+      imageUrl: response.profileObj.imageUrl,
+      name: response.profileObj.name,
+    };
+
+  
+
+    dispatch(googleRegister(userData))
+    alert(`welcome to WanderLuxe,${userData.name}`);
+    navigate('/home')
+    handleLoginGoogle()
+    localStorage.setItem('user', userData.name)
   };
 
-  const togglePasswordVisibility = () => {
-    setShowPassword(!showPassword);
+
+  const onFailure = () => {
+    console.log("something went wrong");
   };
 
-  if (auth.isAuthenticated) {
-    navigate("/home");
-  }
+  useEffect(() => {
+    const start = () => {
+      gapi.auth2.init({
+        clientId: clientID,
+      });
+    };
+    gapi.load("client:auth2", start);
+  }, [clientID]);
 
   return (
-    <div className="min-h-screen flex flex-col items-center justify-center py-8">
+    <div className="min-h-screen flex flex-col items-center justify-center bg-white py-8">
       <div className="container mx-auto flex flex-col lg:flex-row w-10/12 lg:w-8/12 bg-black rounded-xl shadow-lg overflow-hidden mt-4 relative">
         <div className="w-full lg:w-1/2 flex flex-col items-center justify-center p-12 bg-no-repeat bg-cover bg-center relative" style={{ backgroundImage: 'url(/imagenes/Fondolanding.png)' }}>
           <h1 className="text-white font-Zasline text-4xl mb-4 absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
@@ -132,6 +151,7 @@ export const FormUser = () => {
     </div>
   );
 };
+
 
 
 
