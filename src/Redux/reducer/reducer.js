@@ -1,4 +1,4 @@
-import { GET_PROPERTY, POST_PROPERTY, GET_CATEGORYS, FILTER_LOCATION, FILTER_CATEGORY, GET_LOCATIONS, GET_DETAIL, LOGIN_USER} from '../action/type-actions';
+import { GET_PROPERTY, POST_PROPERTY, GET_CATEGORYS, FILTER_LOCATION, FILTER_CATEGORY, GET_LOCATIONS, GET_DETAIL, LOGIN_USER, SET_AUTH_STATUS} from '../action/type-actions';
 
 let initialState = {
   property: [],
@@ -8,7 +8,8 @@ let initialState = {
   filterCategory: [],
   filterLocation: [],
   propertyDetail: {},
-  loginUser:[]
+  loginUser:[],
+  isAuthenticated:false
 }
 
 
@@ -55,7 +56,12 @@ function rootReducer(state = initialState, action) {
                     return{
                         ...state,
                         loginUser: action.payload
-                    }    
+                    } 
+                case SET_AUTH_STATUS:
+                    return{
+                        ...state,
+                        isAuthenticated: action.payload
+                    }
         default:
             return {
                 ...state
