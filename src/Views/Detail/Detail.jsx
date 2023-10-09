@@ -117,7 +117,7 @@ const Detail = () => {
                   Reviews
                   </p>
                 </div>
-              </section>
+              </section> 
             </div>
           </div>
         </div>
@@ -125,8 +125,9 @@ const Detail = () => {
           </div>
          
       </div>
-      <div class="w-64 mx-auto bg-black bg-opacity-75 rounded-2xl pb-4  " style={{top: `${scrollTop}px`}}>
-  <div class="w-64 mx-auto bg-black rounded-xl pb-4 border-bottom-2 border-radius-2xl ">
+
+      <div class="w-64 mx-auto  bg-opacity-75 rounded-2xl pb-4 ml-60 mt-8 " style={{top: `${scrollTop}px`}}>
+  <div class="h-auto w-64 mx-auto bg-black rounded-xl pb-4 right-4  border-bottom-2 fixed border-radius-2xl ">
     <div class="flex justify-between">
       <div class="flex">
         <span class="ml-3 mt-2">
@@ -157,7 +158,7 @@ const Detail = () => {
     </div>
     <div className="">
       <div className="mb-6 mt-8">
-        <button className="w-40 transform hover:scale-105 hover:border-white transition-transform">Reserva</button>
+        <button className="w-0 transform hover:scale-105 bg-black hover:border-white transition-transform">Reserva</button>
       </div>
       <div class="text-xs mb-4">
         <p>No se hara ningun cargo por el momento</p>
