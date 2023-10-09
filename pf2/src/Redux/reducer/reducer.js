@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-import { GET_PROPERTY, GET_CATEGORYS, FILTER_LOCATION, FILTER_CATEGORY, GET_LOCATIONS, GET_DETAIL, LOGIN_USER} from '../action/type-actions';
+import { GET_PROPERTY, GET_CATEGORYS, FILTER_LOCATION, FILTER_CATEGORY, GET_LOCATIONS, GET_DETAIL, LOGIN_USER, SET_USER_NAME } from '../action/type-actions';
 
 let initialState = {
     property: [],
@@ -10,7 +10,8 @@ let initialState = {
     filterCategory: [],
     filterLocation: [],
     propertyDetail: {},
-    loginUser:[]
+    loginUser: [],
+    userName: []
 }
 
 function rootReducer(state = initialState, action) {
@@ -23,37 +24,41 @@ function rootReducer(state = initialState, action) {
             }
         case GET_CATEGORYS:
             return {
-                ...state, 
+                ...state,
                 category: action.payload
             }
         case FILTER_CATEGORY:
-                return{
-                    ...state,
-                    property: action.payload,
-                }
-          
-            
+            return {
+                ...state,
+                property: action.payload,
+            }
         case FILTER_LOCATION:
-            return{
+            return {
                 ...state,
                 filterLocation: action.payload,
                 property: state.filterLocation
             }
         case GET_LOCATIONS:
-            return{
+            return {
                 ...state,
                 location: action.payload
             }
-            case GET_DETAIL:
-                return{
-                    ...state,
-                    propertyDetail: action.payload
-                }
-                case LOGIN_USER:
-                    return{
-                        ...state,
-                        loginUser: action.payload
-                    }    
+        case GET_DETAIL:
+            return {
+                ...state,
+                propertyDetail: action.payload
+            }
+        case LOGIN_USER:
+            return {
+                ...state,
+                loginUser: action.payload
+            }
+        case SET_USER_NAME:
+            return {
+                ...state,
+                userName: action.payload
+            }
+
         default:
             return {
                 ...state

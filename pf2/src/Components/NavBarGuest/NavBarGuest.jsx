@@ -5,7 +5,7 @@ import styles from './NavBarGuest.module.css';
 
 function NavBarGuest() {
   return (
-    <nav className='mb-20 w-full'>
+    <nav>
       <div className={styles.navSup}>
 
         <Link to="/">

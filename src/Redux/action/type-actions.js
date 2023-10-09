@@ -1,0 +1,10 @@
+export const GET_PROPERTY = 'GET_PROPERTY';
+export const GET_CATEGORYS = 'GET_CATEGORYS';
+export const FILTER_LOCATION = 'FILTER_LOCATION';
+export const FILTER_CATEGORY = 'FILTER_CATEGORY';
+export const GET_LOCATIONS = 'GET_LOCATIONS';
+export const GET_DETAIL = 'GET_DETAIL';
+export const LOGIN_USER = 'LOGIN_USER';
+export const CREATE_USER = 'CREATE_USER';
+export const POST_PROPERTY = 'POST_PROPERTY';
+export const SET_AUTH_STATUS = 'SET_AUTH_STATUS';

@@ -7,3 +7,4 @@ export const GET_LOCATIONS = 'GET_LOCATIONS'
 export const GET_DETAIL = "GET_DETAIL";
 export const CREATE_USER = "CREATE_USER"
 export const LOGIN_USER = "LOGIN_USER"
+export const SET_USER_NAME = 'SET_USER_NAME';

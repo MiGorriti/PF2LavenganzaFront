@@ -1,0 +1,77 @@
+{
+  "hash": "76b2ec8d",
+  "browserHash": "80432f2e",
+  "optimized": {
+    "react": {
+      "src": "../../node_modules/react/index.js",
+      "file": "react.js",
+      "fileHash": "93b076f0",
+      "needsInterop": true
+    },
+    "react-dom": {
+      "src": "../../node_modules/react-dom/index.js",
+      "file": "react-dom.js",
+      "fileHash": "348e0d21",
+      "needsInterop": true
+    },
+    "react-redux": {
+      "src": "../../node_modules/react-redux/es/index.js",
+      "file": "react-redux.js",
+      "fileHash": "d3f7c647",
+      "needsInterop": false
+    },
+    "redux": {
+      "src": "../../node_modules/redux/es/redux.js",
+      "file": "redux.js",
+      "fileHash": "0161bc50",
+      "needsInterop": false
+    },
+    "redux-thunk": {
+      "src": "../../node_modules/redux-thunk/es/index.js",
+      "file": "redux-thunk.js",
+      "fileHash": "01ed2058",
+      "needsInterop": false
+    },
+    "redux-devtools-extension": {
+      "src": "../../node_modules/redux-devtools-extension/index.js",
+      "file": "redux-devtools-extension.js",
+      "fileHash": "d4cb9e4c",
+      "needsInterop": true
+    },
+    "axios": {
+      "src": "../../node_modules/axios/index.js",
+      "file": "axios.js",
+      "fileHash": "bdd0899e",
+      "needsInterop": false
+    },
+    "react-router-dom": {
+      "src": "../../node_modules/react-router-dom/dist/index.js",
+      "file": "react-router-dom.js",
+      "fileHash": "e2af3865",
+      "needsInterop": false
+    },
+    "@tabler/icons-react": {
+      "src": "../../node_modules/@tabler/icons-react/dist/esm/tabler-icons-react.js",
+      "file": "@tabler_icons-react.js",
+      "fileHash": "94ca8e56",
+      "needsInterop": false
+    }
+  },
+  "chunks": {
+    "chunk-KEE3L4NC": {
+      "file": "chunk-KEE3L4NC.js"
+    },
+    "chunk-GEMGPRP6": {
+      "file": "chunk-GEMGPRP6.js"
+    },
+    "chunk-I5GJCBS2": {
+      "file": "chunk-I5GJCBS2.js"
+    },
+    "chunk-2PA4WPI3": {
+      "file": "chunk-2PA4WPI3.js"
+    },
+    "chunk-ROME4SDB": {
+      "file": "chunk-ROME4SDB.js"
+    }
+  }
+}
