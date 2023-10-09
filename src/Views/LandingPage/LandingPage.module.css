@@ -1,0 +1,195 @@
+@font-face {
+  font-family: 'Zasline';
+  src: url('fuentes/Zasline.otf') format('opentype');
+}
+
+@font-face {
+  font-family: 'Quahon';
+  src: url('fuentes/Quahon.otf') format('opentype');
+}
+
+@font-face {
+  font-family: 'Replay'; 
+  src: url('fuentes/Replay.otf') format('opentype');
+}
+
+
+.container {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+.backgroundimage {
+  position: relative;
+  width: 100%;
+  height: 500px;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.topImage {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  position: absolute;
+  top: 80px;
+  left: 0;
+  border-radius: 10px;
+}
+
+.overlay {
+  position: absolute;
+  top: 65%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  color: white;
+}
+
+.title{
+  font-family: Zasline ;
+}
+
+.subtitle{
+  font-family:Zasline;
+  font-size:x-large;
+}
+
+.content {
+    width: 90%;
+    display: flex;
+    justify-content: space-between;
+    margin-top: 100px;
+    margin-left: 80px;
+    margin-right: 50px;
+}
+
+.left-column {
+    text-align: left;
+    color: black;
+}
+
+.right-column {
+    text-align: left;
+    color: black;
+}
+
+.infotitle{
+  margin-top: 40px;
+  margin-bottom: 40px;
+  font-size: x-large;
+  font-family: Zasline;
+}
+
+.boxcomments{
+  margin-left: 30px;
+  border-radius: 20px;
+  height:260px;
+  background-color: rgb(211, 210, 210);
+  width: auto;
+  color:black;
+  display: flex;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+}
+
+.comments{
+  font-family: Zasline;
+}
+
+.chartSection {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-gap: 20px;
+}
+
+.box1,
+.box2,
+.box3,
+.box4 {
+  text-align: center;
+  border: solid 1px black;
+  border-radius: 20px;
+  font-family: Zasline;
+}
+.chartSection{
+ color: black;
+}
+.chartItem1 {
+  font-size: 18px;
+  background-color: #f8f5c8;
+  border-radius: 20px;
+  height: 120px;
+  width: 200px;
+    display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.chartItem2 {
+  font-size: 18px;
+  background-color: black;
+  color: rgb(255, 255, 255);
+  border-radius: 20px;
+  height: 120px;
+  width: 200px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.chartItem3 {
+  font-size: 18px;
+  background-color: #D7FAFF;
+  border-radius: 20px;
+  height: 120px;
+  width: 200px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.chartItem4 {
+  display: flex;
+  font-size: 18px;
+  background-color: #fddffb;
+  border-radius: 20px;
+  height: 120px;
+  width: 200px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.cards {
+  @apply grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-10 w-10/12 mx-auto sm:w-10/12 my-10 
+  }
+  
+  .c1,
+  .c2,
+  .c3,
+  .c4 {
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      @apply w-full
+  }
+  
+  .image {
+    @apply relative rounded-lg border
+  }
+  
+  .icon{
+    @apply absolute top-2 right-4 z-10 rounded-full bg-white bg-opacity-70 text-red p-1
+  }
+  
+  
+  
+  
+
+
+
+  
