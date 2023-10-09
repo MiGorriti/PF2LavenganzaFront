@@ -1,6 +1,25 @@
 import axios from 'axios';
-import { GET_PROPERTY, POST_PROPERTY, GET_CATEGORYS, FILTER_CATEGORY, FILTER_LOCATION, GET_LOCATIONS, GET_DETAIL, CREATE_USER, LOGOUT } from './type-actions';
+import { GET_PROPERTY, POST_PROPERTY, GET_CATEGORYS, FILTER_CATEGORY, FILTER_LOCATION, GET_LOCATIONS, GET_DETAIL, CREATE_USER } from './type-actions';
 
+
+export const getLogin = (formData) => {
+  return async function (dispatch) {
+    try {
+      const response = await axios.post('http://localhost:3001/user/login', formData);
+      if (response.status === 200) {
+        dispatch({
+          type: LOGIN_USER,
+          payload: {status:200}
+        });
+      }
+    } catch (error) {
+      dispatch({
+        type: LOGIN_USER,
+        payload: { status: 401 },
+      });
+}
+  }
+}
 
 export const createUser = (postForm) => {
   return async function (dispatch) {
@@ -13,9 +32,6 @@ export const createUser = (postForm) => {
   };
 };
 
-export const logout = () => ({
-  type: LOGOUT
-});
 
 export const getCars = () => {
   return async (dispatch)=> {

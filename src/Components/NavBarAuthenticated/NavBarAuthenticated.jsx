@@ -44,12 +44,6 @@ function NavBarAuthenticated() {
           <Link to="/map" className={styles.option}>
             Map
           </Link>
-          <Link to="/houses" className={styles.option}>
-            Houses
-          </Link>
-          <Link to="/apartments" className={styles.option}>
-            Apartments
-          </Link>
           <div className={styles.profileOption} onClick={handleProfileClick}>
             <IconUser size={20} />
           </div>

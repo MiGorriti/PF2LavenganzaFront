@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { createUser } from "../../Redux/action/actions";
+import { GoogleLogin } from "react-google-login";
 import { gapi } from "gapi-script";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
@@ -10,6 +11,7 @@ import { faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
 export const FormUser = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  const [showPassword, setShowPassword] = useState(false);
 
   const [user, setUser] = useState({})
   const [postForm, setPostForm] = useState({
@@ -89,6 +91,7 @@ useEffect(() => {
   gapi.load("client:auth2", start);
 }, [clientID]);
 
+
   const togglePasswordVisibility = () => {
     setShowPassword(!showPassword);
   };
@@ -108,11 +111,11 @@ useEffect(() => {
           <p className="mb-4 text-center">
             Create your account. It's free and only takes a minute.
           </p>
-          <form onSubmit={handleSubmit} className="flex flex-col mb-6 text-black">
+          <form onSubmit={submitHandler} className="flex flex-col mb-6 text-black">
             <input
               type="text"
               name="fullName"
-              value={formData.fullName}
+              value={postForm.fullName}
               onChange={handleChange}
               placeholder="Full Name"
               className="form-input mb-4"
@@ -121,7 +124,7 @@ useEffect(() => {
             <input
               type="text"
               name="lastName"
-              value={formData.lastName}
+              value={postForm.lastName}
               onChange={handleChange}
               placeholder="Last Name"
               className="form-input mb-4"
@@ -130,7 +133,7 @@ useEffect(() => {
             <input
               type="email"
               name="email"
-              value={formData.email}
+              value={postForm.email}
               onChange={handleChange}
               placeholder="Email"
               className="form-input mb-4"
@@ -140,7 +143,7 @@ useEffect(() => {
               <input
                 type={showPassword ? "text" : "password"}
                 name="password"
-                value={formData.password}
+                value={postForm.password}
                 onChange={handleChange}
                 placeholder="Password"
                 className="form-input pr-10 "
@@ -163,6 +166,12 @@ useEffect(() => {
             <button type="submit" className="w-full bg-purple-700 text-blue py-3 rounded hover:bg-purple-800 focus:outline-none mb-4">
               Sign Up
             </button>
+            <GoogleLogin
+                clientId={clientID}
+                onSuccess={onSuccess}
+                onFailure={onFailure}
+                cookiePolicy={"single_host_policy"}
+              />
           </form>
           <div className="text-center">
             <p className="text-white">

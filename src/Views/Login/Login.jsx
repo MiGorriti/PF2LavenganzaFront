@@ -2,7 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getLogin } from "../../Redux/action/actions";
 import { useNavigate } from 'react-router-dom';
-
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
 
 
 export const FormLogin = ({ handleLogin }) => {
@@ -11,12 +12,12 @@ export const FormLogin = ({ handleLogin }) => {
         password: '',
     });
 
+    const [showPassword, setShowPassword] = useState(false);
     const [showAlert, setShowAlert] = useState(false);
     const navigate = useNavigate();
-   
-
     const dispatch = useDispatch();
     const loginUser = useSelector(state => state.loginUser);
+    
 
     const handleChange = (e) => {
       setFormData({
@@ -68,7 +69,7 @@ export const FormLogin = ({ handleLogin }) => {
         <input
           type="email"
           name="email"
-          value={email}
+          value= {formData.email}
           onChange={(e) => setEmail(e.target.value)}
           placeholder="Email"
           className="form-input mb-4"
@@ -78,8 +79,8 @@ export const FormLogin = ({ handleLogin }) => {
   <input
     type={showPassword ? "text" : "password"}
     name="password"
-    value={password}
-    onChange={(e) => setPassword(e.target.value)}
+    value={formData.password}
+    onChange={(e) => setPassword(e.target.value)} 
     placeholder="Password"
     className="form-input pr-10 "
     required
@@ -101,13 +102,7 @@ export const FormLogin = ({ handleLogin }) => {
           <button type="submit" className="w-full bg-purple-700 text-blue py-3 rounded hover:bg-purple-800 focus:outline-none mb-4">
             Log in
           </button>
-          <GoogleLogin className="w-full text-blue py-3 rounded hover:bg-purple-800 focus:outline-none mb-4"
-          clientId="TU_CLIENT_ID_DE_GOOGLE"
-          buttonText="Log in with Google"
-          onSuccess={responseGoogle}
-          onFailure={responseGoogle}
-          cookiePolicy={'single_host_origin'}
-        />
+          
         </form>
         <div className="text-center">
           <p className="text-white">

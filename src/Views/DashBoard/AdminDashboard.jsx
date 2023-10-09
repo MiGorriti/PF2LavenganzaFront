@@ -1,13 +1,11 @@
-import React, { useEffect } from "react";
+/* import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { getUsers } from "../../Redux/action/actions"; // Debes tener una acción para obtener usuarios desde tu API
 
 const AdminDashboard = () => {
   const dispatch = useDispatch();
-  const users = useSelector(state => state.users); // Suponiendo que tienes un reducer que almacena la lista de usuarios en el estado global
-
+  const users = useSelector(state => state.users); 
   useEffect(() => {
-    // Cuando el componente se monta, obtén la lista de usuarios
     dispatch(getUsers());
   }, [dispatch]);
 
@@ -22,9 +20,8 @@ const AdminDashboard = () => {
           </li>
         ))}
       </ul>
-      {/* Otras funcionalidades y vistas del panel de administración */}
     </div>
   );
 };
 
-export default AdminDashboard;
+export default AdminDashboard; */
