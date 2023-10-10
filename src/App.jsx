@@ -10,16 +10,13 @@ import Detail from "./Views/Detail/Detail";
 import LandingPage from "./Views/LandingPage/LandingPage";
 import Form from "./Views/FormRent/Form";
 import { FormUser } from "./Views/FormRegister/Form";
-import {FormLogin} from "./Views/Login/Login";
+import { FormLogin } from "./Views/Login/Login";
 //import FormAdmin  from "./Views/FormAdmin/FormAdmin";
 //import AdminDashboard from "./Views/DashBoard/AdminDashboard";
-
-
-
-
+import TerminosYCondiciones from "./Views/Terms/Terms";
+import Privacidad from "./Views/Terms/Privacy";
 
 function App() {
-
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   const handleLogin = () => {
@@ -30,20 +27,24 @@ function App() {
     setIsLoggedIn(false);
   };
 
-
   return (
     <Router>
       <div className="App w-full">
-       {isLoggedIn ? <NavBarAuthenticated/> : <NavBarGuest handleLogin={handleLogin} handleLogout={handleLogout}/>  } 
+        {isLoggedIn ? (
+          <NavBarAuthenticated />
+        ) : (
+          <NavBarGuest handleLogin={handleLogin} handleLogout={handleLogout} />
+        )}
         <Routes>
-        <Route exact path="/" element={<LandingPage />}></Route>
-        <Route exact path="/Detail/:idHouse" element={<Detail />}></Route>
+          <Route exact path="/" element={<LandingPage />}></Route>
+          <Route exact path="/Detail/:idHouse" element={<Detail />}></Route>
           <Route exact path="/Home" element={<Home />}></Route>
           <Route exact path="/Detail" element={<Detail />}></Route>
-          <Route path="/Form" element={<Form />}></Route>   
-          <Route exact path="/Register" element={<FormUser/>}></Route>
-          <Route exact path="/Login" element={<FormLogin/>}></Route>  
-          
+          <Route path="/Form" element={<Form />}></Route>
+          <Route exact path="/Register" element={<FormUser />}></Route>
+          <Route exact path="/Login" element={<FormLogin />}></Route>
+          <Route exact path="/Terms" element={<TerminosYCondiciones />}></Route>
+          <Route exact path="/Privacy" element={<Privacidad />}></Route>
         </Routes>
         <Footer />
       </div>
