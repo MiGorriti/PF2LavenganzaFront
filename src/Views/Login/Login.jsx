@@ -70,7 +70,7 @@ export const FormLogin = ({ handleLogin }) => {
           type="email"
           name="email"
           value= {formData.email}
-          onChange={(e) => setEmail(e.target.value)}
+          onChange={(e) => handleChange(e)} 
           placeholder="Email"
           className="form-input mb-4"
           required
@@ -80,7 +80,7 @@ export const FormLogin = ({ handleLogin }) => {
     type={showPassword ? "text" : "password"}
     name="password"
     value={formData.password}
-    onChange={(e) => setPassword(e.target.value)} 
+    onChange={(e) => handleChange(e)} 
     placeholder="Password"
     className="form-input pr-10 "
     required

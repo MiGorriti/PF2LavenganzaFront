@@ -11,7 +11,8 @@ import LandingPage from "./Views/LandingPage/LandingPage";
 import Form from "./Views/FormRent/Form";
 import { FormUser } from "./Views/FormRegister/Form";
 import {FormLogin} from "./Views/Login/Login";
-//import FormAdmin  from "./Views/FormAdmin/FormAdmin";
+import FormAdminLogin from "./Views/FormAdmin/FormAdmin"
+
 //import AdminDashboard from "./Views/DashBoard/AdminDashboard";
 
 
@@ -43,7 +44,7 @@ function App() {
           <Route path="/Form" element={<Form />}></Route>   
           <Route exact path="/Register" element={<FormUser/>}></Route>
           <Route exact path="/Login" element={<FormLogin/>}></Route>  
-          
+          <Route exact path="/adminLogin" element={<FormAdminLogin/>}></Route> 
         </Routes>
         <Footer />
       </div>
