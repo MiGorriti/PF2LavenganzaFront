@@ -5,8 +5,7 @@ import {
   getLocations,
   postProperty,
 } from "../../Redux/action/actions.js";
-import {TextField} from '@mui/material';
-import {Autocomplete} from '@mui/material';
+import "./FormRent.css";
 
 const Form = () => {
   const dispatch = useDispatch();
@@ -124,120 +123,261 @@ const Form = () => {
     }
   };
   return (
-    <div class="bg-gray-400 p-5 rounded-md">
-      <form onSubmit={submitHandler}>
-        <div class="w-30 h-30">
-          <div class="m-4 rounded-md">
-            <input
-              type="text"
-              name="title"
-              value={postForm.title}
-              placeholder="Title For Your Property"
-              onChange={changeHandler}
-            />
+    <div>
+      <form class="form-horizontal" onSubmit={submitHandler}>
+        <fieldset>
+          <legend>Rent your House/Flat</legend>
+
+          <div class="form-group">
+            <label class="col-md-4 control-label" for="textinput"></label>
+            <div class="col-md-4">
+              <input
+                id="textinput"
+                name="textinput"
+                type="text"
+                placeholder="Title of your property"
+                class="form-control input-md"
+              />
+            </div>
           </div>
 
-          <div class="m-4 rounded-md">
-            <input
-              type="text"
-              name="description"
-              value={postForm.description}
-              placeholder="Description of Your Property"
-              onChange={changeHandler}
-            />
+          <div class="form-group">
+            <label class="col-md-4 control-label" for=""></label>
+            <div class="col-md-4">
+              <input
+                id=""
+                name=""
+                type="text"
+                value={postForm.availability}
+                placeholder="Availability"
+                onChange={changeHandler}
+                class="form-control input-md"
+              />
+            </div>
           </div>
 
-          <div class="m-4 rounded-md">
-            <input
-              type="text"
-              name="numBeds"
-              value={postForm.numBeds}
-              placeholder="Number of Beds From Your Property"
-              onChange={changeHandler}
-            />
+          <div class="form-group">
+            <label class="col-md-4 control-label" for=""></label>
+            <div class="col-md-4">
+              <input
+                id=""
+                name=""
+                type="text"
+                placeholder="Amount per night"
+                value={postForm.nightPrice}
+                onChange={changeHandler}
+                class="form-control input-md"
+              />
+            </div>
           </div>
 
-          <div class="m-4 rounded-md">
-            <input
-              type="text"
-              name="numBaths"
-              value={postForm.numBaths}
-              placeholder="Number of Baths From Your Property"
-              onChange={changeHandler}
-            />
+          <div class="form-group">
+            <label class="col-md-4 control-label" for=""></label>
+            <div class="col-md-4">
+              <input
+                id=""
+                name=""
+                type="text"
+                value={postForm.homeCapacity}
+                placeholder="Home Capacity"
+                onChange={changeHandler}
+                class="form-control input-md"
+              />
+            </div>
           </div>
 
-          <div class="m-4">
-            <input
-              type="text"
-              name="nightPrice"
-              value={postForm.nightPrice}
-              placeholder="Mount Per Night"
-              onChange={changeHandler}
-            />
-          </div>
-          <div class="m-4">
-            <input
-              type="text"
-              name="homeCapacity"
-              value={postForm.homeCapacity}
-              placeholder="Home Capacity"
-              onChange={changeHandler}
-            />
-          </div>
-          <div>
-            <input
-              type="text"
-              name="availability"
-              value={postForm.availability}
-              placeholder="Availability"
-              onChange={changeHandler}
-            />
-          </div>
-          <div class="m-4">
-            <input type="file" multiple name="image" onChange={handleImage} />
+          <div class="form-group">
+            <label class="col-md-4 control-label" for=""></label>
+            <div class="col-md-4">
+              <textarea
+                class="form-control"
+                id=""
+                name=""
+                value={postForm.description}
+                placeholder="Description"
+                onChange={changeHandler}
+              >
+                Description
+              </textarea>
+            </div>
           </div>
 
-          <div>
-            <select
-              name="category"
-              value={postForm.category}
-              onChange={changeHandler}
-            >
-              <option value="">Select a Category</option>
-              {category &&
-                category?.map((cat) => (
-                  <option key={cat.id} value={cat.name}>
-                    {cat.name}
-                  </option>
-                ))}
-            </select>
-            <Autocomplete
-              disablePortal
-              id="id"
-              options="id"
-              sx={{ width: 300 }}
-              renderInput={(params) => <TextField {...params} label="Movie" />}
-            />
+          <div class="form-group">
+            <label class="col-md-4 control-label" for="checkboxes">
+              How many baths?
+            </label>
+            <div class="col-md-4">
+              <label className="cajasdecheck" for="checkboxes-0">
+                <input
+                  type="checkbox"
+                  name="checkboxes"
+                  id="checkboxes-0"
+                  value={postForm.numBaths}
+                  onChange={changeHandler}
+                />
+                1
+              </label>
+              <label className="cajasdecheck" for="checkboxes-1">
+                <input
+                  type="checkbox"
+                  name="checkboxes"
+                  id="checkboxes-1"
+                  value="2"
+                />
+                2
+              </label>
+              <label className="cajasdecheck" for="checkboxes-2">
+                <input
+                  type="checkbox"
+                  name="checkboxes"
+                  id="checkboxes-2"
+                  value="3"
+                />
+                3
+              </label>
+              <label className="cajasdecheck" for="checkboxes-3">
+                <input
+                  type="checkbox"
+                  name="checkboxes"
+                  id="checkboxes-3"
+                  value="4"
+                />
+                4
+              </label>
+            </div>
           </div>
 
-          <button type="submit" class="w-25 h-11 mt-3 ">
-            {" "}
-            Publish
-          </button>
-        </div>
+          <div class="form-group">
+            <label class="col-md-4 control-label" for="checkboxes">
+              How many beds?
+            </label>
+            <div class="col-md-4">
+              <label className="cajasdecheck" for="checkboxes-0">
+                <input
+                  type="checkbox"
+                  name="checkboxes"
+                  id="checkboxes-0"
+                  value={postForm.numBeds}
+                  onChange={changeHandler}
+                />
+                1
+              </label>
+              <label className="cajasdecheck" for="checkboxes-1">
+                <input
+                  type="checkbox"
+                  name="checkboxes"
+                  id="checkboxes-1"
+                  value="2"
+                />
+                2
+              </label>
+              <label className="cajasdecheck" for="checkboxes-2">
+                <input
+                  type="checkbox"
+                  name="checkboxes"
+                  id="checkboxes-2"
+                  value="3"
+                />
+                3
+              </label>
+              <label className="cajasdecheck" for="checkboxes-3">
+                <input
+                  type="checkbox"
+                  name="checkboxes"
+                  id="checkboxes-3"
+                  value="4"
+                />
+                4
+              </label>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="col-md-4 control-label" for="selectbasic">
+              Select Category
+            </label>
+            <div class="col-md-4">
+              <select
+                id="selectbasic"
+                name="selectbasic"
+                class="form-control"
+                value={postForm.category}
+                onChange={changeHandler}
+              >
+                <option value="">Select Category</option>
+                {category &&
+                  category?.map((cat) => (
+                    <option key={cat.id} value={cat.name}>
+                      {cat.name}
+                    </option>
+                  ))}
+              </select>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="col-md-4 control-label" for="selectbasic">
+              Select location
+            </label>
+            <div class="col-md-4">
+              <select
+                id="selectbasic"
+                name="selectbasic"
+                class="form-control"
+                value={postForm.location}
+                onChange={changeHandler}
+              >
+                <option value="">Select Location</option>
+                {location &&
+                  location?.map((loc) => (
+                    <option key={loc.id} value={loc.direction}>
+                      {loc.direction}
+                    </option>
+                  ))}
+              </select>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-md-4 control-label" for="filebutton">
+              Upload Images
+            </label>
+            <div class="col-md-4">
+              <input
+                id="filebutton"
+                name="filebutton"
+                class="input-file"
+                type="file"
+                multiple // Permite seleccionar múltiples imágenes
+                onChange={handleImage}
+              />
+              <div className="botonimag">
+                {file.length > 0 &&
+                  file.map((imageData, index) => (
+                    <img
+                      class="w-18 h-16"
+                      key={index}
+                      src={imageData}
+                      alt={`Preview ${index}`}
+                    />
+                  ))}
+              </div>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="col-md-4 control-label" for="singlebutton"></label>
+            <div class="col-md-4">
+              <button
+                id="singlebutton"
+                name="singlebutton"
+                class="btn btn-primary"
+              >
+                Publish
+              </button>
+            </div>
+          </div>
+        </fieldset>
       </form>
-      <div class="max-h-20 max-w-20 flex space-x-2">
-        {image &&
-          image.map((img, index) => (
-            <img
-              class="w-18 h-16"
-              key={index}
-              src={img}
-              alt={`Preview ${index}`}
-            />
-          ))}
-      </div>
     </div>
   );
 };

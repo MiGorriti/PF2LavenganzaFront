@@ -1,0 +1,80 @@
+.form-horizontal {
+  width: 400px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #1b1b1b;
+  border-radius: 10px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Estilo para el título del formulario */
+legend {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+/* Estilo para los campos de entrada de texto */
+.form-group {
+  margin-bottom: 15px;
+}
+
+/* Estilo para las etiquetas de los campos */
+.control-label {
+  color: rgb(255, 255, 255);
+  background-color: #1b1b1b;
+}
+
+/* Estilo para los campos de entrada de texto y select */
+.form-control {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 16px;
+}
+
+/* Estilo para el botón de enviar */
+.btn-primary {
+  background-color: #2983e4;
+  color: #fff;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+/* Estilo para los botones checkbox en línea */
+.cajasdecheck {
+  margin-right: 10px;
+  font-weight: bold;
+  background-color: #1b1b1b;
+  padding: 1px;
+}
+
+/* Estilo para el botón de archivo (input type=file) */
+.input-file {
+  display: none; /* Ocultar el input de archivo por defecto */
+}
+
+/* Estilo para el botón de archivo personalizado */
+.file-button {
+  background-color: #007bff;
+  color: #fff;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+  display: inline-block;
+  margin-top: 10px;
+}
+
+/* Cambiar el estilo del botón de archivo cuando se pasa el mouse por encima */
+.file-button:hover {
+  background-color: #0056b3;
+}
+.botonimag {
+  width: auto;
+}
