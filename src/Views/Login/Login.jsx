@@ -35,7 +35,7 @@ export const FormLogin = ({ handleLogin }) => {
       if (loginUser && loginUser.status === 200) {
         alert("Inicio de sesión exitoso");
         handleLogin();
-        navigate("/home");
+        navigate("/Home");
       } else if (loginUser && loginUser.status === 401) {
         alert("Credenciales inválidas");
       }
@@ -69,7 +69,7 @@ export const FormLogin = ({ handleLogin }) => {
               type="email"
               name="email"
               value={formData.email}
-              onChange={(e) => setEmail(e.target.value)}
+              onChange={handleChange}
               placeholder="Email"
               className="form-input mb-4"
               required
@@ -79,7 +79,7 @@ export const FormLogin = ({ handleLogin }) => {
                 type={showPassword ? "text" : "password"}
                 name="password"
                 value={formData.password}
-                onChange={(e) => setPassword(e.target.value)}
+                onChange={handleChange}
                 placeholder="Password"
                 className="form-input pr-10 "
                 required

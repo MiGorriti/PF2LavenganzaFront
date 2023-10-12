@@ -20,11 +20,11 @@ function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   const handleLogin = () => {
-    setIsLoggedIn(true);
+    setIsLoggedIn(null);
   };
 
   const handleLogout = () => {
-    setIsLoggedIn(false);
+    setIsLoggedIn(null);
   };
 
   return (
@@ -39,7 +39,6 @@ function App() {
           <Route exact path="/" element={<LandingPage />}></Route>
           <Route exact path="/Detail/:idHouse" element={<Detail />}></Route>
           <Route exact path="/Home" element={<Home />}></Route>
-          <Route exact path="/Detail" element={<Detail />}></Route>
           <Route path="/Form" element={<Form />}></Route>
           <Route exact path="/Register" element={<FormUser />}></Route>
           <Route exact path="/Login" element={<FormLogin />}></Route>
