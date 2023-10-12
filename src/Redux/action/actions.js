@@ -10,7 +10,8 @@ import {
   CREATE_USER,
   SET_AUTH_STATUS,
   GET_RESERVATIONS,
-  LOGIN_USER
+  LOGIN_USER,
+  CANCEL_RESERVE
 } from "./type-actions";
 
 export const getLogin = (formData) => {
@@ -194,6 +195,18 @@ export const getReservations=(UserEmail)=>{
       const response= await axios.get(`http://localhost:3001/reservation/user?email=${UserEmail}`);
       const reservations= response.data;
       return dispatch({type: GET_RESERVATIONS, payload:reservations});
+    } catch (error) {
+      console.error(error);
+    }
+  }
+}
+
+export const cancel=(id)=>{
+  return async function(dispatch){
+    try {
+      const response= await axios.delete(`http://localhost:3001/reservation/delete/${id}`)
+
+      return dispatch({type: CANCEL_RESERVE})
     } catch (error) {
       console.error(error);
     }

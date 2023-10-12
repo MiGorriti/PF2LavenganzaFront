@@ -1,6 +1,6 @@
 import {useEffect} from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { getReservations } from '../../Redux/action/actions'
+import { cancel, getReservations } from '../../Redux/action/actions'
 import { useState } from 'react'
 
 const Reservations = () => {
@@ -33,23 +33,32 @@ const Reservations = () => {
         dispatch(getReservations("pepito@gmail.com"))  //EL EMAIL FUE HARDCODEADO PARA HACER LAS PRUEBAS
     },[dispatch]);
 
-    const reservations=useSelector((state)=> state.reservations)
+    const reservations=useSelector((state)=> state.reservations);
+
+    const cancelReserve=(event, id)=>{
+        dispatch(cancel(id));
+    }
 
   return (
     <div>
         <h1>Your reservations</h1>
         <div>
-            <li>
             {
-                reservations.map((res)=>{ 
-                    return <ul>
-                        <h2>{res.PropertyTitle}</h2>
-                        <h2>Month: {meses[res.month+1]}</h2>
-                        <h2>Guests: {res.numHuespedes}</h2>
-                  </ul>
-                })
+                !reservations.length
+                ? <h2>You don't have reservations</h2>
+                : <li>
+                {
+                    reservations.map((res)=>{ 
+                        return <ul>
+                            <h2>{res.PropertyTitle}</h2>
+                            <h2>Month: {meses[res.month+1]}</h2>
+                            <h2>Guests: {res.numHuespedes}</h2>
+                            <button onClick={(event)=> cancelReserve(event, res.id)}>Cancel</button>
+                      </ul>
+                    })
+                }
+                </li>
             }
-            </li>
         </div>
     </div>
   )
