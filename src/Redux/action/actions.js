@@ -1,5 +1,17 @@
 import axios from 'axios';
-import { GET_PROPERTY, POST_PROPERTY, GET_CATEGORYS, FILTER_CATEGORY, FILTER_LOCATION, GET_LOCATIONS, GET_DETAIL, CREATE_USER, SET_AUTH_STATUS } from './type-actions';
+import {
+  LOGIN_USER, 
+  GET_PROPERTY, 
+  POST_PROPERTY, 
+  GET_CATEGORYS, 
+  FILTER_CATEGORY, 
+  FILTER_LOCATION, 
+  GET_LOCATIONS, 
+  GET_DETAIL, 
+  CREATE_USER, 
+  SET_AUTH_STATUS 
+} from './type-actions';
+
 
 export const getLogin = (formData) => {
   return async function (dispatch) {

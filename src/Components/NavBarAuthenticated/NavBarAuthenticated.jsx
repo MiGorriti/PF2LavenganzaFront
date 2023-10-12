@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from "react";
+import { useState, useRef, useEffect } from "react";
 import { Link } from "react-router-dom";
 import styles from "./NavBarAuthenticated.module.css";
 import { IconLogout, IconUser } from "@tabler/icons-react";

@@ -1,8 +1,7 @@
-import React from "react";
 import Card from "./Card/Card";
-import "./Cards.css";
-import { useDispatch, useSelector } from "react-redux";
-import { getCars } from "../../Redux/action/actions";
+//import "./Cards.css";
+import {  useSelector } from "react-redux";
+//import { getCars } from "../../Redux/action/actions";
 
 const Cards = () => {
  
