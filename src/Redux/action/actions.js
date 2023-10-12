@@ -9,6 +9,8 @@ import {
   GET_DETAIL,
   CREATE_USER,
   SET_AUTH_STATUS,
+  GET_RESERVATIONS,
+  LOGIN_USER
 } from "./type-actions";
 
 export const getLogin = (formData) => {
@@ -185,3 +187,15 @@ export const getDetail = (idHouse) => {
     }
   };
 };
+
+export const getReservations=(UserEmail)=>{
+  return async function(dispatch){
+    try {
+      const response= await axios.get(`http://localhost:3001/reservation/user?email=${UserEmail}`);
+      const reservations= response.data;
+      return dispatch({type: GET_RESERVATIONS, payload:reservations});
+    } catch (error) {
+      console.error(error);
+    }
+  }
+}

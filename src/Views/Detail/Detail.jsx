@@ -12,6 +12,7 @@ import { getDetail } from "../../Redux/action/actions";
 import { useNavigate, useParams } from "react-router-dom";
 import { initMercadoPago } from "@mercadopago/sdk-react";
 import axios from "axios";
+import FormReserva from "../FormReserve/FormReserva";
 
 const Detail = () => {
   const navigate = useNavigate();
@@ -165,12 +166,16 @@ const Detail = () => {
           />
         </div>
         <div className="mt-2 text-center">
-          <button
+          {/* <button
             className="mt-4 bg-blue-500 text-black p-2 rounded"
             onClick={handleBuy}
           >
             Reserve
-          </button>
+          </button> */}
+          <FormReserva
+            key={idHouse}
+            id={idHouse}
+          />
         </div>
         {/* Total */}
         <div className="border-t-2 border-black mt-4">

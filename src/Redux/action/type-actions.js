@@ -8,3 +8,4 @@ export const LOGIN_USER = 'LOGIN_USER';
 export const CREATE_USER = 'CREATE_USER';
 export const POST_PROPERTY = 'POST_PROPERTY';
 export const SET_AUTH_STATUS = 'SET_AUTH_STATUS';
+export const GET_RESERVATIONS="GET_RESERVATIONS"
