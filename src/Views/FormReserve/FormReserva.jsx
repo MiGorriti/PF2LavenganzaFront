@@ -6,9 +6,10 @@ const FormReserva = ({id}) => {
 
     let i=0;
 
-    const months=[
-        "enero", "febrero", "marzo", "abril", "mayo", "junio", "julio", "agosto", "septiembre", "octubre", "noviembre", "diciembre"
-    ];
+    const meses=[
+        "January", "February", "March", "April", "May", "June", "July",
+        "August", "September", "October", "November", "December"
+      ]
 
     const [input, setInput]=useState({
         month: "default", numHuespedes:0, email:"", password:""
@@ -61,9 +62,9 @@ const FormReserva = ({id}) => {
             <select name="month" onChange={handleInputChange} >
                 <option value="default">Month</option>
                 {
-                    months.map((month)=>{
+                    meses.map((mes)=>{
                         i++
-                        return <option value={i}>{month}</option>
+                        return <option value={i}>{mes}</option>
                     })
                 } 
             </select>

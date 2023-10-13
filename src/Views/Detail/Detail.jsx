@@ -8,7 +8,7 @@ import {
   faSwimmingPool,
 } from "@fortawesome/free-solid-svg-icons";
 import { useSelector, useDispatch } from "react-redux";
-import { getDetail } from "../../Redux/action/actions";
+import { getDetail, getReservationsByHome } from "../../Redux/action/actions";
 import { useNavigate, useParams } from "react-router-dom";
 import { initMercadoPago } from "@mercadopago/sdk-react";
 import axios from "axios";
@@ -63,6 +63,17 @@ const Detail = () => {
     window.location.href = init_point;
   };
 
+  useEffect(()=>{
+    dispatch(getReservationsByHome(idHouse));
+  }, [dispatch])
+
+  const meses=[
+    "January", "February", "March", "April", "May", "June", "July",
+    "August", "September", "October", "November", "December"
+  ]
+
+  const reservations= useSelector((state)=> state.reservations)
+
   if (!houseDetail) {
     return <div className="text-center mt-8">Loading...</div>;
   }
@@ -99,11 +110,25 @@ const Detail = () => {
         </div>
         <h3 className="text-xl border-t-2 border-black mt-4">Description</h3>
         <p>{houseDetail.description}</p>
-        <h1 className="text-2xl border-t-2 border-black mt-4">Bedrooms</h1>
+        {/* <h1 className="text-2xl border-t-2 border-black mt-4">Bedrooms</h1> */}
         {/* Servicios */}
         <h1 className="text-2xl border-t-2 border-black mt-4">
           What This Place Offers
         </h1>
+
+        <div>
+          <h3>Property reserved for:</h3>
+          <li>
+            {
+              reservations.map((res)=>{
+                return <ul>
+                  <h2>{meses[res.month-1]}</h2>
+                </ul>
+              })
+            }
+          </li>
+        </div>
+
         <div className="flex items-center mt-2">
           {houseDetail.features &&
             houseDetail.features.map((feature, index) => {

@@ -10,7 +10,7 @@ const Reservations = () => {
     console.log(userData);
 
     const meses=[
-        "January", "february", "March", "April", "May", "June", "July",
+        "January", "February", "March", "April", "May", "June", "July",
         "August", "September", "October", "November", "December"
     ]
 
@@ -51,7 +51,7 @@ const Reservations = () => {
                     reservations.map((res)=>{ 
                         return <ul>
                             <h2>{res.PropertyTitle}</h2>
-                            <h2>Month: {meses[res.month+1]}</h2>
+                            <h2>Month: {meses[res.month-1]}</h2>
                             <h2>Guests: {res.numHuespedes}</h2>
                             <button onClick={(event)=> cancelReserve(event, res.id)}>Cancel</button>
                       </ul>
