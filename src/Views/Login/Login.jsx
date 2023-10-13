@@ -17,6 +17,7 @@ import { faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const loginUser = useSelector((state) => state.loginUser);
+  console.log("user",loginUser);
 
   const handleChange = (e) => {
     setFormData({
@@ -31,6 +32,7 @@ import { faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
     await dispatch(getLogin(formData));
     setShowAlert(true);
   };
+
   
   useEffect(() => {
     if (showAlert) {
@@ -51,8 +53,7 @@ import { faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
       }
       setShowAlert(false);
     }
-  }, [showAlert, loginUser, handleLogin, formData, navigate]);
-
+  }, [showAlert, loginUser, handleLogin, formData, navigate, history]);
   const togglePasswordVisibility = () => {
     setShowPassword(!showPassword);
   };

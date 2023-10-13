@@ -1,0 +1,84 @@
+.admin-dashboard {
+    text-align: center;
+    padding: 20px;
+  }
+  
+  .admin-dashboard h1 {
+    font-size: 2rem; /* Aumenta el tamaño de la fuente del título principal */
+    color: #333; /* Color del texto del título principal */
+  }
+
+  .container {
+    display: flex; /* Establece el contenedor como un contenedor flexible */
+    justify-content: space-evenly; /* Espacio entre los contenedores hijos */
+  }
+
+  .container h2 {
+    font-size: 1.8rem; /* Aumenta el tamaño de la fuente de los títulos de las secciones */
+    color: #555; /* Color del texto de los títulos de las secciones */
+    margin-bottom: 15px; /* Agrega un espacio entre los títulos de las secciones y el contenido */
+  }
+  
+  .section {
+    background-color: #f0f0f0;
+    border: 1px solid #ccc;
+    padding: 20px;
+    margin: 10px;
+    text-align: left;
+    max-width: 600px; /* Ajusta el ancho máximo según tus necesidades */
+  }
+  
+  .section h2 {
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+  }
+
+  
+.section {
+    max-height: 500px; /* Establece la altura máxima deseada */
+    max-width: 760px;
+    overflow-y: auto; /* Habilita la barra de desplazamiento vertical cuando sea necesario */
+  }
+  
+  /* Estilos personalizados para la barra de desplazamiento en WebKit */
+  .section::-webkit-scrollbar {
+    width: 13px; /* Ancho de la barra de desplazamiento */
+  }
+  
+  .section::-webkit-scrollbar-thumb {
+    background-color: #000000; /* Color del pulgar de la barra de desplazamiento */
+  }
+  
+  .section::-webkit-scrollbar-thumb:hover {
+    background-color: #363636; /* Color del pulgar de la barra de desplazamiento al pasar el mouse */
+  }
+  
+  .section::-webkit-scrollbar-track {
+    background-color: #f1f1f1; /* Color de la pista de la barra de desplazamiento */
+  }
+  
+  
+  .users-section, .posts-section {
+    background-color: #fff; /* Fondo blanco para los elementos de la tarjeta */
+    border: 1px solid #ddd;
+    padding: 10px;
+    margin: 10px 0;
+  }
+  
+  .users-section h3, .posts-section h3 {
+    font-size: 1.3rem; /* Aumenta el tamaño de la fuente de los títulos de usuarios y publicaciones */
+    color: #222; /* Color del texto de los títulos de usuarios y publicaciones */
+    margin-bottom: 5px; /* Agrega un espacio entre los títulos y el contenido en las secciones de usuarios y publicaciones */
+  }
+  
+  .buttonAdmin {
+    background-color: #007BFF;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+  }
+  
+  .buttonAdmin:hover {
+    background-color: #0056b3;
+  }

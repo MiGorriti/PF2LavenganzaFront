@@ -1,0 +1,29 @@
+.graficas-container {
+    display: flex;
+    justify-content: space-between; /* Divide el espacio horizontalmente entre los elementos */
+    align-items: center; /* Centra los elementos verticalmente */
+    height: 70vh; /* Asegura que el contenedor ocupe toda la altura de la ventana */
+    flex-wrap: wrap; /* Permite que los elementos se envuelvan en una nueva línea si no caben en la misma línea */
+  }
+  
+  .graficas-section {
+    text-align: center;
+    padding: 20px;
+    background-color: #f0f0f0; /* Agrega un fondo para resaltar las secciones */
+    border: 1px solid #ccc; /* Agrega bordes para separar las secciones */
+    flex: 1; /* Distribuye el espacio horizontal de manera equitativa entre los elementos */
+    margin: 10px;
+  }
+  
+  .graficas-heading {
+    font-size: 1.5rem;
+    margin: 10px 0;
+  }
+  
+  .miGraficoContainer {
+    display: flex; /* Permite centrar el gráfico dentro del contenedor */
+    justify-content: center; /* Centra horizontalmente el gráfico */
+    align-items: center; /* Centra verticalmente el gráfico */
+    width: 430px;
+    height: 300px;
+  }

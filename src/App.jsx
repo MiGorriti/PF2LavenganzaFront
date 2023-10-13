@@ -8,7 +8,9 @@ import Detail from "./Views/Detail/Detail";
 import LandingPage from "./Views/LandingPage/LandingPage";
 import Form from "./Views/FormRent/Form";
 import { FormUser } from "./Views/FormRegister/Form";
-import  FormLogin  from "./Views/Login/Login";
+import FormLogin from "./Views/Login/Login";
+//import FormAdmin  from "./Views/FormAdmin/FormAdmin";
+import AdminDashboard from "./Views/DashBoard/AdminDashboard";
 import TerminosYCondiciones from "./Views/Terms/Terms";
 import Privacidad from "./Views/Terms/Privacy";
 import Reservations from "./Views/Reservations/Reservations";
@@ -37,6 +39,9 @@ function App() {
           <Route exact path="/Register" element={<FormUser />}></Route>
           <Route exact path="/Login" element={<FormLogin handleLogin={handleLogin}/>}></Route>
           <Route exact path="/Terms" element={<TerminosYCondiciones />}></Route>
+
+          <Route exact path="/admin" element={<AdminDashboard />}></Route>
+
           <Route exact path="/Privacy" element={<Privacidad />}></Route>
           <Route exact path="/MyReservations" element={<Reservations/>}></Route>
 
