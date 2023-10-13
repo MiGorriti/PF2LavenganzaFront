@@ -1,14 +1,15 @@
-import React from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import styles from "./NavBarGuest.module.css";
-import { useDispatch, useSelector } from "react-redux";
-import { useEffect, useRef, useState } from "react";
+import { useDispatch } from "react-redux";
 import { IconLogout, IconUser } from "@tabler/icons-react";
 import UserProfileMenu from "../UserProfileMenu/UserProfileMenu";
 
 function NavBarGuest() {
   const [isAuthenticatedNav, setIsAuthenticatedNav] = useState(null);
   const [userData, setUserData] = useState({});
+  const navigate = useNavigate();
+
   useEffect(() => {
     const storedUserData = localStorage.getItem("userData");
     if (storedUserData) {
@@ -16,13 +17,12 @@ function NavBarGuest() {
         const userData = JSON.parse(storedUserData);
         setIsAuthenticatedNav(true);
         setUserData(userData);
-
-        // Utiliza la información del usuario aquí si es necesario
       } catch (error) {
         console.error("Error al parsear JSON:", error);
       }
     }
   }, []);
+
   const dispatch = useDispatch();
 
   const [isUserProfileMenuOpen, setIsUserProfileMenuOpen] = useState(false);
@@ -62,13 +62,14 @@ function NavBarGuest() {
   const handleLogout = () => {
     localStorage.removeItem("userData");
     setIsAuthenticatedNav(false);
-    useNavigate("/register");
+    navigate("/register");
   };
+
   return (
     <nav className="mb-20 w-full">
       <ul className={styles.navSup}>
         <li>
-          <Link to="/">
+          <Link to="/" className="text-lg">
             <img
               className={styles.logo}
               src="/imagenes/Wanderluxehomes.png"
@@ -77,29 +78,35 @@ function NavBarGuest() {
           </Link>
         </li>
         <li>
-          <Link to="/home" className={styles.options}>
+          <Link to="/home" className={`text-xl ${styles.options}`}>
             Home
           </Link>
         </li>
         <li>
-          <Link to="/About" className={styles.options}>
+          <Link to="/About" className={`text-xl ${styles.options} ml-5`}>
             About Us
           </Link>
         </li>
         {isAuthenticatedNav ? (
           <>
             <li>
-              <Link to="/MyReservations" className={styles.options}>
+              <Link
+                to="/MyReservations"
+                className={`text-xl ${styles.options}`}
+              >
                 My rental reserves
               </Link>
             </li>
             <li>
-              <Link to="/recommendations" className={styles.options}>
+              <Link
+                to="/recommendations"
+                className={`text-xl ${styles.options}`}
+              >
                 Recommendations
               </Link>
             </li>
             <li>
-              <Link to="/Form" className={styles.options}>
+              <Link to="/Form" className={`text-xl ${styles.options}`}>
                 Rent your property
               </Link>
             </li>
@@ -124,11 +131,23 @@ function NavBarGuest() {
           </>
         ) : (
           <>
-            <li>
-              <Link to="/login">Login</Link>
+            <li className="mr-5 ml-4">
+              <Link
+                to="/login"
+                style={{ fontSize: "1.2rem" }}
+                className="text-white"
+              >
+                Login
+              </Link>
             </li>
             <li>
-              <Link to="/register">Sign Up</Link>
+              <Link
+                to="/register"
+                style={{ fontSize: "1.2rem" }}
+                className="text-white"
+              >
+                Sign Up
+              </Link>
             </li>
           </>
         )}
