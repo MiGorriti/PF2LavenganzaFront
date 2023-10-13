@@ -82,14 +82,14 @@ function NavBarGuest() {
           </Link>
         </li>
         <li>
-          <Link to="/about-us" className={styles.options}>
+          <Link to="/About" className={styles.options}>
             About Us
           </Link>
         </li>
         {isAuthenticatedNav ? (
           <>
             <li>
-              <Link to="/my-rental-reserves" className={styles.options}>
+              <Link to="/MyReservations" className={styles.options}>
                 My rental reserves
               </Link>
             </li>
