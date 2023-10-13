@@ -32,22 +32,24 @@ import { faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
     await dispatch(getLogin(formData));
     setShowAlert(true);
   };
+
+  
   useEffect(() => {
     if (showAlert) {
       setIsLoading(false);
-      if (loginUser) {
-        if (loginUser.status === 200) {
-          // Guardar la información del usuario en localStorage
-          localStorage.setItem("userData", JSON.stringify(formData));
-          alert("Successful login.");
-          handleLogin();
-          navigate("/Home");
-          history.go(0);
-        } else if (loginUser.status === 401) {
-            alert("Credenciales inválidas.");
-        } else if (loginUser.status === 403) {
-            alert("Usuario bloqueado. Comuníquese con el administrador.");
+      if (loginUser && loginUser.status === 200) {
+        // Guardar la información del usuario en localStorage
+        localStorage.setItem("userData", JSON.stringify(formData));
+        alert("Successful login.");
+        handleLogin();
+        if (formData.email === 'wanderluxe@gmail.com' && formData.password === '1234') {
+          navigate("/admin"); // Redireccionar a la página de administrador
+        } else {
+          navigate("/Home"); // Redireccionar a la página por defecto
         }
+        history.go(0);
+      } else if (loginUser && loginUser.status === 401) {
+        alert("Invalid credentials.");
       }
       setShowAlert(false);
     }
@@ -57,7 +59,6 @@ import { faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
   };
 
   
-
   return (
     <div
       className="min-h-screen py-40"

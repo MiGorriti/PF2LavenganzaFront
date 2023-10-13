@@ -9,7 +9,13 @@ import {
   GET_DETAIL,
   CREATE_USER,
   SET_AUTH_STATUS,
-  LOGIN_USER
+
+  LOGIN_USER,
+  GET_RESERVATIONS,
+  LOGIN_USER,
+  CANCEL_RESERVE,
+  GET_RESERVATIONS_BY_HOME
+
 } from "./type-actions";
 
 export const getLogin = (formData) => {
@@ -186,3 +192,39 @@ export const getDetail = (idHouse) => {
     }
   };
 };
+
+export const getReservations=(UserEmail)=>{
+  return async function(dispatch){
+    try {
+      const response= await axios.get(`http://localhost:3001/reservation/user?email=${UserEmail}`);
+      const reservations= response.data;
+      return dispatch({type: GET_RESERVATIONS, payload:reservations});
+    } catch (error) {
+      console.error(error);
+    }
+  }
+}
+
+export const getReservationsByHome=(idHome)=>{
+  return async function(dispatch){
+    try {
+      const response= await axios.get(`http://localhost:3001/reservation/home/${idHome}`);
+      const reservations= response.data;
+      return dispatch({type: GET_RESERVATIONS_BY_HOME, payload:reservations});
+    } catch (error) {
+      console.error(error);
+    }
+  }
+}
+
+export const cancel=(id)=>{
+  return async function(dispatch){
+    try {
+      const response= await axios.delete(`http://localhost:3001/reservation/delete/${id}`)
+
+      return dispatch({type: CANCEL_RESERVE})
+    } catch (error) {
+      console.error(error);
+    }
+  }
+}
