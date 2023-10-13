@@ -56,11 +56,11 @@ const About = () => {
       },
     },
     {
-      name: "",
-      image: "",
+      name: "Anthoaned Zavala",
+      image: "https://avatars.githubusercontent.com/u/94303392?v=4",
       socialMedia: {
-        github: "https://github.com/Mateoch14",
-        linkedin: "https://www.linkedin.com/in/mateo-chavez/",
+        github: "https://github.com/tyffcode",
+        linkedin: "",
       },
     },
   ];
