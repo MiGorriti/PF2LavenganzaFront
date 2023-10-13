@@ -15,6 +15,7 @@ import { FormLogin } from "./Views/Login/Login";
 //import AdminDashboard from "./Views/DashBoard/AdminDashboard";
 import TerminosYCondiciones from "./Views/Terms/Terms";
 import Privacidad from "./Views/Terms/Privacy";
+import About from "./Views/About/About";
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -44,6 +45,7 @@ function App() {
           <Route exact path="/Login" element={<FormLogin />}></Route>
           <Route exact path="/Terms" element={<TerminosYCondiciones />}></Route>
           <Route exact path="/Privacy" element={<Privacidad />}></Route>
+          <Route exact path="/About" element={<About />}></Route>
         </Routes>
         <Footer />
       </div>
