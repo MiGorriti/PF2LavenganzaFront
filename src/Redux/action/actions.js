@@ -9,10 +9,13 @@ import {
   GET_DETAIL,
   CREATE_USER,
   SET_AUTH_STATUS,
+
+  LOGIN_USER,
   GET_RESERVATIONS,
   LOGIN_USER,
   CANCEL_RESERVE,
   GET_RESERVATIONS_BY_HOME
+
 } from "./type-actions";
 
 export const getLogin = (formData) => {
