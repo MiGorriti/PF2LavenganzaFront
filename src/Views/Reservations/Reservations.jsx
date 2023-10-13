@@ -31,6 +31,8 @@ const Reservations = () => {
 
     useEffect(()=>{
         dispatch(getReservations("pepito@gmail.com"))  //EL EMAIL FUE HARDCODEADO PARA HACER LAS PRUEBAS
+
+        return ()=> (dispatch(getReservations("pepito@gmail.com")))
     },[dispatch]);
 
     const reservations=useSelector((state)=> state.reservations);
@@ -48,7 +50,7 @@ const Reservations = () => {
                 ? <h2>You don't have reservations</h2>
                 : <li>
                 {
-                    reservations.map((res)=>{ 
+                    reservations?.map((res)=>{ 
                         return <ul>
                             <h2>{res.PropertyTitle}</h2>
                             <h2>Month: {meses[res.month-1]}</h2>

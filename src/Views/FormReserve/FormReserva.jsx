@@ -49,7 +49,7 @@ const FormReserva = ({id}) => {
         .catch((error) => {
           // Si ocurre un error
           console.log("error");
-          alert("Error al crear review");
+          alert("Error al crear reserva");
         });
 
         
