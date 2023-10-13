@@ -17,6 +17,7 @@ import { faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const loginUser = useSelector((state) => state.loginUser);
+  console.log("user",loginUser);
 
   const handleChange = (e) => {
     setFormData({
@@ -31,24 +32,26 @@ import { faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
     await dispatch(getLogin(formData));
     setShowAlert(true);
   };
-
   useEffect(() => {
     if (showAlert) {
       setIsLoading(false);
-      if (loginUser && loginUser.status === 200) {
-        // Guardar la información del usuario en localStorage
-        localStorage.setItem("userData", JSON.stringify(formData));
-        alert("Successful login.");
-        handleLogin();
-        navigate("/Home");
-        history.go(0);
-      } else if (loginUser && loginUser.status === 401) {
-        alert("Invalid credentials.");
+      if (loginUser) {
+        if (loginUser.status === 200) {
+          // Guardar la información del usuario en localStorage
+          localStorage.setItem("userData", JSON.stringify(formData));
+          alert("Successful login.");
+          handleLogin();
+          navigate("/Home");
+          history.go(0);
+        } else if (loginUser.status === 401) {
+            alert("Credenciales inválidas.");
+        } else if (loginUser.status === 403) {
+            alert("Usuario bloqueado. Comuníquese con el administrador.");
+        }
       }
       setShowAlert(false);
     }
-  }, [showAlert, loginUser, handleLogin, formData, navigate]);
-
+  }, [showAlert, loginUser, handleLogin, formData, navigate, history]);
   const togglePasswordVisibility = () => {
     setShowPassword(!showPassword);
   };
