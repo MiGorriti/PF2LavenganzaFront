@@ -4,10 +4,9 @@ import { createUser, googleRegister } from "../../Redux/action/actions";
 import { GoogleLogin } from "react-google-login";
 import { gapi } from "gapi-script";
 import { useNavigate } from "react-router-dom";
-import axios from "axios";
 import { Link } from "react-router-dom";
 
-export const FormUser = ({ handleLoginGoogle }) => {
+export const FormUser = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const [acceptedTerms, setAcceptedTerms] = useState(false);
@@ -37,23 +36,37 @@ export const FormUser = ({ handleLoginGoogle }) => {
 
   const submitHandler = async (e) => {
     e.preventDefault();
-
+  
     const newUser = {
       email: postForm.email,
       password: postForm.password,
       fullName: postForm.fullName,
       lastName: postForm.lastName,
     };
-    console.log(newUser);
-    dispatch(createUser(newUser));
-
-    setPostForm({
-      email: "",
-      password: "",
-      fullName: "",
-      lastName: "",
-    });
-    alert("welcome to WanderLuxe");
+  
+    // Verifica que todos los campos estén llenos y que se haya aceptado los términos
+    if (
+      newUser.email &&
+      newUser.password &&
+      newUser.fullName &&
+      newUser.lastName &&
+      acceptedTerms
+    ) {
+      dispatch(createUser(newUser));
+      localStorage.setItem("userData", JSON.stringify(newUser));
+      navigate("/Home");
+      history.go(0);
+      setIsAuthenticatedNav(true); // Aquí actualizamos el estado de autenticación
+      setPostForm({
+        email: "",
+        password: "",
+        fullName: "",
+        lastName: "",
+      });
+      alert("Welcome to WanderLuxe");
+    } else {
+      alert("Please fill out all the fields and accept the terms.");
+    }
   };
 
   const onSuccess = (response) => {
@@ -68,17 +81,16 @@ export const FormUser = ({ handleLoginGoogle }) => {
       imageUrl: response.profileObj.imageUrl,
       name: response.profileObj.name,
     };
-
+    console.log(userData);
+    localStorage.setItem("userData", JSON.stringify(userData));
     dispatch(googleRegister(userData));
-
-    console.log("Usuario creado en la base de datos:", userData);
-
-    localStorage.setItem("userName", userData.name);
 
     alert(`welcome, ${userData.name}`);
 
     navigate("/home");
-    handleLoginGoogle();
+    history.go(0);
+
+   
   };
 
   const onFailure = () => {
@@ -93,7 +105,6 @@ export const FormUser = ({ handleLoginGoogle }) => {
     };
     gapi.load("client:auth2", start);
   }, [clientID]);
-
   return (
     <div
       className="min-h-screen py-40"
@@ -187,9 +198,12 @@ export const FormUser = ({ handleLoginGoogle }) => {
                     !acceptedTerms ? "pointer-events-none opacity-50" : ""
                   }`}
                   disabled={!acceptedTerms}
+                  style={{ color: 'black' }} 
                 >
                   Register Now
                 </button>
+                <br></br>
+                <br></br>
               </div>
               <GoogleLogin
                 clientId={clientID}

@@ -19,6 +19,7 @@ const Form = () => {
   const [file, setFile] = useState([]);
   const [image, setImage] = useState([]);
   const [property, setProperty] = useState([]);
+  const [UserData, setUserData] = useState([]);
   const [postForm, setPostForm] = useState({
     title: "",
     image: [],
@@ -31,8 +32,23 @@ const Form = () => {
     availability: "",
     location: [],
   });
+  console.log("algoalao", postForm);
+  useEffect(() => {
+    const storedUserData = localStorage.getItem("userData");
+    if (storedUserData) {
+      try {
+        const userData = JSON.parse(storedUserData);
+        setUserData(userData);
+
+        // Utiliza la información del usuario aquí si es necesario
+      } catch (error) {
+        console.error("Error al parsear JSON:", error);
+      }
+    }
+  }, []);
   const changeHandler = (e) => {
     const { name, value, direction } = e.target;
+
     setPostForm({
       ...postForm,
       [name]: value,
@@ -83,7 +99,8 @@ const Form = () => {
       category: [categoryValue],
     });
   };
-
+  const numberbeds = [[1], [2], [3], [4]];
+  const numberbaths = [[1], [2], [3], [4]];
   const submitHandler = async (e) => {
     e.preventDefault();
 
@@ -99,24 +116,15 @@ const Form = () => {
         Category: postForm.category,
         availability: postForm.availability,
         Location: postForm.location,
+        email: UserData.email,
+        password: UserData.name,
       };
       setFile(file);
       setProperty([...property, newProperty]);
+      console.log("12", newProperty);
 
       dispatch(postProperty(newProperty));
 
-      setPostForm({
-        title: "",
-        image: [],
-        description: "",
-        numBeds: "",
-        numBaths: "",
-        nightPrice: "",
-        homeCapacity: "",
-        category: [],
-        availability: "",
-        location: [],
-      });
       alert("Your property has been sucessfully published");
     } else {
       alert(`There's a Error`);
@@ -129,73 +137,74 @@ const Form = () => {
           <legend>Rent your House/Flat</legend>
 
           <div class="form-group">
-            <label class="col-md-4 control-label" for="textinput"></label>
+            <label class="col-md-4 control-label" for="title"></label>
             <div class="col-md-4">
               <input
-                id="textinput"
-                name="textinput"
+                name="title"
                 type="text"
                 placeholder="Title of your property"
                 class="form-control input-md"
+                onChange={changeHandler}
+                value={postForm.title}
+                style={{ backgroundColor: "#333" }}
               />
             </div>
           </div>
 
           <div class="form-group">
-            <label class="col-md-4 control-label" for=""></label>
+            <label class="col-md-4 control-label" for="availability"></label>
             <div class="col-md-4">
               <input
-                id=""
-                name=""
+                name="availability"
                 type="text"
-                value={postForm.availability}
                 placeholder="Availability"
-                onChange={changeHandler}
                 class="form-control input-md"
+                onChange={changeHandler}
+                value={postForm.availability}
+                style={{ backgroundColor: "#333" }}
               />
             </div>
           </div>
 
           <div class="form-group">
-            <label class="col-md-4 control-label" for=""></label>
+            <label class="col-md-4 control-label" for="nightPrice"></label>
             <div class="col-md-4">
               <input
-                id=""
-                name=""
-                type="text"
+                name="nightPrice"
+                type="number"
                 placeholder="Amount per night"
-                value={postForm.nightPrice}
-                onChange={changeHandler}
                 class="form-control input-md"
+                onChange={changeHandler}
+                value={postForm.nightPrice}
+                style={{ backgroundColor: "#333" }}
               />
             </div>
           </div>
 
           <div class="form-group">
-            <label class="col-md-4 control-label" for=""></label>
+            <label class="col-md-4 control-label" for="homeCapacity"></label>
             <div class="col-md-4">
               <input
-                id=""
-                name=""
-                type="text"
-                value={postForm.homeCapacity}
+                name="homeCapacity"
+                type="number"
                 placeholder="Home Capacity"
-                onChange={changeHandler}
                 class="form-control input-md"
+                onChange={changeHandler}
+                value={postForm.homeCapacity}
+                style={{ backgroundColor: "#333" }}
               />
             </div>
           </div>
 
           <div class="form-group">
-            <label class="col-md-4 control-label" for=""></label>
+            <label class="col-md-4 control-label" for="description"></label>
             <div class="col-md-4">
               <textarea
                 class="form-control"
-                id=""
-                name=""
-                value={postForm.description}
+                name="description"
                 placeholder="Description"
                 onChange={changeHandler}
+                value={postForm.description}
               >
                 Description
               </textarea>
@@ -203,106 +212,43 @@ const Form = () => {
           </div>
 
           <div class="form-group">
-            <label class="col-md-4 control-label" for="checkboxes">
-              How many baths?
-            </label>
+            <label class="col-md-4 control-label" for="numBaths"></label>
             <div class="col-md-4">
-              <label className="cajasdecheck" for="checkboxes-0">
-                <input
-                  type="checkbox"
-                  name="checkboxes"
-                  id="checkboxes-0"
-                  value={postForm.numBaths}
-                  onChange={changeHandler}
-                />
-                1
-              </label>
-              <label className="cajasdecheck" for="checkboxes-1">
-                <input
-                  type="checkbox"
-                  name="checkboxes"
-                  id="checkboxes-1"
-                  value="2"
-                />
-                2
-              </label>
-              <label className="cajasdecheck" for="checkboxes-2">
-                <input
-                  type="checkbox"
-                  name="checkboxes"
-                  id="checkboxes-2"
-                  value="3"
-                />
-                3
-              </label>
-              <label className="cajasdecheck" for="checkboxes-3">
-                <input
-                  type="checkbox"
-                  name="checkboxes"
-                  id="checkboxes-3"
-                  value="4"
-                />
-                4
-              </label>
+              <input
+                name="numBaths"
+                type="number"
+                placeholder="How many Baths"
+                class="form-control input-md"
+                onChange={changeHandler}
+                value={postForm.numBaths}
+                style={{ backgroundColor: "#333" }}
+              />
             </div>
           </div>
 
           <div class="form-group">
-            <label class="col-md-4 control-label" for="checkboxes">
-              How many beds?
-            </label>
+            <label class="col-md-4 control-label" for="numBeds"></label>
             <div class="col-md-4">
-              <label className="cajasdecheck" for="checkboxes-0">
-                <input
-                  type="checkbox"
-                  name="checkboxes"
-                  id="checkboxes-0"
-                  value={postForm.numBeds}
-                  onChange={changeHandler}
-                />
-                1
-              </label>
-              <label className="cajasdecheck" for="checkboxes-1">
-                <input
-                  type="checkbox"
-                  name="checkboxes"
-                  id="checkboxes-1"
-                  value="2"
-                />
-                2
-              </label>
-              <label className="cajasdecheck" for="checkboxes-2">
-                <input
-                  type="checkbox"
-                  name="checkboxes"
-                  id="checkboxes-2"
-                  value="3"
-                />
-                3
-              </label>
-              <label className="cajasdecheck" for="checkboxes-3">
-                <input
-                  type="checkbox"
-                  name="checkboxes"
-                  id="checkboxes-3"
-                  value="4"
-                />
-                4
-              </label>
+              <input
+                name="numBeds"
+                type="number"
+                placeholder="How many Beds"
+                class="form-control input-md"
+                onChange={changeHandler}
+                value={postForm.numBeds}
+                style={{ backgroundColor: "#333" }}
+              />
             </div>
           </div>
 
           <div class="form-group">
-            <label class="col-md-4 control-label" for="selectbasic">
-              Select Category
-            </label>
+            <label class="col-md-4 control-label" for="category"></label>
             <div class="col-md-4">
               <select
-                id="selectbasic"
-                name="selectbasic"
+                name="category"
                 class="form-control"
-                value={postForm.category}
                 onChange={changeHandler}
+                value={postForm.category}
               >
                 <option value="">Select Category</option>
                 {category &&
@@ -316,16 +262,13 @@ const Form = () => {
           </div>
 
           <div class="form-group">
-            <label class="col-md-4 control-label" for="selectbasic">
-              Select location
-            </label>
+            <label class="col-md-4 control-label" for="location"></label>
             <div class="col-md-4">
               <select
-                id="selectbasic"
-                name="selectbasic"
+                name="location"
                 class="form-control"
-                value={postForm.location}
                 onChange={changeHandler}
+                value={postForm.location}
               >
                 <option value="">Select Location</option>
                 {location &&
@@ -368,9 +311,10 @@ const Form = () => {
             <label class="col-md-4 control-label" for="singlebutton"></label>
             <div class="col-md-4">
               <button
-                id="singlebutton"
                 name="singlebutton"
                 class="btn btn-primary"
+                type="submit"
+                onClick={submitHandler}
               >
                 Publish
               </button>

@@ -1,15 +1,33 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
-import styles from './NavBarGuest.module.css';
-import { useSelector } from 'react-redux';
-import { useEffect, useRef, useState } from 'react';
+
+import React, { useEffect, useRef, useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import styles from "./NavBarGuest.module.css";
+import { useDispatch } from "react-redux";
 import { IconLogout, IconUser } from "@tabler/icons-react";
 import UserProfileMenu from "../UserProfileMenu/UserProfileMenu";
 
-
 function NavBarGuest() {
-  const isAuthenticated = useSelector((state)=> state.isAuthenticated)
+  const [isAuthenticatedNav, setIsAuthenticatedNav] = useState(null);
+  const [userData, setUserData] = useState({});
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    const storedUserData = localStorage.getItem("userData");
+    if (storedUserData) {
+      try {
+        const userData = JSON.parse(storedUserData);
+        setIsAuthenticatedNav(true);
+        setUserData(userData);
+      } catch (error) {
+        console.error("Error al parsear JSON:", error);
+      }
+    }
+  }, []);
+
+  const dispatch = useDispatch();
+
   const [isUserProfileMenuOpen, setIsUserProfileMenuOpen] = useState(false);
+
   const userProfileMenuRef = useRef();
 
   const handleUserProfileClick = () => {
@@ -17,7 +35,10 @@ function NavBarGuest() {
   };
 
   const handleClickOutside = (event) => {
-    if (userProfileMenuRef.current && !userProfileMenuRef.current.contains(event.target)) {
+    if (
+      userProfileMenuRef.current &&
+      !userProfileMenuRef.current.contains(event.target)
+    ) {
       setIsUserProfileMenuOpen(false);
     }
   };
@@ -40,83 +61,85 @@ function NavBarGuest() {
   };
 
   const handleLogout = () => {
-    // Lógica para cerrar la sesión del usuario
-    console.log("Cerrar sesión");
+    localStorage.removeItem("userData");
+    setIsAuthenticatedNav(false);
+    navigate("/register");
   };
+
   return (
-    <nav className='mb-20 w-full'>
+    <nav className="mb-20 w-full">
       <ul className={styles.navSup}>
         <li>
-          <Link to ='/'>
-          <img className={styles.logo} src="/imagenes/Wanderluxehomes.png" alt="Logo"/>
+          <Link to="/" className="text-lg">
+            <img
+              className={styles.logo}
+              src="/imagenes/Wanderluxehomes.png"
+              alt="Logo"
+            />
           </Link>
         </li>
         <li>
-          <Link to='/home' className={styles.options}>Home</Link>
-        </li>
-        <li>
-          <Link to = '/about-us' className={styles.options}>
-          About Us
+          <Link to="/home" className={`text-xl ${styles.options}`}>
+            Home
           </Link>
         </li>
-        {isAuthenticated ?(
+        <li>
+          <Link to="/about-us" className={`text-xl ${styles.options} ml-5`}>
+            About Us
+          </Link>
+        </li>
+        {isAuthenticatedNav ? (
           <>
-          <li>
-            <Link to = '/my-rental-reserves' className={styles.options}>
-            My rental reserves
-            </Link>
-          </li>
-          <li>
-          <Link to="/recommendations" className={styles.options}>
-            Recommendations
-          </Link>
-          </li>
-          <li>
-          <Link to="/map" className={styles.options}>
-            Map
-          </Link>
-          </li>
-          <li>
-          <div className={styles.options} onClick={handleUserProfileClick}>
-            <IconUser className="cursor-pointer" size={25} />
-          </div>
-          </li>
-          <li>
-          <Link to="/logout">
-            <IconLogout className="top-1/2 right-0 absolute cursor-pointer text-white hover:text-darkred
-            transform -translate-y-1/2 -translate-x-1/2"  size={25}  />
-          </Link>
-          </li>
-          {isUserProfileMenuOpen && (
-            <div ref={userProfileMenuRef}>
-              <UserProfileMenu
-                user={{ name: "Username", email: "Useremail@example.com", phone: "123456789" }}
-                isOpen={isUserProfileMenuOpen}
-                onClose={() => setIsUserProfileMenuOpen(false)}
-                onChangePhoneNumber={handleChangePhoneNumber}
-                onChangePassword={handleChangePassword}
-                onLogout={handleLogout}
-              />
-            </div>
-          )}
+            <li>
+              <Link to="/my-rental-reserves" className={`text-xl ${styles.options}`}>
+                My rental reserves
+              </Link>
+            </li>
+            <li>
+              <Link to="/recommendations" className={`text-xl ${styles.options}`}>
+                Recommendations
+              </Link>
+            </li>
+            <li>
+              <Link to="/Form" className={`text-xl ${styles.options}`}>
+                Rent your property
+              </Link>
+            </li>
+            <li>
+              <div className={styles.options} onClick={handleUserProfileClick}>
+                <IconUser className="cursor-pointer" size={25} />
+              </div>
+            </li>
+
+            {isUserProfileMenuOpen && (
+              <div ref={userProfileMenuRef}>
+                <UserProfileMenu
+                  user={{ name: userData.name, email: userData.email }}
+                  isOpen={isUserProfileMenuOpen}
+                  onClose={() => setIsUserProfileMenuOpen(false)}
+                  onChangePhoneNumber={handleChangePhoneNumber}
+                  onChangePassword={handleChangePassword}
+                  onLogout={handleLogout}
+                />
+              </div>
+            )}
           </>
-        ):(
+        ) : (
           <>
-          <li>
-            <Link to='/login'>
-            Login
-            </Link>
-          </li>
-          <li>
-            <Link to ='/register'>
-              Sign Up
-            </Link>
-          </li>
+            <li className="mr-5 ml-4">
+  <Link to="/login" style={{ fontSize: '1.2rem' }} className="text-white">
+    Login
+  </Link>
+</li>
+<li>
+  <Link to="/register" style={{ fontSize: '1.2rem' }} className="text-white">
+    Sign Up
+  </Link>
+</li>
           </>
         )}
       </ul>
     </nav>
-    
   );
 }
 

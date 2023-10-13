@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
 
-export const FormLogin = ({ handleLogin }) => {
+ const FormLogin = ({ handleLogin }) => {
   const [formData, setFormData] = useState({
     email: "",
     password: "",
@@ -13,6 +13,7 @@ export const FormLogin = ({ handleLogin }) => {
 
   const [showPassword, setShowPassword] = useState(false);
   const [showAlert, setShowAlert] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const loginUser = useSelector((state) => state.loginUser);
@@ -26,29 +27,39 @@ export const FormLogin = ({ handleLogin }) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setIsLoading(true);
     await dispatch(getLogin(formData));
     setShowAlert(true);
   };
 
   useEffect(() => {
     if (showAlert) {
+      setIsLoading(false);
       if (loginUser && loginUser.status === 200) {
-        alert("Inicio de sesión exitoso");
+        // Guardar la información del usuario en localStorage
+        localStorage.setItem("userData", JSON.stringify(formData));
+        alert("Successful login.");
         handleLogin();
-        navigate("/home");
+        navigate("/Home");
+        history.go(0);
       } else if (loginUser && loginUser.status === 401) {
-        alert("Credenciales inválidas");
+        alert("Invalid credentials.");
       }
       setShowAlert(false);
     }
-  }, [showAlert, loginUser, handleLogin]);
+  }, [showAlert, loginUser, handleLogin, formData, navigate]);
 
   const togglePasswordVisibility = () => {
     setShowPassword(!showPassword);
   };
 
+  
+
   return (
-    <div className="min-h-screen flex flex-col items-center justify-center bg-white py-8">
+    <div
+      className="min-h-screen py-40"
+      style={{ backgroundImage: "linear-gradient(115deg, #020923, #FEE2FE)" }}
+    >
       <div className="container mx-auto flex flex-col lg:flex-row w-10/12 lg:w-8/12 bg-black rounded-xl shadow-lg overflow-hidden mt-4 relative">
         <div
           className="w-full lg:w-1/2 flex flex-col items-center justify-center p-12 bg-no-repeat bg-cover bg-center relative"
@@ -69,7 +80,7 @@ export const FormLogin = ({ handleLogin }) => {
               type="email"
               name="email"
               value={formData.email}
-              onChange={(e) => setEmail(e.target.value)}
+              onChange={handleChange}
               placeholder="Email"
               className="form-input mb-4"
               required
@@ -79,14 +90,14 @@ export const FormLogin = ({ handleLogin }) => {
                 type={showPassword ? "text" : "password"}
                 name="password"
                 value={formData.password}
-                onChange={(e) => setPassword(e.target.value)}
+                onChange={handleChange}
                 placeholder="Password"
                 className="form-input pr-10 "
                 required
               />
               <button
                 type="button"
-                className=" absolute left-72 transform -translate-y-1/2 text-black top-6 h-8 -bottom-1 flex items-center justify-center"
+                className=" absolute right-0 transform -translate-y-1/2 text-black top-6 h-8 -bottom-1 flex items-center justify-center"
                 onClick={togglePasswordVisibility}
               >
                 <FontAwesomeIcon
@@ -99,17 +110,20 @@ export const FormLogin = ({ handleLogin }) => {
             <button
               type="submit"
               className="w-full bg-purple-700 text-blue py-3 rounded hover:bg-purple-800 focus:outline-none mb-4"
+              disabled={isLoading}
             >
-              Log in
+              Log in  
             </button>
           </form>
           <div className="text-center">
             <p className="text-white">
               Don't have an account?{" "}
-              <a href="#" className="text-blue font-semibold">
-                Sign up here
-              </a>
-              .
+              <span
+              onClick={() => navigate("/register")} // Cambia a un span y añade esta función
+              className="text-blue font-semibold cursor-pointer"
+            >
+              Sign up here
+            </span>
             </p>
           </div>
         </div>
