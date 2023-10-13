@@ -15,16 +15,17 @@ import { FormLogin } from "./Views/Login/Login";
 //import AdminDashboard from "./Views/DashBoard/AdminDashboard";
 import TerminosYCondiciones from "./Views/Terms/Terms";
 import Privacidad from "./Views/Terms/Privacy";
+import Reservations from "./Views/Reservations/Reservations";
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   const handleLogin = () => {
-    setIsLoggedIn(true);
+    setIsLoggedIn(null);
   };
 
   const handleLogout = () => {
-    setIsLoggedIn(false);
+    setIsLoggedIn(null);
   };
 
   return (
@@ -39,12 +40,12 @@ function App() {
           <Route exact path="/" element={<LandingPage />}></Route>
           <Route exact path="/Detail/:idHouse" element={<Detail />}></Route>
           <Route exact path="/Home" element={<Home />}></Route>
-          <Route exact path="/Detail" element={<Detail />}></Route>
           <Route path="/Form" element={<Form />}></Route>
           <Route exact path="/Register" element={<FormUser />}></Route>
-          <Route exact path="/Login" element={<FormLogin />}></Route>
+          <Route exact path="/Login" element={<FormLogin handleLogin={handleLogin}/>}></Route>
           <Route exact path="/Terms" element={<TerminosYCondiciones />}></Route>
           <Route exact path="/Privacy" element={<Privacidad />}></Route>
+          <Route exact path="/MyReservations" element={<Reservations/>}></Route>
         </Routes>
         <Footer />
       </div>

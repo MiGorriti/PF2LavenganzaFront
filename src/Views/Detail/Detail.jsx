@@ -8,10 +8,14 @@ import {
   faSwimmingPool,
 } from "@fortawesome/free-solid-svg-icons";
 import { useSelector, useDispatch } from "react-redux";
-import { getDetail } from "../../Redux/action/actions";
-import { useParams } from "react-router-dom";
+import { getDetail, getReservationsByHome } from "../../Redux/action/actions";
+import { useNavigate, useParams } from "react-router-dom";
+import { initMercadoPago } from "@mercadopago/sdk-react";
+import axios from "axios";
+import FormReserva from "../FormReserve/FormReserva";
 
 const Detail = () => {
+  const navigate = useNavigate();
   const { idHouse } = useParams();
   const dispatch = useDispatch();
   const houseDetail = useSelector((state) => state.propertyDetail);
@@ -19,9 +23,11 @@ const Detail = () => {
   const [departureDate, setDepartureDate] = useState(null);
   const [guests, setGuests] = useState(1);
 
+  const { id, nightPrice, title } = houseDetail;
+
   useEffect(() => {
     dispatch(getDetail(idHouse));
-  }, [dispatch, idHouse]);
+  }, []);
 
   const calculateTotal = () => {
     if (!arrivalDate || !departureDate) {
@@ -30,11 +36,43 @@ const Detail = () => {
     const nights = (departureDate - arrivalDate) / (1000 * 60 * 60 * 24);
     return nights * houseDetail.nightPrice;
   };
+  initMercadoPago("TEST-0e901727-9400-4f99-8e37-20e241e7f075");
 
-  const handleReserve = () => {
-    // Lógica para la reserva
-    // Puedes enviar una solicitud al servidor para confirmar la reserva aquí
+  const createPreference = async () => {
+    try {
+      const response = await axios.post(
+        "http://localhost:3001/mp/createpreference",
+        {
+          id: houseDetail.id,
+          title: houseDetail.title,
+          price: houseDetail.nightPrice,
+          quantity: 1,
+        }
+      );
+      console.log(response);
+      const init_point = response.data.response.body.init_point;
+      console.log("init point mp", init_point);
+      return init_point;
+    } catch (error) {
+      console.log(error);
+    }
   };
+
+  const handleBuy = async () => {
+    const init_point = await createPreference();
+    window.location.href = init_point;
+  };
+
+  useEffect(()=>{
+    dispatch(getReservationsByHome(idHouse));
+  }, [dispatch])
+
+  const meses=[
+    "January", "February", "March", "April", "May", "June", "July",
+    "August", "September", "October", "November", "December"
+  ]
+
+  const reservations= useSelector((state)=> state.reservations)
 
   if (!houseDetail) {
     return <div className="text-center mt-8">Loading...</div>;
@@ -48,10 +86,17 @@ const Detail = () => {
         <div className="grid grid-cols-2 gap-2">
           {houseDetail.image &&
             houseDetail.image.map((e, index) => (
-              <img className="w-full h-64 object-cover" src={e} alt="" key={index} />
+              <img
+                className="w-full h-64 object-cover"
+                src={e}
+                alt=""
+                key={index}
+              />
             ))}
         </div>
-        <button className="mt-2 text-blue-500 hover:text-blue-300">Show more Images</button>
+        <button className="mt-2 text-blue-500 hover:text-blue-300">
+          Show more Images
+        </button>
 
         {/* Título y descripción */}
         <h1 className="text-3xl text-black mt-4">{houseDetail.title}</h1>
@@ -65,9 +110,25 @@ const Detail = () => {
         </div>
         <h3 className="text-xl border-t-2 border-black mt-4">Description</h3>
         <p>{houseDetail.description}</p>
-        <h1 className="text-2xl border-t-2 border-black mt-4">Bedrooms</h1>
+        {/* <h1 className="text-2xl border-t-2 border-black mt-4">Bedrooms</h1> */}
         {/* Servicios */}
-        <h1 className="text-2xl border-t-2 border-black mt-4">What This Place Offers</h1>
+        <h1 className="text-2xl border-t-2 border-black mt-4">
+          What This Place Offers
+        </h1>
+
+        <div>
+          <h3>Property reserved for:</h3>
+          <li>
+            {
+              reservations.map((res)=>{
+                return <ul>
+                  <h2>{meses[res.month-1]}</h2>
+                </ul>
+              })
+            }
+          </li>
+        </div>
+
         <div className="flex items-center mt-2">
           {houseDetail.features &&
             houseDetail.features.map((feature, index) => {
@@ -130,17 +191,26 @@ const Detail = () => {
           />
         </div>
         <div className="mt-2 text-center">
-  <button className="mt-4 bg-blue-500 text-black p-2 rounded" onClick={handleReserve}>
-    Reserve
-  </button>
-</div>
+          {/* <button
+            className="mt-4 bg-blue-500 text-black p-2 rounded"
+            onClick={handleBuy}
+          >
+            Reserve
+          </button> */}
+          <FormReserva
+            key={idHouse}
+            id={idHouse}
+          />
+        </div>
         {/* Total */}
         <div className="border-t-2 border-black mt-4">
           <div className="mt-2">Total: ${calculateTotal()}</div>
         </div>
 
         {/* Best Reviews */}
-        <h1 className="text-xl text-center border-t-2 border-black mt-6">Best Reviews</h1>
+        <h1 className="text-xl text-center border-t-2 border-black mt-6">
+          Best Reviews
+        </h1>
         {/* Implementa aquí los comentarios */}
       </div>
     </div>

@@ -46,7 +46,8 @@ export const FormUser = ({ handleLoginGoogle }) => {
     };
     console.log(newUser);
     dispatch(createUser(newUser));
-
+    localStorage.setItem("userData", JSON.stringify(newUser));
+    navigate("/Home");
     setPostForm({
       email: "",
       password: "",
@@ -68,12 +69,9 @@ export const FormUser = ({ handleLoginGoogle }) => {
       imageUrl: response.profileObj.imageUrl,
       name: response.profileObj.name,
     };
-
+    console.log(userData);
+    localStorage.setItem("userData", JSON.stringify(userData));
     dispatch(googleRegister(userData));
-
-    console.log("Usuario creado en la base de datos:", userData);
-
-    localStorage.setItem("userName", userData.name);
 
     alert(`welcome, ${userData.name}`);
 
