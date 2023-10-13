@@ -9,6 +9,7 @@ import {
   GET_DETAIL,
   CREATE_USER,
   SET_AUTH_STATUS,
+  LOGIN_USER
 } from "./type-actions";
 
 export const getLogin = (formData) => {
