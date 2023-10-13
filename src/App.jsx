@@ -8,7 +8,7 @@ import Detail from "./Views/Detail/Detail";
 import LandingPage from "./Views/LandingPage/LandingPage";
 import Form from "./Views/FormRent/Form";
 import { FormUser } from "./Views/FormRegister/Form";
-import { FormLogin } from "./Views/Login/Login";
+import  FormLogin  from "./Views/Login/Login";
 import TerminosYCondiciones from "./Views/Terms/Terms";
 import Privacidad from "./Views/Terms/Privacy";
 
