@@ -48,7 +48,7 @@ export const FormLogin = ({ handleLogin }) => {
   };
 
   return (
-    <div className="min-h-screen flex flex-col items-center justify-center bg-white py-8">
+    <div className="w-full flex flex-col items-center justify-center bg-white py-8">
       <div className="container mx-auto flex flex-col lg:flex-row w-10/12 lg:w-8/12 bg-black rounded-xl shadow-lg overflow-hidden mt-4 relative">
         <div
           className="w-full lg:w-1/2 flex flex-col items-center justify-center p-12 bg-no-repeat bg-cover bg-center relative"

@@ -1,12 +1,13 @@
-@font-face {
-    font-family: 'Zasline';
-    src: url('fuentes/Zasline.otf') format('opentype');
-  }
+/* NavBarGuest.module.css */
+
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
 
 
 .navSup{
     background-color: rgb(36, 36, 36);
-    @apply text-white fixed top-0 left-0 w-full z-20 flex justify-center  ;    
+    @apply text-white fixed top-0 left-0 w-full z-20 flex justify-center;    
 }
 
 .logo {
@@ -21,7 +22,9 @@
     color: white;
     font-weight: bold;
     font-family: Zasline;
+    border: solid red 0px;
     font-size: large;
+    
     @apply mx-2 place-self-center 
 }
 
@@ -31,6 +34,7 @@
 }
 
 .menu{
-    @apply flex  space-x-20 flex-col sm:flex-row absolute right-0 sm:relative   /* hover:bg-red */
+    @apply flex  space-x-20 flex-col sm:flex-row absolute right-0 sm:relative  /* hover:bg-red */
 }
+
 
