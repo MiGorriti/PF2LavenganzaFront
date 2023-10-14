@@ -32,19 +32,32 @@ function App() {
         <NavBarGuest handleLogin={handleLogin} handleLogout={handleLogout} />
         <Routes>
           <Route exact path="/" element={<LandingPage />}></Route>
-          <Route exact path="/Detail/:idHouse" element={<Detail />}></Route>
+          <Route
+            exact
+            path="/Detail/:idHouse"
+            element={
+              <Detail handleLogin={handleLogin} handleLogout={handleLogout} />
+            }
+          ></Route>
           <Route exact path="/Home" element={<Home />}></Route>
           <Route path="/Form" element={<Form />}></Route>
 
           <Route exact path="/Register" element={<FormUser />}></Route>
-          <Route exact path="/Login" element={<FormLogin handleLogin={handleLogin}/>}></Route>
+          <Route
+            exact
+            path="/Login"
+            element={<FormLogin handleLogin={handleLogin} />}
+          ></Route>
           <Route exact path="/Terms" element={<TerminosYCondiciones />}></Route>
 
           <Route exact path="/admin" element={<AdminDashboard />}></Route>
 
           <Route exact path="/Privacy" element={<Privacidad />}></Route>
-          <Route exact path="/MyReservations" element={<Reservations/>}></Route>
-
+          <Route
+            exact
+            path="/MyReservations"
+            element={<Reservations />}
+          ></Route>
         </Routes>
         <Footer />
       </div>

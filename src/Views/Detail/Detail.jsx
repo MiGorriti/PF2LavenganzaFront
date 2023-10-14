@@ -10,7 +10,7 @@ import {
 import { useSelector, useDispatch } from "react-redux";
 import { getDetail, getReservationsByHome } from "../../Redux/action/actions";
 import { useNavigate, useParams } from "react-router-dom";
-import { initMercadoPago } from "@mercadopago/sdk-react";
+
 import axios from "axios";
 import FormReserva from "../FormReserve/FormReserva";
 
@@ -22,8 +22,9 @@ const Detail = () => {
   const [arrivalDate, setArrivalDate] = useState(null);
   const [departureDate, setDepartureDate] = useState(null);
   const [guests, setGuests] = useState(1);
+  const [userData, setUserData] = useState({});
 
-  const { id, nightPrice, title } = houseDetail;
+  const { nightPrice, title } = houseDetail;
 
   useEffect(() => {
     dispatch(getDetail(idHouse));
@@ -36,48 +37,58 @@ const Detail = () => {
     const nights = (departureDate - arrivalDate) / (1000 * 60 * 60 * 24);
     return nights * houseDetail.nightPrice;
   };
-  initMercadoPago("TEST-0e901727-9400-4f99-8e37-20e241e7f075");
 
-  const createPreference = async () => {
-    try {
-      const response = await axios.post(
-        "http://localhost:3001/mp/createpreference",
-        {
-          id: houseDetail.id,
-          title: houseDetail.title,
-          price: houseDetail.nightPrice,
-          quantity: 1,
-        }
-      );
-      console.log(response);
-      const init_point = response.data.response.body.init_point;
-      console.log("init point mp", init_point);
-      return init_point;
-    } catch (error) {
-      console.log(error);
-    }
-  };
-
-  const handleBuy = async () => {
-    const init_point = await createPreference();
-    window.location.href = init_point;
-  };
-
-  useEffect(()=>{
+  useEffect(() => {
     dispatch(getReservationsByHome(idHouse));
-  }, [dispatch])
+  }, [dispatch]);
 
-  const meses=[
-    "January", "February", "March", "April", "May", "June", "July",
-    "August", "September", "October", "November", "December"
-  ]
+  const meses = [
+    "January",
+    "February",
+    "March",
+    "April",
+    "May",
+    "June",
+    "July",
+    "August",
+    "September",
+    "October",
+    "November",
+    "December",
+  ];
 
-  const reservations= useSelector((state)=> state.reservations)
+  const reservations = useSelector((state) => state.reservations);
 
   if (!houseDetail) {
     return <div className="text-center mt-8">Loading...</div>;
   }
 
+  useEffect(() => {
+    const storedUserData = localStorage.getItem("userData");
+    if (storedUserData) {
+      try {
+        const userData = JSON.parse(storedUserData);
+        setuserLoggedIn(true);
+        setUserData(userData);
+      } catch (error) {
+        console.error("Error al parsear JSON:", error);
+      }
+    }
+  }, []);
+
+  const [userLoggedIn, setuserLoggedIn] = useState(false);
+  const handleLogout = () => {
+    localStorage.removeItem("userData");
+    setuserLoggedIn(false);
+  };
+  console.log("22", userLoggedIn);
+  // useEffect(() => {
+  //   // Comprobar si el usuario está logueado (puedes hacerlo a través de tu lógica de autenticación)
+
+  //   // Actualiza el estado según el resultado de la autenticación
+  //   setuserLoggedIn(userLoggedIn);
+  //   console.log(userLoggedIn);
+  // }, []);
   return (
     <div className="flex bg-white rounded-lg overflow-hidden w-full h-full">
       {/* Columna Izquierda */}
@@ -119,13 +130,13 @@ const Detail = () => {
         <div>
           <h3>Property reserved for:</h3>
           <li>
-            {
-              reservations.map((res)=>{
-                return <ul>
-                  <h2>{meses[res.month-1]}</h2>
+            {reservations.map((res) => {
+              return (
+                <ul>
+                  <h2>{meses[res.month - 1]}</h2>
                 </ul>
-              })
-            }
+              );
+            })}
           </li>
         </div>
 
@@ -191,16 +202,15 @@ const Detail = () => {
           />
         </div>
         <div className="mt-2 text-center">
-          {/* <button
-            className="mt-4 bg-blue-500 text-black p-2 rounded"
-            onClick={handleBuy}
-          >
-            Reserve
-          </button> */}
-          <FormReserva
-            key={idHouse}
-            id={idHouse}
-          />
+          {userLoggedIn && (
+            <FormReserva
+              key={idHouse}
+              id={idHouse}
+              title={title}
+              nightPrice={nightPrice}
+              onLogout={handleLogout}
+            />
+          )}
         </div>
         {/* Total */}
         <div className="border-t-2 border-black mt-4">
