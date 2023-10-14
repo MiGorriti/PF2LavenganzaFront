@@ -44,7 +44,7 @@ function NavBarGuest() {
     console.log("Cerrar sesión");
   };
   return (
-    <nav className='mb-20 w-full'>
+    <nav className='mb-20 w-full h-1'>
       <ul className={styles.navSup}>
         <li>
           <Link to ='/'>

@@ -1,6 +1,20 @@
-.cartascontainer {
-  display: flex; /* Muestra las tarjetas en una fila */
-  flex-wrap: wrap; /* Permite que las tarjetas se envuelvan cuando no quepan en una fila */
-  gap: 16px; /* Espacio entre las tarjetas */
-  justify-content: center; /* Distribuye el espacio horizontalmente entre las tarjetas */
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
+
+
+.card-container {
+  background-color: #fff;
+  border: 1px solid #e2e8f0;
+  border-radius: 0.25rem;
+  padding: 1rem;
+}
+
+.card-container-horizontal {
+  @apply flex flex-row space-x-4 overflow-x-auto;
+}
+
+.card-title {
+  font-size: 1.5rem;
+  font-weight: 600;
 }

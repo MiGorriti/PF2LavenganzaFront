@@ -1,17 +1,23 @@
-import React, { useEffect } from "react";
-import { useDispatch } from "react-redux";
+import React, { useEffect, useState } from "react";
+import { useSelector, useDispatch } from "react-redux";
 import { getCars } from "../../Redux/action/actions";
 import Filters from "../../Components/Filters/Filters";
 import Cards from "../../Components/Cards/Cards";
 import { IconSearch } from "@tabler/icons-react";
 import styles from "./Home.module.css";
 
+
+import { MdArrowBackIos, MdArrowForwardIos } from "react-icons/md";
+
 function Home() {
   const dispatch = useDispatch();
-
+  
+  
   useEffect(() => {
     dispatch(getCars());
+
   }, [dispatch]);
+
 
   return (
     <div className="relative">
@@ -35,6 +41,7 @@ function Home() {
               <IconSearch className="text-black mt-6 cursor-pointer hover:text-royalblue" />
             </div>
           </div>
+        
         </div>
       </div>
 
@@ -45,8 +52,3 @@ function Home() {
 }
 
 export default Home;
-
-
-
-
-
