@@ -1,16 +1,60 @@
 .card {
-  margin: 5% 0%;
   width: 300px;
-  background-color: rgba(0,0,0,0.25);
+  margin: 20px;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  overflow: hidden;
+  transition: transform 0.3s ease-in-out;
 }
 
-.card-body {
-  margin: 0% 0% 0% 3%;
-  padding: 6% 0%;
+.card:hover {
+  transform: scale(1.05);
 }
-/* En tu archivo Card.css */
-.card-img-top {
-  max-width: 100%; /* La imagen se ajusta al ancho de la tarjeta */
-  height: auto; /* La altura se ajusta automáticamente para mantener la relación de aspecto */
-  border-radius: 10px;
+
+.card .view.overlay {
+  position: relative;
+  overflow: hidden;
+}
+
+.card .view.overlay img.card-img {
+  width: 100%;
+  height: auto;
+  display: block;
+  transition: transform 0.3s ease-in-out;
+}
+
+.card .view.overlay:hover img.card-img {
+  transform: scale(1.1);
+}
+
+.card .card-body {
+  padding: 20px;
+}
+
+.card .card-h4 {
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin-bottom: 10px;
+  color: #333; /* Cambiar color de la letra */
+}
+
+.card .card-p {
+  font-size: 1.2rem;
+  color: #555; /* Cambiar color de la letra */
+  margin: 5px 0;
+}
+
+.card .btn {
+  background-color: #3498db; /* Cambiar color de fondo del botón */
+  color: #fff; /* Cambiar color de la letra del botón */
+  font-size: 1.2rem;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease-in-out;
+}
+
+.card .btn:hover {
+  background-color: #2980b9; /* Cambiar color de fondo del botón al pasar el ratón */
 }
