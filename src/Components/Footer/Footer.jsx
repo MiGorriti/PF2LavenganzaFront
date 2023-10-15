@@ -1,32 +1,63 @@
-import React from 'react';
+import React from "react";
+import styles from "./Footer.module.css";
+// import MapComponent from "../Mapa/MapComponent";
 
-function Footer() {
+const Footer = () => {
   return (
-    <footer className="bg-black text-white py-8">
-      <div className="container mx-auto flex justify-between">
-        <div className="flex flex-col mr-10">
-          <p className="mb-2 font-semibold">Attendance :</p>
-          <p className="mb-2">Help Center</p>
-          <p className="mb-2">Get Help With A Security Problem</p>
-          <p className="mb-2">Disability Support</p>
-          <p>Neighborhood Problems</p>
-        </div>
-        <div className="flex flex-col mr-10">
-          <p className="mb-2 font-semibold">Known :</p>
-          <p className="mb-2">Unique Accommodations</p>
-          <p className="mb-2">All Destinations</p>
-          <p>Opinions</p>
-        </div>
-        <div className="flex flex-col">
-          <p className="mb-2 font-semibold">Contact us :</p>
-          <p>wanderluxehomes@gmail.com</p>
-        </div>
+    <div className={styles.footer}>
+      <div className={styles.leftFooter}>
+        <h1>
+          WARE <br />
+          HOUSE
+        </h1>
+
+        <ul>
+          <li>Follow us</li>
+          <li>Instagram</li>
+          <li>Facebook</li>
+          <li>Twitter</li>
+        </ul>
       </div>
-    </footer>
+
+      {/* <div className={styles.mapContainer}>
+        <MapComponent />
+      </div> */}
+
+      <div className={styles.rightFooter}>
+        <ul className={styles.appData}>
+          <li>Support</li>
+          <li>Help Center</li>
+          <li>Cancellation options</li>
+          <li>Report neighbourhood concern</li>
+        </ul>
+
+        <ul className={styles.helpData}>
+          <li>Hosting</li>
+          <li>Ware House your home</li>
+          <li>Community Forum</li>
+        </ul>
+
+        <ul className={styles.companyData}>
+          <li>Carrers</li>
+          <li>Invertors</li>
+          <li>Gift Cards</li>
+        </ul>
+
+        <ul className={styles.hourData}>
+          <li>Hours attention</li>
+          <li>08am - 01pm</li>
+          <li>04pm - 08pm</li>
+        </ul>
+
+        <ul className={styles.contactData}>
+          <li>Contact</li>
+          <li>wanderluxehomes@gmail.com</li>
+          <li>Whatsapp</li>
+        </ul>
+      </div>
+    </div>
   );
-}
+};
 
 export default Footer;
-
-
 

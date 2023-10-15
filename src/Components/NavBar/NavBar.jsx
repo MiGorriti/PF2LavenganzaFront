@@ -14,7 +14,7 @@ function Navbar() {
         <Link to="/home" className={styles.linkNoUnderline}>
           Home{" "}
         </Link>
-        <Link to="/my-reservations" className={styles.linkNoUnderline}>
+        {/* <Link to="/my-reservations" className={styles.linkNoUnderline}>
         My Reservations
         </Link>
         <Link to="/form" className={styles.linkNoUnderline}>
@@ -32,9 +32,9 @@ function Navbar() {
         <Link to="/register" className={styles.iconUserDownLink}>
           <IconUserDown className={styles.iconUserDown} />
         </Link>
-{/*         <Link onClick={logout} to="#">
+        {/*<Link onClick={logout} to="#">
           <IconLogout className={styles.iconLogout} />
-        </Link> */}
+        </Link> */} 
         <IconLogout className={styles.iconLogout} />
       </div>
       </div>
