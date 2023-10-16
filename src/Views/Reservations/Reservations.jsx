@@ -37,7 +37,15 @@ const Reservations = () => {
     }
   }, []);
 
+
+    useEffect(()=>{
+        dispatch(getReservations("pepito@gmail.com"))  //EL EMAIL FUE HARDCODEADO PARA HACER LAS PRUEBAS
+
+        return ()=> (dispatch(getReservations("pepito@gmail.com")))
+    },[dispatch]);
+
   const dispatch = useDispatch();
+
 
   const reservations = useSelector((state) => state.reservations);
 
@@ -47,27 +55,27 @@ const Reservations = () => {
 
   return (
     <div>
-      <h1>Your reservations</h1>
-      <div>
-        {!reservations.length ? (
-          <h2>You don't have reservations</h2>
-        ) : (
-          <li>
-            {reservations.map((res) => {
-              return (
-                <ul>
-                  <h2>{res.PropertyTitle}</h2>
-                  <h2>Month: {meses[res.month - 1]}</h2>
-                  <h2>Guests: {res.numHuespedes}</h2>
-                  <button onClick={(event) => cancelReserve(event, res.id)}>
-                    Cancel
-                  </button>
-                </ul>
-              );
-            })}
-          </li>
-        )}
-      </div>
+
+        <h1>Your reservations</h1>
+        <div>
+            {
+                !reservations.length
+                ? <h2>You don't have reservations</h2>
+                : <li>
+                {
+                    reservations?.map((res)=>{ 
+                        return <ul>
+                            <h2>{res.PropertyTitle}</h2>
+                            <h2>Month: {meses[res.month-1]}</h2>
+                            <h2>Guests: {res.numHuespedes}</h2>
+                            <button onClick={(event)=> cancelReserve(event, res.id)}>Cancel</button>
+                      </ul>
+                    })
+                }
+                </li>
+            }
+        </div>
+
     </div>
   );
 };

@@ -70,6 +70,26 @@ const FormReserva = ({ id, title, nightPrice }) => {
 
   initMercadoPago("TEST-0e901727-9400-4f99-8e37-20e241e7f075");
 
+
+        console.log(newReservation)
+
+        // dispatch(reserve(reservation));
+        axios
+        .post("http://localhost:3001/reservation/create", newReservation)
+        .then((response) => {
+          // Si la respuesta es exitosa
+          console.log("Añadida");
+          alert("Reservación añadida");
+        })
+        .catch((error) => {
+          // Si ocurre un error
+          console.log("error");
+          alert("Error al crear reserva");
+        });
+
+        
+        setInput({ month:"default", numHuespedes:0, email:"", password:""})
+
   const createPreference = async () => {
     try {
       const response = await axios.post(
@@ -87,6 +107,7 @@ const FormReserva = ({ id, title, nightPrice }) => {
       return init_point;
     } catch (error) {
       console.log(error);
+
     }
   };
 

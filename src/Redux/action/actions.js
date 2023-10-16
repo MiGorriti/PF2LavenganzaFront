@@ -13,6 +13,7 @@ import {
   GET_RESERVATIONS,
   CANCEL_RESERVE,
   GET_RESERVATIONS_BY_HOME,
+  GET_REVIEWS_HOME
   SET_PRICE_FILTER,
 } from "./type-actions";
 
@@ -234,6 +235,21 @@ export const cancel = (id) => {
     } catch (error) {
       console.error(error);
     }
+  }
+}
+
+export const getReviews=(idHome)=>{
+  return async function(dispatch){
+    try {
+      const response= await axios.get(`http://localhost:3001/review/home/${idHome}`);
+      const reviews= response.data;
+      return dispatch({type: GET_REVIEWS_HOME, payload:reviews});
+    } catch (error) {
+      console.error(error);
+    }
+  }
+}
+
   };
 };
 export const setPriceFilter = (minPrice, maxPrice) => {
@@ -243,3 +259,4 @@ export const setPriceFilter = (minPrice, maxPrice) => {
     dispatch({ type: SET_PRICE_FILTER, payload: minPrice, maxPrice });
   };
 };
+

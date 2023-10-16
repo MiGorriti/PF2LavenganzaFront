@@ -1,3 +1,4 @@
+
 import {
   GET_PROPERTY,
   POST_PROPERTY,
@@ -11,7 +12,9 @@ import {
   GET_RESERVATIONS,
   GET_RESERVATIONS_BY_HOME,
   SET_PRICE_FILTER,
+  GET_REVIEWS_HOME,
 } from "../action/type-actions";
+
 
 let initialState = {
   property: [],
@@ -21,12 +24,14 @@ let initialState = {
   filterCategory: [],
   filterLocation: [],
   propertyDetail: {},
+
   loginUser: [],
   isAuthenticated: false,
   reservations: [],
   minPrice: "",
   maxPrice: "",
 };
+
 
 function rootReducer(state = initialState, action) {
   switch (action.type) {
@@ -84,6 +89,29 @@ function rootReducer(state = initialState, action) {
         reservations: action.payload,
       };
 
+
+                case GET_RESERVATIONS:
+                    return {
+                        ...state,
+                        reservations: action.payload
+                    }
+                
+                case GET_RESERVATIONS_BY_HOME:
+                    return {
+                        ...state, 
+                        reservations: action.payload
+                    }
+                case GET_REVIEWS_HOME:
+                    return {
+                        ...state,
+                        reviews: action.payload
+                    }
+        default:
+            return {
+                ...state
+            }
+    }
+
     case GET_RESERVATIONS_BY_HOME:
       return {
         ...state,
@@ -104,6 +132,7 @@ function rootReducer(state = initialState, action) {
         ...state,
       };
   }
+
 }
 
 export default rootReducer;
