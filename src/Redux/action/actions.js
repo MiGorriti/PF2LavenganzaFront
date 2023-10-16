@@ -13,6 +13,7 @@ import {
   GET_RESERVATIONS,
   CANCEL_RESERVE,
   GET_RESERVATIONS_BY_HOME,
+  SET_PRICE_FILTER,
 } from "./type-actions";
 
 export const getLogin = (formData) => {
@@ -233,5 +234,12 @@ export const cancel = (id) => {
     } catch (error) {
       console.error(error);
     }
+  };
+};
+export const setPriceFilter = (minPrice, maxPrice) => {
+  return async function (dispatch) {
+    console.log(minPrice);
+    console.log(maxPrice);
+    dispatch({ type: SET_PRICE_FILTER, payload: minPrice, maxPrice });
   };
 };

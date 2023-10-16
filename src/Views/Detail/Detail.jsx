@@ -10,7 +10,7 @@ import {
 import { useSelector, useDispatch } from "react-redux";
 import { getDetail, getReservationsByHome } from "../../Redux/action/actions";
 import { useNavigate, useParams } from "react-router-dom";
-
+import { Link } from "react-router-dom";
 import axios from "axios";
 import FormReserva from "../FormReserve/FormReserva";
 
@@ -117,15 +117,20 @@ const Detail = () => {
         </p>
         <div className="flex items-center mt-4">
           <FontAwesomeIcon icon={faMapMarkerAlt} className="mr-2" />
-          <span>View Location on Map</span>
+          <Link
+            to="https://www.google.com/maps/place/48%C2%B052'36.0%22S+123%C2%B023'36.0%22W/@-48.8766631,-123.3959082,17z/data=!3m1!4b1!4m4!3m3!8m2!3d-48.8766667!4d-123.3933333?authuser=0&entry=ttu"
+            target="_blank"
+          >
+            View Location on Map
+          </Link>
         </div>
-        <h3 className="text-xl border-t-2 border-black mt-4">Description</h3>
+        <h3 className="text-xl border-t-2 border-black mt-4">
+          What This Place Offers:
+        </h3>
         <p>{houseDetail.description}</p>
         {/* <h1 className="text-2xl border-t-2 border-black mt-4">Bedrooms</h1> */}
         {/* Servicios */}
-        <h1 className="text-2xl border-t-2 border-black mt-4">
-          What This Place Offers
-        </h1>
+        <h1 className="text-2xl border-t-2 border-black mt-4"></h1>
 
         <div>
           <h3>Property reserved for:</h3>
@@ -191,16 +196,7 @@ const Detail = () => {
             onChange={(e) => setDepartureDate(e.target.value)}
           />
         </div>
-        <div className="mt-2">
-          <label className="block mb-1">Guests:</label>
-          <input
-            type="number"
-            min="1"
-            className="border p-2 w-full"
-            value={guests}
-            onChange={(e) => setGuests(e.target.value)}
-          />
-        </div>
+
         <div className="mt-2 text-center">
           {userLoggedIn && (
             <FormReserva
@@ -214,7 +210,7 @@ const Detail = () => {
         </div>
         {/* Total */}
         <div className="border-t-2 border-black mt-4">
-          <div className="mt-2">Total: ${calculateTotal()}</div>
+          <div className="mt-2">Total:${nightPrice}</div>
         </div>
 
         {/* Best Reviews */}

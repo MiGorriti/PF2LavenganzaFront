@@ -29,7 +29,7 @@ const Form = () => {
     nightPrice: "",
     homeCapacity: "",
     category: [],
-    availability: "",
+
     location: [],
   });
   console.log("algoalao", postForm);
@@ -114,7 +114,7 @@ const Form = () => {
         nightPrice: postForm.nightPrice,
         homeCapacity: postForm.homeCapacity,
         Category: postForm.category,
-        availability: postForm.availability,
+
         Location: postForm.location,
         email: UserData.email,
         password: UserData.name,
@@ -146,21 +146,6 @@ const Form = () => {
                 class="form-control input-md"
                 onChange={changeHandler}
                 value={postForm.title}
-                style={{ backgroundColor: "#333" }}
-              />
-            </div>
-          </div>
-
-          <div class="form-group">
-            <label class="col-md-4 control-label" for="availability"></label>
-            <div class="col-md-4">
-              <input
-                name="availability"
-                type="text"
-                placeholder="Availability"
-                class="form-control input-md"
-                onChange={changeHandler}
-                value={postForm.availability}
                 style={{ backgroundColor: "#333" }}
               />
             </div>
