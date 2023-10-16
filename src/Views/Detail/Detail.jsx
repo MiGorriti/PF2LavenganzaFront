@@ -13,6 +13,8 @@ import { useNavigate, useParams } from "react-router-dom";
 import { initMercadoPago } from "@mercadopago/sdk-react";
 import axios from "axios";
 import FormReserva from "../FormReserve/FormReserva";
+import FormReviews from "../Reviews/FormReviews";
+import Reviews from "../Reviews/Reviews";
 
 const Detail = () => {
   const navigate = useNavigate();
@@ -203,6 +205,14 @@ const Detail = () => {
           />
         </div>
         {/* Total */}
+
+        <div>
+          <FormReviews
+            key={idHouse}
+            id={idHouse}
+          />
+        </div>
+
         <div className="border-t-2 border-black mt-4">
           <div className="mt-2">Total: ${calculateTotal()}</div>
         </div>
@@ -213,6 +223,14 @@ const Detail = () => {
         </h1>
         {/* Implementa aquí los comentarios */}
       </div>
+
+      <div>
+        <Reviews
+          key={idHouse}
+          id={idHouse}
+        />
+      </div>
+
     </div>
   );
 };

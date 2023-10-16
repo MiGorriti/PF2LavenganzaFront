@@ -1,4 +1,4 @@
-import { GET_PROPERTY, POST_PROPERTY, GET_CATEGORYS, FILTER_LOCATION, FILTER_CATEGORY, GET_LOCATIONS, GET_DETAIL, LOGIN_USER, SET_AUTH_STATUS, GET_RESERVATIONS, GET_RESERVATIONS_BY_HOME} from '../action/type-actions';
+import { GET_PROPERTY, POST_PROPERTY, GET_CATEGORYS, FILTER_LOCATION, FILTER_CATEGORY, GET_LOCATIONS, GET_DETAIL, LOGIN_USER, SET_AUTH_STATUS, GET_RESERVATIONS, GET_RESERVATIONS_BY_HOME, GET_REVIEWS_HOME} from '../action/type-actions';
 
 let initialState = {
   property: [],
@@ -10,7 +10,8 @@ let initialState = {
   propertyDetail: {},
   loginUser:[],
   isAuthenticated:false,
-  reservations:[]
+  reservations:[],
+  reviews:[]
 }
 
 
@@ -74,6 +75,11 @@ function rootReducer(state = initialState, action) {
                     return {
                         ...state, 
                         reservations: action.payload
+                    }
+                case GET_REVIEWS_HOME:
+                    return {
+                        ...state,
+                        reviews: action.payload
                     }
         default:
             return {

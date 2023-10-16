@@ -12,7 +12,8 @@ import {
   GET_RESERVATIONS,
   LOGIN_USER,
   CANCEL_RESERVE,
-  GET_RESERVATIONS_BY_HOME
+  GET_RESERVATIONS_BY_HOME,
+  GET_REVIEWS_HOME
 } from "./type-actions";
 
 export const getLogin = (formData) => {
@@ -220,6 +221,18 @@ export const cancel=(id)=>{
       const response= await axios.delete(`http://localhost:3001/reservation/delete/${id}`)
 
       return dispatch({type: CANCEL_RESERVE})
+    } catch (error) {
+      console.error(error);
+    }
+  }
+}
+
+export const getReviews=(idHome)=>{
+  return async function(dispatch){
+    try {
+      const response= await axios.get(`http://localhost:3001/review/home/${idHome}`);
+      const reviews= response.data;
+      return dispatch({type: GET_REVIEWS_HOME, payload:reviews});
     } catch (error) {
       console.error(error);
     }
