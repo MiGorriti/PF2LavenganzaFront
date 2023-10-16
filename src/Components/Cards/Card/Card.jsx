@@ -12,7 +12,6 @@ const Card = ({
   homeCapacity,
   Category,
 }) => {
-
   return (
     <div className="row">
       <div key={id} className="col-xs-12 col-sm-6 col-md-4 ">
@@ -25,12 +24,13 @@ const Card = ({
           </div>
           <div className="card-body">
             <h4 className="text-blue">{title}</h4>
-            <h4 className="text-black">{Category}</h4> {/* Muestra la categoría aquí */}
+            <h4 className="text-black">{Category}</h4>{" "}
+            {/* Muestra la categoría aquí */}
             <p className="card-text">Beds: {numBeds}</p>
             <p className="card-text">Baths: {numBaths}</p>
             <NavLink to={`/Detail/${id}`}>
               <button type="button" className="btn btn-light-blue btn-md">
-                Ver más
+                Discover
               </button>
             </NavLink>
           </div>

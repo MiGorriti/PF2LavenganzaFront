@@ -1,33 +1,42 @@
-import {useEffect} from 'react'
-import { useDispatch, useSelector } from 'react-redux'
-import { cancel, getReservations } from '../../Redux/action/actions'
-import { useState } from 'react'
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { cancel, getReservations } from "../../Redux/action/actions";
+import { useState } from "react";
 
 const Reservations = () => {
+  const [email, setEmail] = useState({});
 
-    const [userData, setUserData]= useState([]);
+  console.log(email);
 
-    console.log(userData);
+  const meses = [
+    "January",
+    "February",
+    "March",
+    "April",
+    "May",
+    "June",
+    "July",
+    "August",
+    "September",
+    "October",
+    "November",
+    "December",
+  ];
 
-    const meses=[
-        "January", "February", "March", "April", "May", "June", "July",
-        "August", "September", "October", "November", "December"
-    ]
-
-    useEffect(()=>{
-    const storedUserData = localStorage.getItem('userData');
+  useEffect(() => {
+    const storedUserData = localStorage.getItem("userData");
     if (storedUserData) {
       try {
         const userData = JSON.parse(storedUserData);
-        setUserData(userData)
+        setEmail(userData);
         // Utiliza la información del usuario aquí si es necesario
+        dispatch(getReservations(userData.email));
       } catch (error) {
-        console.error('Error al parsear JSON:', error);
+        console.error("Error al parsear JSON:", error);
       }
     }
-  }, [])
+  }, []);
 
-    const dispatch=useDispatch()
 
     useEffect(()=>{
         dispatch(getReservations("pepito@gmail.com"))  //EL EMAIL FUE HARDCODEADO PARA HACER LAS PRUEBAS
@@ -35,14 +44,18 @@ const Reservations = () => {
         return ()=> (dispatch(getReservations("pepito@gmail.com")))
     },[dispatch]);
 
-    const reservations=useSelector((state)=> state.reservations);
+  const dispatch = useDispatch();
 
-    const cancelReserve=(event, id)=>{
-        dispatch(cancel(id));
-    }
+
+  const reservations = useSelector((state) => state.reservations);
+
+  const cancelReserve = (event, id) => {
+    dispatch(cancel(id));
+  };
 
   return (
     <div>
+
         <h1>Your reservations</h1>
         <div>
             {
@@ -62,8 +75,9 @@ const Reservations = () => {
                 </li>
             }
         </div>
-    </div>
-  )
-}
 
-export default Reservations
+    </div>
+  );
+};
+
+export default Reservations;
