@@ -1,16 +1,14 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getCars } from "../../Redux/action/actions";
-// import Filters from "../../Components/Filters/Filters";
+import Filters from "../../Components/Filters/Filters";
 import Cards from "../../Components/Cards/Cards";
-import { IconSearch } from "@tabler/icons-react";
 import ReactPaginate from "react-paginate";
-//import styles from "./Home.module.css";
 
 function Home() {
   const dispatch = useDispatch();
   const [currentPage, setCurrentPage] = useState(0);
-  const propertyPerPage = 10;
+  const propertyPerPage = 12;
 
   useEffect(() => {
     dispatch(getCars());
@@ -31,7 +29,7 @@ function Home() {
         Find your ideal holiday place!
       </h1>
 
-      {/* <Filters /> */}
+      <Filters />
       <Cards property={currentPageData} />
       <ReactPaginate
         previousLabel={"Previous"}

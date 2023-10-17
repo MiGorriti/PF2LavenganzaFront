@@ -1,12 +1,18 @@
 import React from "react";
 import Card from "./Card/Card";
+import { useSelector } from "react-redux";
+
 import "./Cards.css";
 
 const Cards = ({ property }) => {
+  const filteredProperties = property.filter(
+    (prop) => prop.isPublished === true
+  );
+
   return (
     <div className="cartascontainer">
       <div className="card-deck row">
-        {property.map((prop) => (
+        {filteredProperties?.map((prop) => (
           <Card
             key={prop.id}
             id={prop.id}
