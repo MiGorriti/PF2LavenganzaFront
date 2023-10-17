@@ -3,7 +3,7 @@ import axios from "axios";
 // import { reserve } from "../../Redux/action/actions";
 import { initMercadoPago } from "@mercadopago/sdk-react";
 
-const FormReserva = ({ id, title, nightPrice }) => {
+const FormReserva = ({ id }) => {
   let i = 0;
 
   const meses = [
@@ -62,34 +62,13 @@ const FormReserva = ({ id, title, nightPrice }) => {
       .catch((error) => {
         // Si ocurre un error
         console.log("error");
-        alert("Error al crear review");
+        alert("Error al crear reserva");
       });
 
     setInput({ month: "default", numHuespedes: 0, email: "", password: "" });
   };
 
   initMercadoPago("TEST-0e901727-9400-4f99-8e37-20e241e7f075");
-
-
-        console.log(newReservation)
-
-        // dispatch(reserve(reservation));
-        axios
-        .post("http://localhost:3001/reservation/create", newReservation)
-        .then((response) => {
-          // Si la respuesta es exitosa
-          console.log("Añadida");
-          alert("Reservación añadida");
-        })
-        .catch((error) => {
-          // Si ocurre un error
-          console.log("error");
-          alert("Error al crear reserva");
-        });
-
-        
-        setInput({ month:"default", numHuespedes:0, email:"", password:""})
-
   const createPreference = async () => {
     try {
       const response = await axios.post(
@@ -107,7 +86,6 @@ const FormReserva = ({ id, title, nightPrice }) => {
       return init_point;
     } catch (error) {
       console.log(error);
-
     }
   };
 
@@ -133,6 +111,9 @@ const FormReserva = ({ id, title, nightPrice }) => {
         name="numHuespedes"
         value={input.numHuespedes}
         onChange={handleInputChange}
+        style={{
+          marginBottom: "5px", // Agrega el margen inferior de 5px
+        }}
       />
 
       <label htmlFor="email">Email</label>
@@ -141,6 +122,11 @@ const FormReserva = ({ id, title, nightPrice }) => {
         name="email"
         value={input.email}
         onChange={handleInputChange}
+        style={{
+          marginBottom: "2px",
+          backgroundColor: "#333",
+          border: "1px solid white",
+        }}
       />
 
       <label htmlFor="password">Password</label>
@@ -149,9 +135,14 @@ const FormReserva = ({ id, title, nightPrice }) => {
         name="password"
         value={input.password}
         onChange={handleInputChange}
+        style={{ backgroundColor: "#333", border: "1px solid white" }}
       />
 
-      <button onClick={handleBuy} type="submit">
+      <button
+        onClick={handleBuy}
+        type="submit"
+        style={{ backgroundColor: "#4b4a4c" }}
+      >
         Reservar
       </button>
     </form>

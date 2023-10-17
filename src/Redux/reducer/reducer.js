@@ -1,4 +1,3 @@
-
 import {
   GET_PROPERTY,
   POST_PROPERTY,
@@ -15,7 +14,6 @@ import {
   GET_REVIEWS_HOME,
 } from "../action/type-actions";
 
-
 let initialState = {
   property: [],
   copyPropertys: [],
@@ -24,14 +22,13 @@ let initialState = {
   filterCategory: [],
   filterLocation: [],
   propertyDetail: {},
-
   loginUser: [],
   isAuthenticated: false,
   reservations: [],
   minPrice: "",
   maxPrice: "",
+  reviews: [],
 };
-
 
 function rootReducer(state = initialState, action) {
   switch (action.type) {
@@ -82,36 +79,11 @@ function rootReducer(state = initialState, action) {
         ...state,
         isAuthenticated: action.payload,
       };
-
     case GET_RESERVATIONS:
       return {
         ...state,
         reservations: action.payload,
       };
-
-
-                case GET_RESERVATIONS:
-                    return {
-                        ...state,
-                        reservations: action.payload
-                    }
-                
-                case GET_RESERVATIONS_BY_HOME:
-                    return {
-                        ...state, 
-                        reservations: action.payload
-                    }
-                case GET_REVIEWS_HOME:
-                    return {
-                        ...state,
-                        reviews: action.payload
-                    }
-        default:
-            return {
-                ...state
-            }
-    }
-
     case GET_RESERVATIONS_BY_HOME:
       return {
         ...state,
@@ -121,18 +93,22 @@ function rootReducer(state = initialState, action) {
       const { minPrice, maxPrice } = action.payload;
       const filteredProperties = state.property.filter(
         (property) =>
-          property.nightPrice >= minPrice && property.price <= maxPrice
+          property.nightPrice >= minPrice && property.nightPrice <= maxPrice
       );
       return {
         ...state,
         property: filteredProperties,
+        minPrice,
+        maxPrice,
       };
-    default:
+    case GET_REVIEWS_HOME:
       return {
         ...state,
+        reviews: action.payload,
       };
+    default:
+      return state;
   }
-
 }
 
 export default rootReducer;

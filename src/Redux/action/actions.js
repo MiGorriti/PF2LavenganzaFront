@@ -13,7 +13,7 @@ import {
   GET_RESERVATIONS,
   CANCEL_RESERVE,
   GET_RESERVATIONS_BY_HOME,
-  GET_REVIEWS_HOME
+  GET_REVIEWS_HOME,
   SET_PRICE_FILTER,
 } from "./type-actions";
 
@@ -207,11 +207,11 @@ export const getReservations = (UserEmail) => {
   };
 };
 
-export const getReservationsByHome = (idHome) => {
+export const getReservationsByHome = (idHouse) => {
   return async function (dispatch) {
     try {
       const response = await axios.get(
-        `http://localhost:3001/reservation/home/${idHome}`
+        `http://localhost:3001/reservation/home/${idHouse}`
       );
       const reservations = response.data;
       return dispatch({
@@ -235,23 +235,23 @@ export const cancel = (id) => {
     } catch (error) {
       console.error(error);
     }
-  }
-}
+  };
+};
 
-export const getReviews=(idHome)=>{
-  return async function(dispatch){
+export const getReviews = (idHouse) => {
+  return async function (dispatch) {
     try {
-      const response= await axios.get(`http://localhost:3001/review/home/${idHome}`);
-      const reviews= response.data;
-      return dispatch({type: GET_REVIEWS_HOME, payload:reviews});
+      const response = await axios.get(
+        `http://localhost:3001/review/home/${idHouse}`
+      );
+      const reviews = response.data;
+      return dispatch({ type: GET_REVIEWS_HOME, payload: reviews });
     } catch (error) {
       console.error(error);
     }
-  }
-}
-
   };
 };
+
 export const setPriceFilter = (minPrice, maxPrice) => {
   return async function (dispatch) {
     console.log(minPrice);
@@ -259,4 +259,3 @@ export const setPriceFilter = (minPrice, maxPrice) => {
     dispatch({ type: SET_PRICE_FILTER, payload: minPrice, maxPrice });
   };
 };
-

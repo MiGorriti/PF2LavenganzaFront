@@ -187,6 +187,7 @@ const Detail = () => {
             className="border p-2 w-full"
             value={arrivalDate}
             onChange={(e) => setArrivalDate(e.target.value)}
+            style={{ backgroundColor: "#333", border: "1px solid white" }}
           />
         </div>
         <div className="mt-2">
@@ -196,6 +197,7 @@ const Detail = () => {
             className="border p-2 w-full"
             value={departureDate}
             onChange={(e) => setDepartureDate(e.target.value)}
+            style={{ backgroundColor: "#333", border: "1px solid white" }}
           />
         </div>
 
@@ -212,31 +214,19 @@ const Detail = () => {
         </div>
         {/* Total */}
 
-        <div>
-          <FormReviews
-            key={idHouse}
-            id={idHouse}
-          />
-        </div>
-
         <div className="border-t-2 border-black mt-4">
           <div className="mt-2">Total:${nightPrice}</div>
         </div>
 
         {/* Best Reviews */}
-        <h1 className="text-xl text-center border-t-2 border-black mt-6">
-          Best Reviews
+        <h1 className="text-xl text-center border-t-2 border-black mt-6 mb-5">
+          Review box
         </h1>
         {/* Implementa aquí los comentarios */}
+        <div>
+          <FormReviews key={idHouse} id={idHouse} />
+        </div>
       </div>
-
-      <div>
-        <Reviews
-          key={idHouse}
-          id={idHouse}
-        />
-      </div>
-
     </div>
   );
 };
