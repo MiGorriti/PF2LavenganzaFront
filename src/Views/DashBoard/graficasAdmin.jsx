@@ -44,6 +44,28 @@ const Graficas = () => {
         }
     };
 
+    const getActiveUsersCount = () => {
+        let activeUsersPerMonth = {};
+        statData.forEach(data => {
+            data.userIds.forEach(userId => {
+                if (activeUsersPerMonth[data.month]) {
+                    activeUsersPerMonth[data.month].add(userId);
+                } else {
+                    activeUsersPerMonth[data.month] = new Set([userId]);
+                }
+            });
+        });
+        return Object.keys(activeUsersPerMonth).map(month => {
+            return {
+                month: monthNames[month],
+                users: activeUsersPerMonth[month].size,
+            };
+        });
+    };
+
+    const activeUsersData = getActiveUsersCount();
+
+
     const pieChartData = {
         labels: processDataForCharts(),
         datasets: [
@@ -61,18 +83,18 @@ const Graficas = () => {
             {
                 label: 'Total reservations',
                 data: processDataForCharts('totalReservationPrice'),
-                backgroundColor: 'blue',
+                backgroundColor: ['red', 'blue', 'green'],
             },
         ],
     };
 
-    const barrasVentasPorMesData = {
-        labels: processDataForCharts(),
+    const UsuariosActivos = {
+        labels: activeUsersData.map(data => data.month),
         datasets: [
             {
-                label: 'Total profits',
-                data: processDataForCharts('totalEarnings'),
-                backgroundColor: 'green',
+                label: 'Active Users per Month',
+                data: activeUsersData.map(data => data.users),
+                backgroundColor: ['red', 'blue', 'green'],
             },
         ],
     };
@@ -82,19 +104,19 @@ const Graficas = () => {
             <div className="graficas-section">
                 <h1 className='graficas-heading'>Total reservations</h1>
                 <div className='miGraficoContainer'>
-                    <Bar data={barrasComisionesPorDiaData} />
+                    <Pie data={barrasComisionesPorDiaData} />
                 </div>
             </div>
             <div className="graficas-section">
                 <h1 className='graficas-heading'>Number of reservations</h1>
                 <div className='miGraficoContainer'>
-                    <Pie data={pieChartData} />
+                    <Bar data={pieChartData} />
                 </div>
             </div>
             <div className="graficas-section">
-                <h1 className='graficas-heading'>Total profits</h1>
+                <h1 className='graficas-heading'>Active Users per Month</h1>
                 <div className='miGraficoContainer'>
-                    <Bar data={barrasVentasPorMesData} />
+                    <Bar data={UsuariosActivos} />
                 </div>
             </div>
         </div>
