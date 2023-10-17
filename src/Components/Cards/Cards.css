@@ -4,3 +4,16 @@
   gap: 16px; /* Espacio entre las tarjetas */
   justify-content: center; /* Distribuye el espacio horizontalmente entre las tarjetas */
 }
+.card-deck {
+  display: flex;
+  flex-wrap: nowrap; /* Evita que las tarjetas se envuelvan en múltiples filas */
+  overflow-x: auto; /* Agrega una barra de desplazamiento horizontal si las tarjetas no caben en el ancho de la pantalla */
+  scroll-snap-type: x proximity; /* Añade desplazamiento con "snap" para alinear tarjetas */
+}
+.card-deck .card {
+  margin-right: 20px; /* Agrega un margen derecho de 10px entre las tarjetas */
+}
+.card-img-top {
+  width: 300px;
+  height: 187px;
+}

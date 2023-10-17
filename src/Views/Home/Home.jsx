@@ -27,6 +27,10 @@ function Home() {
 
   return (
     <div className="relative">
+      <h1 className="titulardo" style={{ textAlign: "center" }}>
+        Find your ideal holiday place!
+      </h1>
+
       {/* <Filters /> */}
       <Cards property={currentPageData} />
       <ReactPaginate

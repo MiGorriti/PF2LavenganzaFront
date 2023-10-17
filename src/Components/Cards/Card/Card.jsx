@@ -23,8 +23,8 @@ const Card = ({
             </a>
           </div>
           <div className="card-body">
-            <h4 className="text-blue">{title}</h4>
-            <h4 className="text-black">{Category}</h4>{" "}
+            <h4 className="text-white">{title}</h4>
+            <h4 className="text-blue">{Category}</h4>{" "}
             {/* Muestra la categoría aquí */}
             <p className="card-text">Beds: {numBeds}</p>
             <p className="card-text">Baths: {numBaths}</p>
