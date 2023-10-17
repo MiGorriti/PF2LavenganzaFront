@@ -10,7 +10,7 @@ import ReactPaginate from "react-paginate";
 function Home() {
   const dispatch = useDispatch();
   const [currentPage, setCurrentPage] = useState(0);
-  const propertyPerPage = 5;
+  const propertyPerPage = 10;
 
   useEffect(() => {
     dispatch(getCars());

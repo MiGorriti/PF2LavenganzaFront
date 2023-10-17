@@ -3,7 +3,7 @@ import axios from "axios";
 // import { reserve } from "../../Redux/action/actions";
 import { initMercadoPago } from "@mercadopago/sdk-react";
 
-const FormReserva = ({ id }) => {
+const FormReserva = ({ id, title, nightPrice }) => {
   let i = 0;
 
   const meses = [
@@ -62,13 +62,14 @@ const FormReserva = ({ id }) => {
       .catch((error) => {
         // Si ocurre un error
         console.log("error");
-        alert("Error al crear reserva");
+        alert("Error al crear review");
       });
 
     setInput({ month: "default", numHuespedes: 0, email: "", password: "" });
   };
 
   initMercadoPago("TEST-0e901727-9400-4f99-8e37-20e241e7f075");
+
   const createPreference = async () => {
     try {
       const response = await axios.post(
@@ -111,9 +112,6 @@ const FormReserva = ({ id }) => {
         name="numHuespedes"
         value={input.numHuespedes}
         onChange={handleInputChange}
-        style={{
-          marginBottom: "5px", // Agrega el margen inferior de 5px
-        }}
       />
 
       <label htmlFor="email">Email</label>
@@ -123,9 +121,9 @@ const FormReserva = ({ id }) => {
         value={input.email}
         onChange={handleInputChange}
         style={{
+          marginTop: "2px",
           marginBottom: "2px",
           backgroundColor: "#333",
-          border: "1px solid white",
         }}
       />
 
@@ -135,13 +133,13 @@ const FormReserva = ({ id }) => {
         name="password"
         value={input.password}
         onChange={handleInputChange}
-        style={{ backgroundColor: "#333", border: "1px solid white" }}
+        style={{ marginBottom: "2px", backgroundColor: "#333" }}
       />
 
       <button
         onClick={handleBuy}
-        type="submit"
         style={{ backgroundColor: "#4b4a4c" }}
+        type="submit"
       >
         Reservar
       </button>
