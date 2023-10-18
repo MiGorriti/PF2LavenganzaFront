@@ -47,7 +47,7 @@ const Filters = () => {
         className="bg-black text-white p-2 rounded"
         onChange={handleSelector}
       >
-        <option value="default">Default</option>
+        <option value="default">Category</option>
         {category &&
           category.map((cat) => (
             <option key={cat.id} value={cat.name}>
@@ -60,7 +60,7 @@ const Filters = () => {
         onChange={handleSelector2}
         style={{ marginRight: "2px" }}
       >
-        <option value="default">Default</option>
+        <option value="default">Location</option>
         {location &&
           location?.map((loc) => (
             <option key={loc.id} value={loc.direction}>
