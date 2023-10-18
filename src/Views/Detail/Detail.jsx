@@ -106,8 +106,8 @@ const Detail = () => {
         {/* Título y descripción */}
         <h1 className="text-3xl text-black mt-4">{houseDetail.title}</h1>
         <p>
-          {houseDetail.homeCapacity} guests - {houseDetail.numRooms} rooms -{" "}
-          {houseDetail.numBeds} beds - {houseDetail.numBaths} baths
+          {houseDetail.homeCapacity} guests -{houseDetail.numBeds} beds -{" "}
+          {houseDetail.numBaths} baths
         </p>
         <div className="flex items-center mt-4">
           <FontAwesomeIcon icon={faMapMarkerAlt} className="mr-2" />
@@ -137,6 +137,10 @@ const Detail = () => {
               );
             })}
           </li>
+          <div>
+            <h2 style={{ textAlign: "center" }}>Reviews</h2>
+            <Reviews key={idHouse} id={idHouse} />
+          </div>
         </div>
 
         <div className="flex items-center mt-2">
@@ -169,7 +173,7 @@ const Detail = () => {
       {/* Columna Derecha */}
       <div className="w-1/3 text-black p-6">
         {/* Precio por noche */}
-        <div className="text-3xl">${houseDetail.nightPrice} / Night</div>
+        <div className="text-3xl">${houseDetail.nightPrice} / Month</div>
 
         {/* Selección de fechas y botón de reserva */}
         <div className="mt-4">
@@ -225,10 +229,6 @@ const Detail = () => {
               onLogout={handleLogout}
             />
           )}
-        </div>
-
-        <div>
-          <Reviews key={idHouse} id={idHouse} />
         </div>
       </div>
     </div>

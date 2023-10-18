@@ -112,33 +112,37 @@ const FormReserva = ({ id, title, nightPrice }) => {
         name="numHuespedes"
         value={input.numHuespedes}
         onChange={handleInputChange}
-      />
-
-      <label htmlFor="email">Email</label>
-      <input
-        type="text"
-        name="email"
-        value={input.email}
-        onChange={handleInputChange}
         style={{
-          marginTop: "2px",
-          marginBottom: "2px",
-          backgroundColor: "#333",
+          marginRight: "15px",
         }}
       />
-
-      <label htmlFor="password">Password</label>
-      <input
-        type="password"
-        name="password"
-        value={input.password}
-        onChange={handleInputChange}
-        style={{ marginBottom: "2px", backgroundColor: "#333" }}
-      />
-
+      <div>
+        <label htmlFor="email">Email</label>
+        <input
+          type="text"
+          name="email"
+          value={input.email}
+          onChange={handleInputChange}
+          style={{
+            marginTop: "2px",
+            marginBottom: "2px",
+            backgroundColor: "#333",
+          }}
+        />
+      </div>
+      <div>
+        <label htmlFor="password">Password</label>
+        <input
+          type="password"
+          name="password"
+          value={input.password}
+          onChange={handleInputChange}
+          style={{ marginBottom: "2px", backgroundColor: "#333" }}
+        />
+      </div>
       <button
         onClick={handleBuy}
-        style={{ backgroundColor: "#4b4a4c" }}
+        style={{ marginLeft: "5px", backgroundColor: "#4b4a4c" }}
         type="submit"
       >
         Reservar

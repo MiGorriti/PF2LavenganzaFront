@@ -47,7 +47,6 @@ function App() {
             }
           ></Route>
           <Route exact path="/Home" element={<Home />}></Route>
-          <Route path="/Form" element={<Form />}></Route>
 
           <Route exact path="/Register" element={<FormUser />}></Route>
           <Route
@@ -57,6 +56,7 @@ function App() {
           ></Route>
           <Route exact path="/Terms" element={<TerminosYCondiciones />}></Route>
           <Route element={<ProtectedR />}>
+            <Route path="/Form" element={<Form />}></Route>
             <Route exact path="/admin" element={<AdminDashboard />}></Route>
           </Route>
 

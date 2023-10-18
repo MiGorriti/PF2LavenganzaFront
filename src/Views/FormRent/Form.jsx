@@ -6,6 +6,7 @@ import {
   postProperty,
 } from "../../Redux/action/actions.js";
 import "./FormRent.css";
+import validation from "./validation.js";
 
 const Form = () => {
   const dispatch = useDispatch();
@@ -22,17 +23,17 @@ const Form = () => {
   const [UserData, setUserData] = useState([]);
   const [postForm, setPostForm] = useState({
     title: "",
-    image: [],
+    image: file,
     description: "",
     numBeds: "",
     numBaths: "",
     nightPrice: "",
     homeCapacity: "",
     category: [],
-
     location: [],
   });
-  console.log("algoalao", postForm);
+  const [errors, setErrors] = useState({});
+
   useEffect(() => {
     const storedUserData = localStorage.getItem("userData");
     if (storedUserData) {
@@ -46,6 +47,7 @@ const Form = () => {
       }
     }
   }, []);
+
   const changeHandler = (e) => {
     const { name, value, direction } = e.target;
 
@@ -54,41 +56,54 @@ const Form = () => {
       [name]: value,
       [direction]: value,
     });
+    const errors = validation(postForm);
+    setErrors(errors);
   };
 
   const handleImage = (e) => {
     const files = e.target.files;
     const fileList = [];
-    let loadedCount = 0;
+
     for (let i = 0; i < files.length; i++) {
-      const reader = new FileReader();
-      reader.onload = (event) => {
-        const imageData = event.target.result;
-        fileList.push(imageData);
-        loadedCount++;
-        if (loadedCount === files.length) {
-          setFile(fileList);
-          setImage(fileList);
-          previewFiles(fileList);
+      const file = files[i];
+
+      if (file instanceof Blob || file instanceof File) {
+        const reader = new FileReader();
+        reader.onload = (event) => {
+          const imageData = event.target.result;
+          fileList.push(imageData);
+
+          if (fileList.length === files.length) {
+            setFile(fileList);
+            setImage(fileList);
+            previewFiles(fileList);
+          }
+        };
+
+        if (file instanceof Blob) {
+          reader.readAsDataURL(file);
         }
-      };
-      reader.readAsDataURL(files[i]);
+      }
     }
   };
 
   const previewFiles = (files) => {
     const imagePreviews = [];
-    const readers = [];
+
     for (let i = 0; i < files.length; i++) {
       const reader = new FileReader();
-      readers.push(reader);
-      reader.readAsDataURL(files[i]);
-      reader.onloadend = () => {
-        imagePreviews.push(reader.result);
+      reader.onload = (event) => {
+        const imageData = event.target.result;
+        imagePreviews.push(imageData);
+
         if (imagePreviews.length === files.length) {
           setImage(imagePreviews);
         }
       };
+
+      if (files[i] instanceof Blob) {
+        reader.readAsDataURL(files[i]);
+      }
     }
   };
 
@@ -104,7 +119,10 @@ const Form = () => {
   const submitHandler = async (e) => {
     e.preventDefault();
 
-    if (postForm.category.length > 0) {
+    const errors = validation(postForm);
+    setErrors(errors);
+
+    if (Object.keys(errors).length === 0) {
       const newProperty = {
         title: postForm.title,
         image: file,
@@ -117,8 +135,9 @@ const Form = () => {
 
         Location: postForm.location,
         email: UserData.email,
-        password: UserData.name,
+        password: UserData.password,
       };
+
       setFile(file);
       setProperty([...property, newProperty]);
       console.log("12", newProperty);
@@ -127,7 +146,8 @@ const Form = () => {
 
       alert("Your property has been sucessfully published");
     } else {
-      alert(`There's a Error`);
+      console.log("valident", errors);
+      alert(`There's a Error in the form. Please fix them.`);
     }
   };
   return (
@@ -148,6 +168,7 @@ const Form = () => {
                 value={postForm.title}
                 style={{ backgroundColor: "#333" }}
               />
+              {errors.title && <div className="error">{errors.title}</div>}
             </div>
           </div>
 
@@ -163,6 +184,9 @@ const Form = () => {
                 value={postForm.nightPrice}
                 style={{ backgroundColor: "#333" }}
               />
+              {errors.nightPrice && (
+                <div className="error">{errors.nightPrice}</div>
+              )}
             </div>
           </div>
 
@@ -178,6 +202,9 @@ const Form = () => {
                 value={postForm.homeCapacity}
                 style={{ backgroundColor: "#333" }}
               />
+              {errors.homeCapacity && (
+                <div className="error">{errors.homeCapacity}</div>
+              )}
             </div>
           </div>
 
@@ -193,6 +220,9 @@ const Form = () => {
               >
                 Description
               </textarea>
+              {errors.description && (
+                <div className="error">{errors.description}</div>
+              )}
             </div>
           </div>
 
@@ -208,6 +238,9 @@ const Form = () => {
                 value={postForm.numBaths}
                 style={{ backgroundColor: "#333" }}
               />
+              {errors.numBaths && (
+                <div className="error">{errors.numBaths}</div>
+              )}
             </div>
           </div>
 
@@ -223,6 +256,7 @@ const Form = () => {
                 value={postForm.numBeds}
                 style={{ backgroundColor: "#333" }}
               />
+              {errors.numBeds && <div className="error">{errors.numBeds}</div>}
             </div>
           </div>
 
@@ -243,6 +277,9 @@ const Form = () => {
                     </option>
                   ))}
               </select>
+              {errors.category && (
+                <div className="error">{errors.category}</div>
+              )}
             </div>
           </div>
 
@@ -263,6 +300,9 @@ const Form = () => {
                     </option>
                   ))}
               </select>
+              {errors.location && (
+                <div className="error">{errors.location}</div>
+              )}
             </div>
           </div>
           <div class="form-group">
@@ -278,6 +318,8 @@ const Form = () => {
                 multiple // Permite seleccionar múltiples imágenes
                 onChange={handleImage}
               />
+              {errors.image && <div className="error">{errors.image}</div>}
+
               <div className="botonimag">
                 {file.length > 0 &&
                   file.map((imageData, index) => (

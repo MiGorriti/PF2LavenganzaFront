@@ -65,8 +65,10 @@ function NavBarGuest() {
     navigate("/register");
   };
 
+  const specificEmail = "wanderluxe@gmail.com"; // Reemplaza con el correo específico
+
   return (
-    <nav className="mb-20 w-full">
+    <nav className="mb-36 w-full">
       <ul className={styles.navSup}>
         <li>
           <Link to="/" className="text-lg">
@@ -97,19 +99,22 @@ function NavBarGuest() {
                 My rental reserves
               </Link>
             </li>
-            <li>
-              <Link
-                to="/recommendations"
-                className={`text-xl ${styles.options}`}
-              >
-                Recommendations
-              </Link>
-            </li>
-            <li>
-              <Link to="/Form" className={`text-xl ${styles.options}`}>
-                Rent your property
-              </Link>
-            </li>
+
+            {userData.email === specificEmail && ( // Comprueba el correo electrónico
+              <>
+                <li>
+                  <Link to="/Form" className={`text-xl ${styles.options}`}>
+                    Rent your property
+                  </Link>
+                </li>
+                <li>
+                  <Link to="/admin" className={`text-xl ${styles.options}`}>
+                    Admin
+                  </Link>
+                </li>
+              </>
+            )}
+
             <li>
               <div className={styles.options} onClick={handleUserProfileClick}>
                 <IconUser className="cursor-pointer" size={25} />
@@ -131,24 +136,28 @@ function NavBarGuest() {
           </>
         ) : (
           <>
-            <li className="mr-5 ml-4">
-              <Link
-                to="/login"
-                style={{ fontSize: "1.2rem" }}
-                className="text-white"
-              >
-                Login
-              </Link>
-            </li>
-            <li>
-              <Link
-                to="/register"
-                style={{ fontSize: "1.2rem" }}
-                className="text-white"
-              >
-                Sign Up
-              </Link>
-            </li>
+            <div style={{ marginRight: "10px" }}>
+              <li>
+                <Link
+                  to="/login"
+                  style={{ fontSize: "1.2rem" }}
+                  className="text-white"
+                >
+                  Login
+                </Link>
+              </li>
+            </div>
+            <div>
+              <li>
+                <Link
+                  to="/register"
+                  style={{ fontSize: "1.2rem" }}
+                  className="text-white"
+                >
+                  Sign Up
+                </Link>
+              </li>
+            </div>
           </>
         )}
       </ul>

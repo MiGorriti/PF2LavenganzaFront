@@ -1,6 +1,7 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getReviews } from "../../Redux/action/actions";
+import "./Reviews.css";
 
 const Reviews = ({ id }) => {
   const dispatch = useDispatch();
@@ -13,7 +14,6 @@ const Reviews = ({ id }) => {
   console.log(reviews);
   return (
     <div>
-      <h2>Reviews:</h2>
       <div>
         {!reviews.length ? (
           <h4>There's no comments</h4>
@@ -21,12 +21,30 @@ const Reviews = ({ id }) => {
           <li>
             {reviews?.map((rev) => {
               return (
-                <ul>
-                  <p>{rev.pushDate}</p>
-                  <p>{rev.userName}</p>
-                  <p>Stars: {rev.rating}</p>
-                  <p>{rev.description}</p>
-                </ul>
+                <div className="reviewcuadradito">
+                  <ul>
+                    <p
+                      style={{
+                        textAlign: "center",
+                        backgroundColor: "#050505",
+                        color: "white",
+                      }}
+                    >
+                      {rev.pushDate}
+                    </p>
+                    <p
+                      style={{
+                        textAlign: "center",
+                        backgroundColor: "#050505",
+                        color: "white",
+                      }}
+                    >
+                      {rev.userName}
+                    </p>
+                    <p style={{ textAlign: "center" }}>{rev.description}</p>
+                    <p style={{ textAlign: "center" }}>Stars: {rev.rating}</p>
+                  </ul>
+                </div>
               );
             })}
           </li>
