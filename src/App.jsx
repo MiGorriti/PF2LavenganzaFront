@@ -1,6 +1,11 @@
 import React, { useState } from "react";
 import "./App.css";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  BrowserRouter,
+} from "react-router-dom";
 import Home from "./Views/Home/Home";
 import NavBarGuest from "./Components/NavBarGuest/NavBarGuest";
 import Footer from "./Components/Footer/Footer";
@@ -15,6 +20,7 @@ import TerminosYCondiciones from "./Views/Terms/Terms";
 import Privacidad from "./Views/Terms/Privacy";
 import Reservations from "./Views/Reservations/Reservations";
 import About from "./Views/About/About";
+import { ProtectedR } from "./Components/Utils/protectedR";
 
 function App() {
   const [_isLoggedIn, setIsLoggedIn] = useState(false);
@@ -28,7 +34,7 @@ function App() {
   };
 
   return (
-    <Router>
+    <BrowserRouter>
       <div className="App w-full">
         <NavBarGuest handleLogin={handleLogin} handleLogout={handleLogout} />
         <Routes>
@@ -50,8 +56,9 @@ function App() {
             element={<FormLogin handleLogin={handleLogin} />}
           ></Route>
           <Route exact path="/Terms" element={<TerminosYCondiciones />}></Route>
-
-          <Route exact path="/admin" element={<AdminDashboard />}></Route>
+          <Route element={<ProtectedR />}>
+            <Route exact path="/admin" element={<AdminDashboard />}></Route>
+          </Route>
 
           <Route exact path="/Privacy" element={<Privacidad />}></Route>
           <Route exact path="/About" element={<About />}></Route>
@@ -63,7 +70,7 @@ function App() {
         </Routes>
         <Footer />
       </div>
-    </Router>
+    </BrowserRouter>
   );
 }
 

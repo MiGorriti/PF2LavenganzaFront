@@ -32,14 +32,6 @@ const Detail = () => {
     dispatch(getDetail(idHouse));
   }, []);
 
-  const calculateTotal = () => {
-    if (!arrivalDate || !departureDate) {
-      return 0;
-    }
-    const nights = (departureDate - arrivalDate) / (1000 * 60 * 60 * 24);
-    return nights * houseDetail.nightPrice;
-  };
-
   useEffect(() => {
     dispatch(getReservationsByHome(idHouse));
   }, [dispatch]);
@@ -224,7 +216,19 @@ const Detail = () => {
         </h1>
         {/* Implementa aquí los comentarios */}
         <div>
-          <FormReviews key={idHouse} id={idHouse} />
+          {userLoggedIn && (
+            <FormReviews
+              key={idHouse}
+              id={idHouse}
+              title={title}
+              nightPrice={nightPrice}
+              onLogout={handleLogout}
+            />
+          )}
+        </div>
+
+        <div>
+          <Reviews key={idHouse} id={idHouse} />
         </div>
       </div>
     </div>

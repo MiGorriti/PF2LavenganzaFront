@@ -1,10 +1,14 @@
 import React from "react";
 
 import { Navigate, Outlet } from "react-router-dom";
-export const ProtectedR = ({ canActivate, redirectPath = "/" }) => {
-  console.log(canActivate);
-  if (!canActivate) {
-    return <Navigate to={redirectPath} replace />;
+export const ProtectedR = () => {
+  let userData = localStorage.getItem("userData");
+  let isAdmin = userData ? JSON.parse(userData) : null; // Parsea la cadena JSON a un objeto
+  if (isAdmin === null || !isAdmin) {
+    return <Navigate to="/" />;
   }
-  return <Outlet />;
+  console.log(isAdmin.email);
+  if (isAdmin.email === "wanderluxe@gmail.com") {
+    return <Outlet />;
+  }
 };
