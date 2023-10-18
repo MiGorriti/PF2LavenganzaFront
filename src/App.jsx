@@ -20,7 +20,7 @@ import TerminosYCondiciones from "./Views/Terms/Terms";
 import Privacidad from "./Views/Terms/Privacy";
 import Reservations from "./Views/Reservations/Reservations";
 import About from "./Views/About/About";
-import ProtectedR from "./Components/Utils/protectedR.jsx";
+import ProtectedR from "./Components/Utils/protectedR";
 
 function App() {
   const [_isLoggedIn, setIsLoggedIn] = useState(false);

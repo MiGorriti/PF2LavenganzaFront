@@ -1,7 +1,7 @@
 import React from "react";
 
 import { Navigate, Outlet } from "react-router-dom";
-export const ProtectedR = () => {
+const ProtectedR = () => {
   let userData = localStorage.getItem("userData");
   let isAdmin = userData ? JSON.parse(userData) : null; // Parsea la cadena JSON a un objeto
   if (isAdmin === null || !isAdmin) {
@@ -12,3 +12,5 @@ export const ProtectedR = () => {
     return <Outlet />;
   }
 };
+
+export default ProtectedR;
