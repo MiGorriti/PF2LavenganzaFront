@@ -46,6 +46,7 @@ const FormReviews = ({ id }) => {
       });
 
     setInput({ description: "", rating: "default", email: "", password: "" });
+    window.location.reload();
   };
 
   return (

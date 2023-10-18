@@ -67,13 +67,17 @@
 // export default Reservations;
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { cancel, getReservations } from "../../Redux/action/actions";
+import { cancel, getCars, getReservations } from "../../Redux/action/actions";
 import CardsRes from "./CardsReserve/CardsRes";
 
-const Reservations = () => {
+const Reservations = ({ image }) => {
   const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(getCars());
+  }, [dispatch]);
   const reservations = useSelector((state) => state.reservations);
-
+  const casas = useSelector((state) => state.property);
+  console.log(casas);
   useEffect(() => {
     const storedUserData = localStorage.getItem("userData");
     if (storedUserData) {
@@ -88,16 +92,29 @@ const Reservations = () => {
 
   const cancelReserve = (id) => {
     dispatch(cancel(id));
+    window.location.reload();
   };
+
+  for (let i = 0; i < reservations.length; i++) {
+    for (let j = 0; j < casas.length; j++) {
+      if (reservations[i].PropertyTitle === casas[j].title) {
+        reservations[i].image = casas[j].image;
+      }
+    }
+  }
 
   return (
     <div>
-      <h1>Your reservations</h1>
+      <h1 style={{ textAlign: "center" }}>Your reservations</h1>
       <div>
         {!reservations.length ? (
           <h2>You don't have reservations</h2>
         ) : (
-          <CardsRes reservations={reservations} cancelReserve={cancelReserve} />
+          <CardsRes
+            image={image}
+            reservations={reservations}
+            cancelReserve={cancelReserve}
+          />
         )}
       </div>
     </div>

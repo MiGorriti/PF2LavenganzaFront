@@ -10,8 +10,9 @@ const CardsRes = ({ reservations, cancelReserve }) => {
           <CardRes
             key={res.id}
             id={res.id}
-            title={res.title}
+            title={res.PropertyTitle}
             cancelReserve={cancelReserve} // Pasamos la función cancelReserve
+            image={res.image}
           />
         ))}
       </div>

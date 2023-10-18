@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getReviews } from "../../Redux/action/actions";
 
-const Reviews = ({ id, userData }) => {
+const Reviews = ({ id }) => {
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -10,6 +10,7 @@ const Reviews = ({ id, userData }) => {
   }, [dispatch]);
 
   const reviews = useSelector((state) => state.reviews);
+  console.log(reviews);
   return (
     <div>
       <h2>Reviews:</h2>
@@ -22,6 +23,7 @@ const Reviews = ({ id, userData }) => {
               return (
                 <ul>
                   <p>{rev.pushDate}</p>
+                  <p>{rev.userName}</p>
                   <p>Stars: {rev.rating}</p>
                   <p>{rev.description}</p>
                 </ul>

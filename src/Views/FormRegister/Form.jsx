@@ -5,6 +5,7 @@ import { GoogleLogin } from "react-google-login";
 import { gapi } from "gapi-script";
 import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
+import Modal from "react-modal";
 
 export const FormUser = () => {
   const navigate = useNavigate();
@@ -18,6 +19,15 @@ export const FormUser = () => {
     fullName: "",
     lastName: "",
   });
+  const [isSuccessModalOpen, setIsSuccessModalOpen] = useState(false);
+
+  const openSuccessModal = () => {
+    setIsSuccessModalOpen(true);
+  };
+
+  const closeSuccessModal = () => {
+    setIsSuccessModalOpen(false);
+  };
 
   const clientID =
     "450156946690-8b53lo2n8n1ibojsg7b9sdg1ro2gvo1u.apps.googleusercontent.com";
@@ -36,14 +46,14 @@ export const FormUser = () => {
 
   const submitHandler = async (e) => {
     e.preventDefault();
-  
+
     const newUser = {
       email: postForm.email,
       password: postForm.password,
       fullName: postForm.fullName,
       lastName: postForm.lastName,
     };
-  
+
     // Verifica que todos los campos estén llenos y que se haya aceptado los términos
     if (
       newUser.email &&
@@ -84,13 +94,13 @@ export const FormUser = () => {
     console.log(userData);
     localStorage.setItem("userData", JSON.stringify(userData));
     dispatch(googleRegister(userData));
+    openSuccessModal();
+    //alert(`welcome, ${userData.name}`);
 
-    alert(`welcome, ${userData.name}`);
-
-    navigate("/home");
-    history.go(0);
-
-   
+    setTimeout(() => {
+      navigate("/home");
+      history.go(0);
+    }, 3000); // Espera 2 segundos antes de ejecutar
   };
 
   const onFailure = () => {
@@ -198,7 +208,7 @@ export const FormUser = () => {
                     !acceptedTerms ? "pointer-events-none opacity-50" : ""
                   }`}
                   disabled={!acceptedTerms}
-                  style={{ color: 'black' }} 
+                  style={{ color: "black" }}
                 >
                   Register Now
                 </button>
@@ -226,6 +236,35 @@ export const FormUser = () => {
                 <h3>{user.name}</h3>
               </div>
             </form>
+            <Modal
+              isOpen={isSuccessModalOpen}
+              onRequestClose={closeSuccessModal}
+              contentLabel="Successful Registration Modal"
+              style={{
+                overlay: {
+                  backgroundColor: "rgba(0, 0, 0, 0.5)",
+                },
+                content: {
+                  display: "flex",
+                  flexDirection: "column",
+                  justifyContent: "center",
+                  alignItems: "center",
+                  backgroundColor: "#0D132D",
+                  borderRadius: "8px",
+                  width: "450px",
+                  margin: "auto",
+                  padding: "20px",
+                  marginTop: "55px",
+                  height: "100px",
+                  textAlign: "center",
+                  border: "none",
+                },
+              }}
+            >
+              <h2 style={{ fontSize: "22px", color: "#CCB7D2" }}>
+                Successful Registration, {user && user.name}
+              </h2>
+            </Modal>
           </div>
         </div>
       </div>
