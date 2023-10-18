@@ -1,14 +1,13 @@
 import React from "react";
 import Card from "./Card/Card";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 
 import "./Cards.css";
 
-const Cards = () => {
-
-  const property = useSelector((state)=> state.property)
-
-  const filteredProperties = property.filter((prop) => prop.isPublished === true);
+const Cards = ({ property }) => {
+  const filteredProperties = property.filter(
+    (prop) => prop.isPublished === true
+  );
 
   return (
     <div className="cartascontainer">

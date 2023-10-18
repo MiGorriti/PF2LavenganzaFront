@@ -238,11 +238,11 @@ export const cancel = (id) => {
   };
 };
 
-export const getReviews = (idHouse) => {
+export const getReviews = (idHome) => {
   return async function (dispatch) {
     try {
       const response = await axios.get(
-        `http://localhost:3001/review/home/${idHouse}`
+        `http://localhost:3001/review/home/${idHome}`
       );
       const reviews = response.data;
       return dispatch({ type: GET_REVIEWS_HOME, payload: reviews });
@@ -252,10 +252,8 @@ export const getReviews = (idHouse) => {
   };
 };
 
-export const setPriceFilter = (minPrice, maxPrice) => {
-  return async function (dispatch) {
-    console.log(minPrice);
-    console.log(maxPrice);
-    dispatch({ type: SET_PRICE_FILTER, payload: minPrice, maxPrice });
-  };
-};
+export const setPriceFilter = (minPrice, maxPrice) => ({
+  type: SET_PRICE_FILTER,
+  payload: minPrice,
+  maxPrice,
+});

@@ -1,16 +1,17 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getCars } from "../../Redux/action/actions";
-// import Filters from "../../Components/Filters/Filters";
+import Filters from "../../Components/Filters/Filters";
 import Cards from "../../Components/Cards/Cards";
-import { IconSearch } from "@tabler/icons-react";
 import ReactPaginate from "react-paginate";
-//import styles from "./Home.module.css";
+import "./Home.css";
 
 function Home() {
   const dispatch = useDispatch();
   const [currentPage, setCurrentPage] = useState(0);
-  const propertyPerPage = 10;
+  const [isFirstPage, setIsFirstPage] = useState(true); // Inicializar con true
+  const [isLastPage, setIsLastPage] = useState(false); // Inicializar con false
+  const propertyPerPage = 1;
 
   useEffect(() => {
     dispatch(getCars());
@@ -21,8 +22,18 @@ function Home() {
   const offset = currentPage * propertyPerPage;
   const currentPageData = cars.slice(offset, offset + propertyPerPage);
 
+  const pageCount = Math.ceil(cars.length / propertyPerPage);
+
   const handlePageClick = ({ selected }) => {
     setCurrentPage(selected);
+
+    // Verificar si estamos en la primera página (selected === 0) o en la última página (selected === pageCount - 1)
+    const isFirstPage = selected === 0;
+    const isLastPage = selected === pageCount - 1;
+
+    // Actualizar el estado para ocultar los botones según corresponda
+    setIsFirstPage(isFirstPage);
+    setIsLastPage(isLastPage);
   };
 
   return (
@@ -31,7 +42,7 @@ function Home() {
         Find your ideal holiday place!
       </h1>
 
-      {/* <Filters /> */}
+      <Filters />
       <Cards property={currentPageData} />
       <ReactPaginate
         previousLabel={"Previous"}
@@ -39,9 +50,12 @@ function Home() {
         pageCount={Math.ceil(cars.length / propertyPerPage)}
         onPageChange={handlePageClick}
         containerClassName={"pagination flex justify-center space-x-4"}
-        previousLinkClassName={"pagination__link"}
-        nextLinkClassName={"pagination__link"}
-        disabledClassName={"pagination__link--disabled"}
+        previousLinkClassName={
+          isFirstPage ? "pagination__link--disabled" : "pagination__link"
+        }
+        nextLinkClassName={
+          isLastPage ? "pagination__link--disabled" : "pagination__link"
+        }
         activeClassName={"pagination__link--active"}
       />
     </div>

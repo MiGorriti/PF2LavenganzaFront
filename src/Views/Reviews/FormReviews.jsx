@@ -32,7 +32,6 @@ const FormReviews = ({ id }) => {
 
     console.log(newReview);
 
-    // dispatch(reserve(reservation));
     axios
       .post("http://localhost:3001/review/create", newReview)
       .then((response) => {
@@ -47,6 +46,7 @@ const FormReviews = ({ id }) => {
       });
 
     setInput({ description: "", rating: "default", email: "", password: "" });
+    window.location.reload();
   };
 
   return (

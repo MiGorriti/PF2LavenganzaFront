@@ -1,0 +1,8 @@
+.pagination__link--active {
+  background-color: #007bff; /* Color de fondo para la página activa */
+  color: #fff; /* Color de texto para la página activa */
+  border: 1px solid #007bff; /* Borde para la página activa */
+  border-radius: 50%; /* Redondear los bordes para la página activa */
+  padding: 6px 10px; /* Espaciado en la página activa */
+  margin: 0 4px; /* Margen en la página activa */
+}

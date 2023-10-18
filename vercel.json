@@ -1,0 +1,16 @@
+{
+  "rewrites": [
+    { "source": "/Detail/:idHouse", "destination": "/Detail/:idHouse" },
+    { "source": "/admin", "destination": "/admin" },
+    { "source": "/MyReservations", "destination": "/MyReservations" },
+    { "source": "/Form", "destination": "/Form" },
+    { "source": "/Register", "destination": "/FormUser" },
+    { "source": "/Login", "destination": "/FormLogin" },
+    { "source": "/Terms", "destination": "/TerminosYCondiciones" },
+    { "source": "/Privacy", "destination": "/Privacidad" },
+    { "source": "/About", "destination": "/About" },
+    { "source": "/MyReservations", "destination": "/Reservations" },
+    { "source": "/ProtectedR", "destination": "/admin" },
+    { "source": "/(.*)", "destination": "/" }
+  ]
+}

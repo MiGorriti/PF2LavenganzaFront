@@ -7,6 +7,7 @@ import { faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
 import { GoogleLogin } from "react-google-login";
 import { gapi } from "gapi-script";
 import { googleRegister } from "../../Redux/action/actions";
+import Modal from "react-modal";
 
 const FormLogin = ({ handleLogin }) => {
   const [formData, setFormData] = useState({
@@ -20,6 +21,34 @@ const FormLogin = ({ handleLogin }) => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const loginUser = useSelector((state) => state.loginUser);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isErrorModalOpen, setIsErrorModalOpen] = useState(false);
+  const [isGoogleLoginModalOpen, setIsGoogleLoginModalOpen] = useState(false);
+
+  const openModal = () => {
+    setIsModalOpen(true);
+  };
+
+  const closeModal = () => {
+    setIsModalOpen(false);
+  };
+
+  const openErrorModal = () => {
+    setIsErrorModalOpen(true);
+  };
+
+  const closeErrorModal = () => {
+    setIsErrorModalOpen(false);
+  };
+
+  const openGoogleLoginModal = () => {
+    console.log("Abriendo el modal de inicio de sesión de Googlessssssss");
+    setIsGoogleLoginModalOpen(true);
+  };
+
+  const closeGoogleLoginModal = () => {
+    setIsGoogleLoginModalOpen(false);
+  };
 
   const handleChange = (e) => {
     setFormData({
@@ -41,25 +70,33 @@ const FormLogin = ({ handleLogin }) => {
       if (loginUser && loginUser.status === 200) {
         // Guardar la información del usuario en localStorage
         localStorage.setItem("userData", JSON.stringify(formData));
-        alert("Successful login.");
+        openModal();
         handleLogin();
         if (
           formData.email === "wanderluxe@gmail.com" &&
           formData.password === "1234"
         ) {
-          navigate("/admin"); // Redireccionar a la página de administrador
+          setTimeout(() => {
+            navigate("/admin"); // Redireccionar a la página por defecto
+            history.go(0);
+          }, 2000);
         } else {
-          navigate("/Home"); // Redireccionar a la página por defecto
+          // Agregar un retraso antes de redirigir
+          setTimeout(() => {
+            navigate("/Home"); // Redireccionar a la página por defecto
+            history.go(0);
+          }, 2000); // Espera 2 segundos antes de redirigir
         }
-        history.go(0);
       } else if (loginUser && loginUser.status === 401) {
-        alert("Invalid credentials.");
+        openErrorModal();
+        setTimeout(() => {
+          history.go(0); // Esto hará que la página se recargue
+        }, 1000);
       }
-    } else if (loginUser.status === 403) {
-      alert("Usuario bloqueado. Comuníquese con el administrador.");
+
       setShowAlert(false);
     }
-  }, [showAlert, loginUser, handleLogin, formData, navigate, history]);
+  }, [showAlert, loginUser, handleLogin, formData, navigate]);
 
   const togglePasswordVisibility = () => {
     setShowPassword(!showPassword);
@@ -92,11 +129,13 @@ const FormLogin = ({ handleLogin }) => {
     console.log(userData);
     localStorage.setItem("userData", JSON.stringify(userData));
     dispatch(googleRegister(userData));
+    openGoogleLoginModal();
 
-    alert(`welcome, ${userData.name}`);
-
-    navigate("/home");
-    history.go(0);
+    // Retrasar la apertura del modal y la redirección
+    setTimeout(() => {
+      navigate("/home");
+      history.go(0);
+    }, 3000); // Espera 2 segundos antes de ejecutar
   };
 
   const onFailure = () => {
@@ -175,7 +214,7 @@ const FormLogin = ({ handleLogin }) => {
             <p className="text-white">
               Don't have an account?{" "}
               <span
-                onClick={() => navigate("/register")} // Cambia a un span y añade esta función
+                onClick={() => navigate("/register")}
                 className="text-blue font-semibold cursor-pointer"
               >
                 Sign up here
@@ -184,6 +223,111 @@ const FormLogin = ({ handleLogin }) => {
           </div>
         </div>
       </div>
+
+      <Modal
+        isOpen={isModalOpen}
+        onRequestClose={closeModal}
+        contentLabel="Successful Login Modal"
+        style={{
+          overlay: {
+            backgroundColor: "rgba(0, 0, 0, 0.5)",
+          },
+          content: {
+            display: "flex",
+            flexDirection: "column",
+            justifyContent: "center",
+            alignItems: "center",
+            backgroundColor: "#0D132D",
+            borderRadius: "8px",
+            width: "300px",
+            margin: "auto",
+            padding: "20px",
+            marginTop: "55px",
+            height: "100px",
+            textAlign: "center",
+            border: "none", // Quita el borde
+          },
+        }}
+      >
+        <h2 style={{ fontSize: "22px", color: "#CCB7D2" }}>Successful Login</h2>
+      </Modal>
+
+      <Modal
+        isOpen={isErrorModalOpen}
+        onRequestClose={closeErrorModal}
+        contentLabel="Error Modal"
+        style={{
+          overlay: {
+            backgroundColor: "rgba(0, 0, 0, 0.5)", // Fondo gris oscuro detrás del modal
+          },
+          content: {
+            backgroundColor: "rgba(0, 0, 0, 0.5)",
+            borderRadius: "8px", // Bordes redondeados
+            width: "300px", // Ancho del modal
+            margin: "auto", // Centrar el modal horizontalmente
+            padding: "20px", // Espaciado interior del modal
+            marginTop: "55px",
+            height: "150px",
+            textAlign: "center",
+            border: "none",
+          },
+        }}
+      >
+        <h2 style={{ fontSize: "22px" }}>Error</h2>
+        <p style={{ fontSize: "20px" }}>Invalid credentials.</p>
+        <button
+          onClick={closeErrorModal}
+          style={{
+            backgroundColor: "#0D132D",
+            color: "#FFFFFF",
+            border: "none",
+            padding: "10px 20px",
+            borderRadius: "5px",
+            cursor: "pointer",
+            fontSize: "18px",
+            transition: "background-color 0.3s", // Transición de cambio de color
+          }}
+          // Pseudo-clase :hover
+          onMouseEnter={(e) => {
+            e.target.style.backgroundColor = "#3E3D57"; // Cambio de color al pasar el mouse
+          }}
+          // Pseudo-clase :hover
+          onMouseLeave={(e) => {
+            e.target.style.backgroundColor = "#0D132D"; // Volver al color original al salir el mouse
+          }}
+        >
+          Close
+        </button>
+      </Modal>
+      <Modal
+        isOpen={isGoogleLoginModalOpen}
+        onRequestClose={closeGoogleLoginModal}
+        contentLabel="Google Login Successful Modal"
+        style={{
+          overlay: {
+            backgroundColor: "rgba(0, 0, 0, 0.5)",
+          },
+          content: {
+            display: "flex",
+            flexDirection: "column",
+            justifyContent: "center",
+            alignItems: "center",
+            backgroundColor: "#0D132D",
+            borderRadius: "8px",
+            width: "300px",
+            margin: "auto",
+            padding: "20px",
+            marginTop: "55px",
+            height: "100px",
+            textAlign: "center",
+            border: "none", // Quita el borde
+          },
+        }}
+      >
+        <h2 style={{ fontSize: "22px", color: "#CCB7D2" }}>
+          Welcome, {user && user.name}
+        </h2>
+      </Modal>
     </div>
   );
 };

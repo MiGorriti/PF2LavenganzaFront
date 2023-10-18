@@ -90,15 +90,18 @@ function rootReducer(state = initialState, action) {
         reservations: action.payload,
       };
     case SET_PRICE_FILTER:
-      const { minPrice, maxPrice } = action.payload;
-      const filteredProperties = state.property.filter(
+      if (action.payload === null) {
+        return state; // Otra opción es devolver el estado sin cambios en este caso
+      }
+      const { minPrice, maxPrice } = action.payload; // Corregir la desestructuración
+      const filteredProperties = state.copyPropertys.filter(
         (property) =>
           property.nightPrice >= minPrice && property.nightPrice <= maxPrice
       );
       return {
         ...state,
         property: filteredProperties,
-        minPrice,
+        minPrice, // Agregar minPrice y maxPrice al estado
         maxPrice,
       };
     case GET_REVIEWS_HOME:
