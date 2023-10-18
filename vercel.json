@@ -10,6 +10,7 @@
     { "source": "/Privacy", "destination": "/Privacidad" },
     { "source": "/About", "destination": "/About" },
     { "source": "/MyReservations", "destination": "/Reservations" },
+    { "source": "/ProtectedR", "destination": "/admin" },
     { "source": "/(.*)", "destination": "/" }
   ]
 }
