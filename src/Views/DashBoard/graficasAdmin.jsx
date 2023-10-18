@@ -100,17 +100,16 @@ const Graficas = () => {
     };
     return (
         <div className="graficas-container">
-
-            <div className="graficas-section">
-                <h1 className='graficas-heading'>Total reservations</h1>
-                <div className='miGraficoContainer'>
-                    <Pie data={barrasComisionesPorDiaData} />
-                </div>
-            </div>
             <div className="graficas-section">
                 <h1 className='graficas-heading'>Number of reservations</h1>
                 <div className='miGraficoContainer'>
                     <Bar data={pieChartData} />
+                </div>
+            </div>
+            <div className="graficas-section">
+                <h1 className='graficas-heading'>Total reservations</h1>
+                <div className='miGraficoContainer'>
+                    <Pie data={barrasComisionesPorDiaData} />
                 </div>
             </div>
             <div className="graficas-section">
