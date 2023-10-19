@@ -102,7 +102,7 @@ const Detail = () => {
           {houseDetail.homeCapacity} guests -{houseDetail.numBeds} beds -{" "}
           {houseDetail.numBaths} baths
         </h2>
-        <div className="flex items-center mt-4">
+        <div className="flex items-center mt-2">
           <FontAwesomeIcon icon={faMapMarkerAlt} className="mr-2" />
           <Link className="text-xl text-darkblue p-4"
             to="https://www.google.com/maps/place/48%C2%B052'36.0%22S+123%C2%B023'36.0%22W/@-48.8766631,-123.3959082,17z/data=!3m1!4b1!4m4!3m3!8m2!3d-48.8766667!4d-123.3933333?authuser=0&entry=ttu"

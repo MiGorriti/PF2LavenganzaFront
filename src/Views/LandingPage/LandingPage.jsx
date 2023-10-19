@@ -1,6 +1,7 @@
 import React from "react";
 import styles from "./LandingPage.module.css";
 import { IconHeart } from "@tabler/icons-react";
+import Cards from "../../Components/Cards/Cards"
 
 function LandingPage() {
   return (
@@ -63,34 +64,19 @@ function LandingPage() {
                     </section>
                 </div>
             </div>
+            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4 mt-8">
+        {[1, 2, 3, 4].map((index) => (
+          <div key={index} className="relative rounded-lg overflow-hidden border">
+            <IconHeart className="absolute top-2 left-2 z-10 rounded-full bg-white bg-opacity-70 text-red-500 p-1" />
+            <img src={`/imagenes/c${index}.jpg`} alt={`card${index}`} className="w-full h-48 object-cover" />
+          </div>
+        ))}
+      </div>
 
-            <div className={styles.cards}>
-                <div className={styles.c1}>
-                    <div className={styles.image}>
-                        <IconHeart className={styles.icon}/>
-                        <img src="/imagenes/c1.jpg" alt="card1" />
-                    </div>
-                </div>
-                <div className={styles.c2}>
-                    <div className={styles.image}>
-                    <IconHeart className={styles.icon}/>
-                    <img src="/imagenes/c2.jpg" alt="card2" />
-                    </div>
-                </div>
-                <div className={styles.c3}>
-                    <div className={styles.image}>
-                    <IconHeart className={styles.icon}/>
-                    <img src="/imagenes/c3.jpg" alt="card3" />
-                    </div>
-                </div>
-                <div className={styles.c4}>
-                    <div className={styles.image}>
-                    <IconHeart className={styles.icon}/>
-                    <img src="/imagenes/c4.jpg" alt="card4" />
-                    </div>
-                </div>
-            </div>
-        </div>
+      <div className="mt-8">
+        <Cards className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4 mt-8" />
+      </div>
+    </div>
   );
 }
 
