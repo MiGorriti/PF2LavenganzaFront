@@ -11,7 +11,8 @@ import { useSelector, useDispatch } from "react-redux";
 import { getDetail, getReservationsByHome } from "../../Redux/action/actions";
 import { useNavigate, useParams } from "react-router-dom";
 import { Link } from "react-router-dom";
-import axios from "axios";
+import { Carousel } from "react-responsive-carousel";
+import "react-responsive-carousel/lib/styles/carousel.min.css";
 import FormReserva from "../FormReserve/FormReserva";
 import FormReviews from "../Reviews/FormReviews";
 import Reviews from "../Reviews/Reviews";
@@ -76,59 +77,54 @@ const Detail = () => {
     setuserLoggedIn(false);
   };
   console.log("22", userLoggedIn);
-  // useEffect(() => {
-  //   // Comprobar si el usuario está logueado (puedes hacerlo a través de tu lógica de autenticación)
 
-  //   // Actualiza el estado según el resultado de la autenticación
-  //   setuserLoggedIn(userLoggedIn);
-  //   console.log(userLoggedIn);
-  // }, []);
+  
   return (
     <div className="flex bg-white rounded-lg overflow-hidden w-full h-full">
       {/* Columna Izquierda */}
-      <div className="w-2/3 text-black p-6">
+      <div className="w-2/3 text-black p-6 mt-20">
         {/* Imágenes de la propiedad */}
-        <div className="grid grid-cols-2 gap-2">
+        <h1 className="text-3xl text-black mb-4">{houseDetail.title}</h1>
+        <Carousel showArrows={true} emulateTouch={true} infiniteLoop={true}>
           {houseDetail.image &&
             houseDetail.image.map((e, index) => (
+              <div key={index}>
               <img
-                className="w-full h-64 object-cover"
+                className="w-full h-auto object-cover rounded-lg max-h-80"
                 src={e}
                 alt=""
                 key={index}
               />
+              </div>
             ))}
-        </div>
-        <button className="mt-2 text-blue-500 hover:text-blue-300">
-          Show more Images
-        </button>
-
-        {/* Título y descripción */}
-        <h1 className="text-3xl text-black mt-4">{houseDetail.title}</h1>
-        <p>
+        </Carousel> 
+        <h2 className="text-xl p-4">
           {houseDetail.homeCapacity} guests -{houseDetail.numBeds} beds -{" "}
           {houseDetail.numBaths} baths
-        </p>
+        </h2>
         <div className="flex items-center mt-4">
           <FontAwesomeIcon icon={faMapMarkerAlt} className="mr-2" />
-          <Link
+          <Link className="text-xl text-darkblue p-4"
             to="https://www.google.com/maps/place/48%C2%B052'36.0%22S+123%C2%B023'36.0%22W/@-48.8766631,-123.3959082,17z/data=!3m1!4b1!4m4!3m3!8m2!3d-48.8766667!4d-123.3933333?authuser=0&entry=ttu"
             target="_blank"
           >
             View Location on Map
           </Link>
         </div>
-        <h3 className="text-xl border-t-2 border-black mt-4">
+        <h3 className="text-2xl border-t-2 border-black mt-6 mb-2 p-4">
           What This Place Offers:
         </h3>
-        <p>{houseDetail.description}</p>
-        {/* <h1 className="text-2xl border-t-2 border-black mt-4">Bedrooms</h1> */}
-        {/* Servicios */}
-        <h1 className="text-2xl border-t-2 border-black mt-4"></h1>
-
+        <div className="flex items-center mt-4 space-x-40 mb-6 p-4">
+        <FontAwesomeIcon icon={faWifi} className="mr-6 text-6xl " />
+        <FontAwesomeIcon icon={faParking} className="mr-6 text-6xl" />
+        <FontAwesomeIcon icon={faDog} className="mr-6 text-6xl" />
+        <FontAwesomeIcon icon={faSwimmingPool} className="mr-6 text-6xl" />
+        </div>
+        <h1 className="text-2xl border-t-2 border-black mt-4 mb-2 p-2">Description:</h1>
+        <p className="p-2">{houseDetail.description}</p>
         <div>
-          <h3>Property reserved for:</h3>
-          <li>
+          <h1 className="text-2xl border-t-2 border-black mt-4 mb-2 p-4">Property reserved for:</h1>
+          <li className="p-4">
             {reservations.map((res) => {
               return (
                 <ul>
@@ -138,66 +134,42 @@ const Detail = () => {
             })}
           </li>
           <div>
-            <h2 style={{ textAlign: "center" }}>Reviews</h2>
+            <h1 className= "text-2xl" style={{ textAlign: "center" }}>Reviews</h1>
             <Reviews key={idHouse} id={idHouse} />
           </div>
         </div>
 
-        <div className="flex items-center mt-2">
-          {houseDetail.features &&
-            houseDetail.features.map((feature, index) => {
-              let icon;
-              switch (feature) {
-                case "wifi":
-                  icon = faWifi;
-                  break;
-                case "parking":
-                  icon = faParking;
-                  break;
-                case "dog":
-                  icon = faDog;
-                  break;
-                case "pool":
-                  icon = faSwimmingPool;
-                  break;
-                default:
-                  icon = null;
-              }
-              return icon ? (
-                <FontAwesomeIcon key={index} icon={icon} className="mr-2" />
-              ) : null;
-            })}
-        </div>
+
       </div>
 
       {/* Columna Derecha */}
-      <div className="w-1/3 text-black p-6">
+      <div className="w-1/3 text-black p-6 mt-20">
         {/* Precio por noche */}
         <div className="text-3xl">${houseDetail.nightPrice} / Month</div>
 
         {/* Selección de fechas y botón de reserva */}
-        <div className="mt-4">
-          <label className="block mb-1">Arrival Date:</label>
+        <div className="mt-4 ">
+          <label className="block mb-1 text-xl">Arrival Date:</label>
           <input
             type="date"
             className="border p-2 w-full"
             value={arrivalDate}
             onChange={(e) => setArrivalDate(e.target.value)}
-            style={{ backgroundColor: "#333", border: "1px solid white" }}
+            style={{ backgroundColor: "white", border: "1px solid black" }}
           />
         </div>
         <div className="mt-2">
-          <label className="block mb-1">Departure Date:</label>
+          <label className="block mb-1 text-xl">Departure Date:</label>
           <input
             type="date"
             className="border p-2 w-full"
             value={departureDate}
             onChange={(e) => setDepartureDate(e.target.value)}
-            style={{ backgroundColor: "#333", border: "1px solid white" }}
+            style={{ backgroundColor: "white", border: "1px solid black" }}
           />
         </div>
 
-        <div className="mt-2 text-center">
+        <div className="mt-6 text-center ">
           {userLoggedIn && (
             <FormReserva
               key={idHouse}
@@ -210,15 +182,10 @@ const Detail = () => {
         </div>
         {/* Total */}
 
-        <div className="border-t-2 border-black mt-4">
-          <div className="mt-2">Total:${nightPrice}</div>
+        <div className="border-t-2 border-black mt-14 p-6">
+          <div className="mt-2 text-xl">Total:${nightPrice}</div>
         </div>
 
-        {/* Best Reviews */}
-        <h1 className="text-xl text-center border-t-2 border-black mt-6 mb-5">
-          Review box
-        </h1>
-        {/* Implementa aquí los comentarios */}
         <div>
           {userLoggedIn && (
             <FormReviews

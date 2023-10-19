@@ -97,55 +97,81 @@ const FormReserva = ({ id, title, nightPrice }) => {
     const init_point = await createPreference();
     window.location.href = init_point;
   };
+
+
   return (
-    <form onSubmit={handleSubmit}>
-      <div>
-        <select name="month" onChange={handleInputChange}>
+    <form onSubmit={handleSubmit} className="bg-black text-white p-4 rounded">
+      {/* <div className="mb-4">
+        <select
+          name="month"
+          onChange={handleInputChange}
+          className="bg-gray-800 text-black p-2 rounded cursor-pointer"
+        >
           <option value="default">Month</option>
-          {meses.map((mes) => {
-            i++;
-            return <option value={i}>{mes}</option>;
-          })}
+          {[
+            "January",
+            "February",
+            "March",
+            "April",
+            "May",
+            "June",
+            "July",
+            "August",
+            "September",
+            "October",
+            "November",
+            "December",
+          ].map((mes, index) => (
+            <option key={index} value={index + 1}>
+              {mes}
+            </option>
+          ))}
         </select>
+      </div> */}
+
+      <div className="mb-4 text-black ">
+        <h1 className="text-lg text-center  p-4 bg-black text-white ">
+          Guests
+        </h1>
+        <input
+          type="number"
+          name="numHuespedes"
+          value={input.numHuespedes}
+          onChange={handleInputChange}
+          className="border p-2 w-full bg-gray-800 text-black rounded"
+        />
       </div>
 
-      <label htmlFor="numHuespedes">Guests</label>
-      <input
-        type="number"
-        name="numHuespedes"
-        value={input.numHuespedes}
-        onChange={handleInputChange}
-        style={{
-          marginRight: "15px",
-        }}
-      />
-      <div>
-        <label htmlFor="email">Email</label>
+      <div className="mb-4 text-black">
+        <h1 className="text-lg text-center  p-4 bg-black text-white">
+          Email :
+        </h1>
         <input
           type="text"
           name="email"
           value={input.email}
           onChange={handleInputChange}
-          style={{
-            marginTop: "2px",
-            marginBottom: "2px",
-            backgroundColor: "#333",
-          }}
+          className="border p-2 w-full bg-gray-800 text-black rounded"
         />
+        
       </div>
-      <div>
-        <label htmlFor="password">Password</label>
+
+      <div className="mb-4 text-black">
+        <h1 className="text-lg text-center  p-4 bg-black text-white">
+        Password :
+        </h1>
         <input
           type="password"
           name="password"
           value={input.password}
           onChange={handleInputChange}
-          style={{ marginBottom: "2px", backgroundColor: "#333" }}
+          className="border p-2 w-full text-black rounded"
         />
       </div>
+
       <button
         onClick={handleBuy}
-        style={{ marginLeft: "5px", backgroundColor: "#4b4a4c" }}
+        className="bg-blue-500 hover:bg-blue-400 text-black p-2 rounded"
         type="submit"
       >
         Reservar

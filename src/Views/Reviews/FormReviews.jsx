@@ -30,70 +30,81 @@ const FormReviews = ({ id }) => {
       password: input.password,
     };
 
-    console.log(newReview);
-
     axios
       .post("https://apibackend-vpxw.onrender.com/review/create", newReview)
       .then((response) => {
-        // Si la respuesta es exitosa
         console.log("Añadida");
         alert("Review añadida");
       })
       .catch((error) => {
-        // Si ocurre un error
         console.log("error");
         alert("Error al crear review");
       });
 
-    setInput({ description: "", rating: "default", email: "", password: "" });
+    setInput({
+      description: "",
+      rating: "default",
+      email: "",
+      password: "",
+    });
     window.location.reload();
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <label htmlFor="description">¡Write your review right here!</label>
+    <form onSubmit={handleSubmit} className="p-6 bg-black rounded shadow-lg">
+        <h1 className="text-2xl text-center  p-4 bg-black text-white">
+          Review box
+        </h1>
+        <h1 className="text-lg text-center  p-4 bg-black text-white">
+          Write your review here:
+          </h1>
       <textarea
-        class="form-control"
         name="description"
-        type="text"
-        placeholder="Comment here"
-        onChange={handleInputChange}
         value={input.description}
-      >
-        Comment..
-      </textarea>
+        onChange={handleInputChange}
+        className="w-full h-40 p-4 border border-gray-300 mb-4 rounded"
+        placeholder="Comment here..."
+      ></textarea>
 
-      <select name="rating" onChange={handleInputChange}>
-        <option value="default">Rate </option>
+      <select
+        name="rating"
+        onChange={handleInputChange}
+        className="w-full p-4 bg-white text-black text-lg rounded cursor-pointer mb-4 border-black"
+      >
+        <option value="default">Rate</option>
         <option value="1">&#x2B50; Bad</option>
         <option value="2">&#x2B50;&#x2B50; Worthless</option>
-        <option value="3">&#x2B50;&#x2B50;&#x2B50; Aceptable</option>
+        <option value="3">&#x2B50;&#x2B50;&#x2B50; Acceptable</option>
         <option value="4">&#x2B50;&#x2B50;&#x2B50;&#x2B50; Good</option>
-        <option value="5">
-          &#x2B50;&#x2B50;&#x2B50;&#x2B50;&#x2B50; Excelent
-        </option>
+        <option value="5">&#x2B50;&#x2B50;&#x2B50;&#x2B50;&#x2B50; Excellent</option>
       </select>
 
-      <div>
-        Validate your data here:
-        <label htmlFor="email">Email:</label>
+      <div className="mb-4">
+        <h1 className="text-lg text-center  p-4 bg-black text-white">Email:</h1>
         <input
           type="text"
           name="email"
           value={input.email}
           onChange={handleInputChange}
-          style={{ marginBottom: "2px", backgroundColor: "#333" }}
+          className="w-full  border border-black mb-1 rounded"
         />
-        <label htmlFor="password">Password:</label>
+      </div>
+
+      <div className="mb-4">
+        <h1 className="text-lg text-center  p-4 bg-black text-white"> Password:</h1>
         <input
           type="password"
           name="password"
           value={input.password}
           onChange={handleInputChange}
-          style={{ backgroundColor: "#333" }}
+          className="w-full border border-black rounded"
         />
       </div>
-      <button type="submit" style={{ backgroundColor: "#4b4a4c" }}>
+
+      <button
+        type="submit"
+        className="w-full bg-blue-500 hover:bg-blue-400 text-darkblue text-lg p-2 mt-4 rounded"
+      >
         Post
       </button>
     </form>
@@ -101,3 +112,4 @@ const FormReviews = ({ id }) => {
 };
 
 export default FormReviews;
+
