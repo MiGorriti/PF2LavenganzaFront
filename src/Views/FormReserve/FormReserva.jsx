@@ -101,7 +101,7 @@ const FormReserva = ({ id, title, nightPrice }) => {
 
   return (
     <form onSubmit={handleSubmit} className="bg-black text-white p-4 rounded">
-      {/* <div className="mb-4">
+       <div className="mb-4">
         <select
           name="month"
           onChange={handleInputChange}
@@ -127,7 +127,7 @@ const FormReserva = ({ id, title, nightPrice }) => {
             </option>
           ))}
         </select>
-      </div> */}
+      </div> 
 
       <div className="mb-4 text-black ">
         <h1 className="text-lg text-center  p-4 bg-black text-white ">

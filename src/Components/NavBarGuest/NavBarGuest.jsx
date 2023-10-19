@@ -136,7 +136,7 @@ function NavBarGuest() {
 
             <li>
             <div className={styles.options} onClick={handleLogout}>
-            <IconLogout className="cursor-pointer" size={25}/>
+            <IconLogout className="cursor-pointer hover:text-darkred" size={25}/>
             </div>
             </li>
           </>
