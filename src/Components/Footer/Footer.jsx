@@ -1,7 +1,8 @@
 import React from "react";
 import styles from "./Footer.module.css";
-/* import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faInstagram, faFacebook, faTwitter } from "@fortawesome/free-brands-svg-icons"; */
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faInstagram, faFacebook, faTwitter , faWhatsapp} from "@fortawesome/free-brands-svg-icons";
+
 
 const Footer = () => {
   return (
@@ -10,7 +11,7 @@ const Footer = () => {
         <h1>WANDERLUXE</h1>
 
         <ul>
-{/*           <li>Follow us</li>
+          <li>Follow us</li>
           <li>
             <FontAwesomeIcon icon={faInstagram} /> Instagram
           </li>
@@ -19,7 +20,7 @@ const Footer = () => {
           </li>
           <li>
             <FontAwesomeIcon icon={faTwitter} /> Twitter
-          </li> */}
+          </li>
         </ul>
       </div>
 
@@ -52,7 +53,9 @@ const Footer = () => {
         <ul className={styles.contactData}>
           <li>Contact</li>
           <li>wanderluxehomes@gmail.com</li>
-          <li>Whatsapp</li>
+          <li>
+            <FontAwesomeIcon icon={faWhatsapp} /> WhatsApp
+          </li>
         </ul>
       </div>
     </div>

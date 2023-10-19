@@ -133,6 +133,12 @@ function NavBarGuest() {
                 />
               </div>
             )}
+
+            <li>
+            <div className={styles.options} onClick={handleLogout}>
+            <IconLogout className="cursor-pointer" size={25}/>
+            </div>
+            </li>
           </>
         ) : (
           <>

@@ -17,7 +17,7 @@ function Home() {
   const [currentPage, setCurrentPage] = useState(1);
 
   return (
-    <div className="relative py-20">
+    <div className="relative py-20 mt-10">
       <h1 className="titulardo" style={{ textAlign: "center" }}>
         Find your ideal holiday place!
       </h1>

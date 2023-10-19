@@ -70,7 +70,7 @@ const About = () => {
 
   return (
     <div>
-      <h2 className="aboutTeam">TEAM MEMBERS</h2>
+      <h1 className="aboutTeam">TEAM MEMBERS</h1>
       <div>
         <CardsAbout members={teamMembers} />
       </div>

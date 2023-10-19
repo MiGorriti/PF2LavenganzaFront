@@ -15,6 +15,7 @@ const Cards = ({ currentPage }) => {
   const lastIndex = currentPage * cardsPerPage;
   const firstIndex = lastIndex - cardsPerPage;
   const cardsRender = filteredProperties.slice(firstIndex, lastIndex);
+  
   return (
     <div className="cartascontainer">
       <div className="card-deck row">
