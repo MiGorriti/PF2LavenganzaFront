@@ -48,7 +48,7 @@ const Graficas = () => {
   useEffect(() => {
     // Hacer una solicitud HTTP para obtener los datos de la ruta
     axios
-      .get(`http://localhost:3001/dashboard/Allstatistics`)
+      .get(`https://apibackend-vpxw.onrender.com/dashboard/Allstatistics`)
       .then((response) => {
         // Procesar los datos de estadísticas aquí
         setStatData(response.data);

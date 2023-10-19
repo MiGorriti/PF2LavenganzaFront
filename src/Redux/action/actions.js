@@ -21,7 +21,7 @@ export const getLogin = (formData) => {
   return async function (dispatch) {
     try {
       const response = await axios.post(
-        "http://localhost:3001/user/login",
+        "https://apibackend-vpxw.onrender.com/user/login",
         formData
       );
       if (response.status === 200) {
@@ -43,7 +43,7 @@ export const googleRegister = (userData) => {
   return async function (dispatch) {
     try {
       const response = await axios.post(
-        `http://localhost:3001/user/googleLogin`,
+        `https://apibackend-vpxw.onrender.com/user/googleLogin`,
         userData
       );
       dispatch({ type: CREATE_USER, payload: response });
@@ -58,7 +58,7 @@ export const createUser = (postForm) => {
   return async function (dispatch) {
     try {
       const response = await axios.post(
-        "http://localhost:3001/user/create",
+        "https://apibackend-vpxw.onrender.com/user/create",
         postForm
       );
       dispatch({ type: CREATE_USER, payload: response.data });
@@ -73,7 +73,7 @@ export const getCars = () => {
   return async (dispatch) => {
     try {
       const response = await axios.get(
-        `http://localhost:3001/property/gproduct`
+        `https://apibackend-vpxw.onrender.com/property/gproduct`
       );
       const property = response.data;
 
@@ -89,7 +89,7 @@ export const postProperty = (form) => {
     console.log("13", form);
     try {
       const send = await axios.post(
-        `http://localhost:3001/property/post`,
+        `https://apibackend-vpxw.onrender.com/property/post`,
         form
       );
 
@@ -107,7 +107,7 @@ export const getCategory = () => {
   return async function (dispatch) {
     try {
       const response = await axios.get(
-        `http://localhost:3001/allcategories/get`
+        `https://apibackend-vpxw.onrender.com/allcategories/get`
       );
       const data = response.data;
       dispatch({ type: GET_CATEGORYS, payload: data });
@@ -121,7 +121,7 @@ export const filterCat = (category) => {
   return async function (dispatch) {
     if (category === "default") {
       const response = await axios.get(
-        `http://localhost:3001/property/gproduct`
+        `https://apibackend-vpxw.onrender.com/property/gproduct`
       );
       const property = response.data;
 
@@ -129,7 +129,7 @@ export const filterCat = (category) => {
     }
     try {
       const response = await axios.get(
-        `http://localhost:3001/filter/category?categoryhome=${category}`
+        `https://apibackend-vpxw.onrender.com/filter/category?categoryhome=${category}`
       );
       const data = response.data;
       dispatch({ type: FILTER_CATEGORY, payload: data });
@@ -143,7 +143,7 @@ export const filterLocation = (location) => {
   return async function (dispatch) {
     if (location === "default") {
       const response = await axios.get(
-        `http://localhost:3001/property/gproduct`
+        `https://apibackend-vpxw.onrender.com/property/gproduct`
       );
       const property = response.data;
 
@@ -151,7 +151,7 @@ export const filterLocation = (location) => {
     } else {
       try {
         const response = await axios.get(
-          `http://localhost:3001/filter/location?locationhome=${location}`
+          `https://apibackend-vpxw.onrender.com/filter/location?locationhome=${location}`
         );
 
         const data = response.data;
@@ -167,7 +167,7 @@ export const getLocations = () => {
   return async function (dispatch) {
     try {
       const response = await axios.get(
-        `http://localhost:3001/allLocations/get`
+        `https://apibackend-vpxw.onrender.com/allLocations/get`
       );
       const data = response.data;
       dispatch({ type: GET_LOCATIONS, payload: data });
@@ -181,7 +181,7 @@ export const getDetail = (idHouse) => {
   return async function (dispatch) {
     try {
       const response = await axios.get(
-        `http://localhost:3001/property/${idHouse}`
+        `https://apibackend-vpxw.onrender.com/property/${idHouse}`
       );
 
       const detail = response.data;
@@ -197,7 +197,7 @@ export const getReservations = (UserEmail) => {
     console.log("kk", UserEmail);
     try {
       const response = await axios.get(
-        `http://localhost:3001/reservation/user?email=${UserEmail}`
+        `https://apibackend-vpxw.onrender.com/reservation/user?email=${UserEmail}`
       );
       const reservations = response.data;
       return dispatch({ type: GET_RESERVATIONS, payload: reservations });
@@ -211,7 +211,7 @@ export const getReservationsByHome = (idHouse) => {
   return async function (dispatch) {
     try {
       const response = await axios.get(
-        `http://localhost:3001/reservation/home/${idHouse}`
+        `https://apibackend-vpxw.onrender.com/reservation/home/${idHouse}`
       );
       const reservations = response.data;
       return dispatch({
@@ -228,7 +228,7 @@ export const cancel = (id) => {
   return async function (dispatch) {
     try {
       const response = await axios.delete(
-        `http://localhost:3001/reservation/delete/${id}`
+        `https://apibackend-vpxw.onrender.com/reservation/delete/${id}`
       );
 
       return dispatch({ type: CANCEL_RESERVE });
@@ -242,7 +242,7 @@ export const getReviews = (idHome) => {
   return async function (dispatch) {
     try {
       const response = await axios.get(
-        `http://localhost:3001/review/home/${idHome}`
+        `https://apibackend-vpxw.onrender.com/review/home/${idHome}`
       );
       const reviews = response.data;
       return dispatch({ type: GET_REVIEWS_HOME, payload: reviews });

@@ -33,7 +33,7 @@ const FormReviews = ({ id }) => {
     console.log(newReview);
 
     axios
-      .post("http://localhost:3001/review/create", newReview)
+      .post("https://apibackend-vpxw.onrender.com/review/create", newReview)
       .then((response) => {
         // Si la respuesta es exitosa
         console.log("Añadida");

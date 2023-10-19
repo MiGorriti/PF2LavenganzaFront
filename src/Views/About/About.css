@@ -1,97 +1,67 @@
-.about-container {
-  text-align: center;
-  padding: 20px;
+.aboutContainer {
+  width: 90vw;
+  padding: 5vw;
+  margin: auto;
+  background-color: black;
+  background-image: linear-gradient(#222, #000);
+  color: #fff;
 }
 
-.programmers-list {
+.insideContainer {
   display: flex;
-  flex-wrap: wrap;
+  align-items: center;
+  flex-direction: column;
+  margin: auto;
+  padding: 100px 0; /* Agrega relleno superior e inferior */
+}
+
+.flexContainer {
+  display: flex;
   justify-content: space-around;
-  margin-top: 20px;
+  gap: 80px;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  margin: 100px auto;
+  max-width: 1200px;
 }
 
-.programmer-card {
-  width: 30vh;
-  height: 50vh;
-  margin: 2vh;
-  padding: 1vh;
-  border: 1px solid #ccc;
-  border-radius: 20px;
-  box-shadow: 0 0 5px rgba(233, 227, 227, 0.3);
-  background-color: rgb(60, 60, 60);
+.partContainer {
+  text-align: left;
+  width: 240px;
 }
 
-.fotito {
-  width: auto;
-  height: auto;
-  border-radius: 50%;
-  padding-bottom: 1vh;
+.whiteBar {
+  width: 100vw;
+  background-color: #fff;
 }
 
-.programmer-card h2 {
-  margin-top: 10px;
-  color: white;
-}
-
-.social-media-links {
-  margin-top: 15px;
-}
-
-.social-media-links a {
-  display: inline-block;
-  margin: 5px;
-  padding: 5px 10px;
-  background-color: #007bff;
-  color: white;
-  text-decoration: none;
-  border-radius: 5px;
-}
-
-/* Estilos para los enlaces en hover */
-.social-media-links a:hover {
-  background-color: #0056b3;
-}
-
-/* Estilos para el encabezado h1 */
-.header-sec {
-  font-size: 45px;
-  margin-bottom: 40px;
-  color: white;
-  text-align: center;
-  padding-top: 40px;
-}
-
-.Boton {
-  background-color: #3a3737;
-  color: #fff9f9;
-  padding: 10px 20px;
-  border: none;
-  border-radius: 5px;
-  font-size: 16px;
-  text-decoration: none;
-  cursor: pointer;
-  width: fit-content;
-  margin: 0 auto;
+.aboutDescription {
+  max-width: 1000px;
+  margin: 50px auto;
+  font-size: 20px;
   display: block;
-  margin-bottom: 3vh;
-  margin-top: 8vh;
+  background-color: #fff;
+  color: #000;
+  padding: 50px;
 }
-@media (max-width: 800px) {
-  .programmer-card {
-    width: 90%; /* Cambia el ancho de las tarjetas en pantallas más pequeñas */
-    height: auto; /* Cambia la altura a automático para ajustar el contenido */
-    margin: 2vh auto; /* Centra las tarjetas horizontalmente */
-  }
 
-  .programmer-card h2 {
-    font-size: 20px; /* Ajusta el tamaño de fuente de h2 */
-  }
+.aboutTitle {
+  font-size: 70px;
+  letter-spacing: 12px;
+}
 
-  .social-media-links {
-    text-align: center; /* Centra los enlaces sociales horizontalmente */
-  }
+.aboutTeam {
+  font-size: 30px;
+  letter-spacing: 5px;
+  margin: 100px 0;
+  justify-content: center;
+  text-align: center;
+}
 
-  .Boton {
-    margin-top: 4vh; /* Ajusta el margen superior del botón */
-  }
+.aboutNav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  margin-top: 100px;
+  z-index: 1000;
 }

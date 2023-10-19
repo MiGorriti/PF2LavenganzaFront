@@ -53,7 +53,10 @@ const FormReserva = ({ id, title, nightPrice }) => {
 
     // dispatch(reserve(reservation));
     axios
-      .post("http://localhost:3001/reservation/create", newReservation)
+      .post(
+        "https://apibackend-vpxw.onrender.com/reservation/create",
+        newReservation
+      )
       .then((response) => {
         // Si la respuesta es exitosa
         console.log("Añadida");
@@ -73,7 +76,7 @@ const FormReserva = ({ id, title, nightPrice }) => {
   const createPreference = async () => {
     try {
       const response = await axios.post(
-        "http://localhost:3001/mp/createpreference",
+        "https://apibackend-vpxw.onrender.com/mp/createpreference",
         {
           id: id,
           title: title,
