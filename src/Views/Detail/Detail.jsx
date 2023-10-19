@@ -122,22 +122,20 @@ const Detail = () => {
         </div>
         <h1 className="text-2xl border-t-2 border-black mt-4 mb-2 p-2">Description:</h1>
         <p className="p-2">{houseDetail.description}</p>
-        <div>
-          <h1 className="text-2xl border-t-2 border-black mt-4 mb-2 p-4">Property reserved for:</h1>
-          <li className="p-4">
-            {reservations.map((res) => {
-              return (
-                <ul>
-                  <h2>{meses[res.month - 1]}</h2>
-                </ul>
-              );
-            })}
-          </li>
-          <div>
-            <h1 className= "text-2xl" style={{ textAlign: "center" }}>Reviews</h1>
-            <Reviews key={idHouse} id={idHouse} />
-          </div>
-        </div>
+        <div className="mt-8">
+  <h1 className="text-2xl border-t-2 border-black p-4 mb-2">Property reserved for:</h1>
+  <ul className="list-disc ml-8">
+    {reservations.map((res, index) => (
+      <li key={index} className="p-2">{meses[res.month - 1]}</li>
+    ))}
+  </ul>
+  
+  <div className="mt-4">
+    <h1 className="text-2xl text-center mb-4">Reviews</h1>
+    <Reviews key={idHouse} id={idHouse} />
+  </div>
+</div>
+
 
 
       </div>
@@ -182,7 +180,7 @@ const Detail = () => {
         </div>
         {/* Total */}
 
-        <div className="border-t-2 border-black mt-14 p-6">
+        <div className="border-t-2 border-black mt-6 p-6">
           <div className="mt-2 text-xl">Total:${nightPrice}</div>
         </div>
 

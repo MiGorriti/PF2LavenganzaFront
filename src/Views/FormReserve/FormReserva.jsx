@@ -171,7 +171,7 @@ const FormReserva = ({ id, title, nightPrice }) => {
 
       <button
         onClick={handleBuy}
-        className="bg-blue-500 hover:bg-blue-400 text-black p-2 rounded"
+        className="bg-blue-500 hover:bg-blue-400 text-darkblue p-2 rounded"
         type="submit"
       >
         Reservar
