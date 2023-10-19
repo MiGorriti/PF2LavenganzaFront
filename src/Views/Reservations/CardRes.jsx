@@ -7,7 +7,7 @@ const CardRes = ({ id, image, title, cancelReserve }) => {
       <div key={id} className="col-xs-12 col-sm-6 col-md-4">
         <div className="card">
           <div className="view overlay">
-            <img className="card-img-top" src={image} alt="Card image cap" />
+            <img className="card-img-top" src={image[0]} alt="Card image cap" />
             <a href="#!">
               <div className="mask rgba-white-slight"></div>
             </a>
