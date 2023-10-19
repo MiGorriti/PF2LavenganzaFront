@@ -52,7 +52,7 @@ const Footer = () => {
 
         <ul className={styles.contactData}>
           <li>Contact</li>
-          <li>wanderluxehomes@gmail.com</li>
+          <li>wanderluxe@gmail.com</li>
           <li>
             <FontAwesomeIcon icon={faWhatsapp} /> WhatsApp
           </li>
