@@ -35,7 +35,6 @@ function App() {
 
   return (
     <BrowserRouter>
-      <div className="App w-full">
         <NavBarGuest handleLogin={handleLogin} handleLogout={handleLogout} />
         <Routes>
           <Route exact path="/" element={<LandingPage />}></Route>
@@ -69,7 +68,6 @@ function App() {
           ></Route>
         </Routes>
         <Footer />
-      </div>
     </BrowserRouter>
   );
 }

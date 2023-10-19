@@ -1,6 +1,7 @@
 import React from "react";
 import styles from "./Footer.module.css";
-// import MapComponent from "../Mapa/MapComponent";
+/* import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faInstagram, faFacebook, faTwitter } from "@fortawesome/free-brands-svg-icons"; */
 
 const Footer = () => {
   return (
@@ -9,16 +10,18 @@ const Footer = () => {
         <h1>WANDERLUXE</h1>
 
         <ul>
-          <li>Follow us</li>
-          <li>Instagram</li>
-          <li>Facebook</li>
-          <li>Twitter</li>
+{/*           <li>Follow us</li>
+          <li>
+            <FontAwesomeIcon icon={faInstagram} /> Instagram
+          </li>
+          <li>
+            <FontAwesomeIcon icon={faFacebook} /> Facebook
+          </li>
+          <li>
+            <FontAwesomeIcon icon={faTwitter} /> Twitter
+          </li> */}
         </ul>
       </div>
-
-      {/* <div className={styles.mapContainer}>
-        <MapComponent />
-      </div> */}
 
       <div className={styles.rightFooter}>
         <ul className={styles.appData}>

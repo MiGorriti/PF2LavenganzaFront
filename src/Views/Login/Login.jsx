@@ -144,20 +144,16 @@ const FormLogin = ({ handleLogin }) => {
 
   return (
     <div
-      className="min-h-screen py-40"
-      style={{ backgroundImage: "linear-gradient(115deg, #020923, #FEE2FE)" }}
-    >
+    className="min-h-screen py-40"
+    style={{ backgroundImage: "linear-gradient(115deg, #020923, #FEE2FE)" }}>
       <div className="container mx-auto flex flex-col lg:flex-row w-10/12 lg:w-8/12 bg-black rounded-xl shadow-lg overflow-hidden mt-4 relative">
-        <div
-          className="w-full lg:w-1/2 flex flex-col items-center justify-center p-12 bg-no-repeat bg-cover bg-center relative"
-          style={{ backgroundImage: "url(/imagenes/Fondolanding.png)" }}
-        >
-          <h1 className="text-white font-Zasline text-4xl mb-4 absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
-            Welcome to WanderLuxe Homes
-          </h1>
+      <div className="w-full lg:w-1/2 flex flex-col items-center justify-center p-12 bg-no-repeat bg-cover bg-center relative" style={{ backgroundImage: 'url(/imagenes/Fondolanding.png)' }}>
+      <h1 className="text-white font-Zasline text-4xl mb-4 absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
+        Welcome to WanderLuxe Homes
+        </h1>
         </div>
         <div className="w-full lg:w-1/2 py-8 px-12 text-white">
-          <h2 className="text-3xl mb-4 text-center">Log In</h2>
+          <h1 className="text-3xl mb-4 text-center">Log In</h1>
           <p className="mb-4 text-center">Enter your credentials to log in.</p>
           <form
             onSubmit={handleSubmit}
@@ -196,7 +192,7 @@ const FormLogin = ({ handleLogin }) => {
 
             <button
               type="submit"
-              className="w-full bg-purple-700 text-blue py-3 rounded hover:bg-purple-800 focus:outline-none mb-4"
+              className="w-full bg-purple-700 text-darkblue py-3 rounded hover:bg-purple-800 focus:outline-none mb-4"
               disabled={isLoading}
             >
               Log in
@@ -215,7 +211,7 @@ const FormLogin = ({ handleLogin }) => {
               Don't have an account?{" "}
               <span
                 onClick={() => navigate("/register")}
-                className="text-blue font-semibold cursor-pointer"
+                className="text-purple font-semibold cursor-pointer"
               >
                 Sign up here
               </span>

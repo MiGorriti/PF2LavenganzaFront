@@ -68,7 +68,7 @@ function NavBarGuest() {
   const specificEmail = "wanderluxe@gmail.com"; // Reemplaza con el correo específico
 
   return (
-    <nav className="mb-36 w-full">
+    <nav className="w-full">
       <ul className={styles.navSup}>
         <li>
           <Link to="/" className="text-lg">
